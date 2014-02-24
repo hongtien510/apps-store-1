@@ -1,0 +1,225 @@
+<div id="fb-root"></div>
+<script src="http://connect.facebook.net/en_US/all.js"></script>
+<script>
+
+	FB.init({
+	 appId  : '117126145156645',
+	 status : true, // check login status
+	 cookie : true, // enable cookies to allow the server to access the session
+	 xfbml  : true// parse XFBML
+	 });
+	FB.Canvas.setSize({ width: 800, height: 2500 });
+
+ </script>
+
+<script>
+    $(function(){
+      center()//gọi hàm mới load web
+        $(window).resize(function(){center()})//gọi hàm khi resize
+      function center(){
+        $('#dathang').css({left:($(window).width()-$('div#dathang').width())/2,top:100});
+        $('#thongbao').css({left:($(window).width()-$('div#thongbao').width())/2,top:100});
+      }
+    })
+</script>
+<?php
+    $splienquan = $this->splienquan;
+	$sanpham = $this->sanpham;
+	$donvitien = $this->donvitien;
+?>
+
+<div id="dathang">
+    <p class="close_dathang"></p>
+    <div id="nd_dathang">
+        <p class="title_dathang">
+            Nhập thông tin đặt hàng
+        </p>
+        <table width="100%">
+            <tr>
+                <td width="100"><span class="text2">Họ tên:</span></td>
+                <td><input class="input1" type="text" name="hoten" id="dh_hoten" /></td>
+            </tr>
+            <tr>
+                <td><span class="text2">Số điện thoại:</span></td>
+                <td><input class="input1" type="text" name="sdt" id="dh_sdt" /></td>
+            </tr>
+            <tr>
+                <td><span class="text2">Email:</span></td>
+                <td><input class="input1" type="text" name="email" id="dh_email" /></td>
+            </tr>
+            <tr>
+                <td><span class="text2">Địa chỉ:</span></td>
+                <td><input class="input1" type="text" name="diachi" id="dh_diachi" /></td>
+            </tr>
+            <tr>
+                <td><span class="text2">Ghi chú:</span></td>
+                <td><textarea class="input2" type="text" name="ghichu" id="dh_ghichu"></textarea></td>
+            </tr>
+            <tr>
+                <td><span class="text2">Sản phẩm:</span></td>
+                <td>
+                    <span class="sp_dathang"><?php echo $sanpham[0]["masp"].' - '.$sanpham[0]["tensp"] ?></span>
+                    <input type="hidden" id="dh_sanpham" value="<?php echo $sanpham[0]["idsp"]; ?>" />
+                </td>
+            </tr>
+            <tr>
+                
+                <td colspan="2">
+                    <p id="warning"></p>
+                    <p onclick="DatHang(document.getElementById('dh_hoten').value, document.getElementById('dh_sdt').value, document.getElementById('dh_email').value, document.getElementById('dh_diachi').value, document.getElementById('dh_ghichu').value, document.getElementById('dh_sanpham').value)" class="bt_dathang">Đặt hàng</p>
+                </td>
+            </tr>
+        </table>
+        
+    </div>
+</div>
+<div id="thongbao">
+	<p class="close_thongbao"></p>
+    <div id="nd_thongbao">
+	</div>
+</div>
+
+<div id="anhdaidien">
+	<div class="anhchinh">
+		<img class="hinhchinh" src="<?php echo APP_DOMAIN . '/application/layouts/tmpstore/images/upload/images/' . $sanpham[0]["hinhchinh"]?>" alt="<?php echo $sanpham[0]["tensp"]?>" title="<?php echo $sanpham[0]["tensp"]?>" />
+	</div>
+	<div class="anhphu">
+		<ul class="aphu">
+            <li><a href="javascript:;"><img class="hinhphu1" src="<?php echo APP_DOMAIN . '/application/layouts/tmpstore/images/upload/images/' . $sanpham[0]["hinhchinh"]?>" alt="image" title="Chọn để thay đổi ảnh" /></a></li>
+        <?php 
+            $hinhphu = $sanpham[0]["hinhphu"];
+            //echo $hinhphu;
+            $hp = explode(',', $hinhphu);
+            //print_r($hp);
+            $j=2;
+            for($i=0; $i<count($hp); $i++)
+            {
+        ?>
+			<li><a href="javascript:;"><img class="hinhphu<?php echo $j; ?>" src="<?php echo APP_DOMAIN . '/application/layouts/tmpstore/images/upload/images/' . $hp[$i] ?>" alt="image" title="Chọn để thay đổi ảnh" /></a></li>
+        <?php 
+            $j++; }
+        ?> 
+		</ul>
+	</div>
+</div>
+<div id="thongtin">
+	<p class="masp">Mã sản phẩm : <?php echo $sanpham[0]["masp"]?></p>
+	<h1 class="tensp"><?php echo $sanpham[0]["tensp"]?></h1>
+    <p class="giaban"><?php echo number_format($sanpham[0]["gia"],0,',','.') .' '. $donvitien ?></p>
+   
+    <p class="order">Đặt hàng</p>
+    
+	<p class="text1">Mô Tả</p>
+	<h2 class="motasp"><?php echo $sanpham[0]["mota"]?></h2>
+	<p class="text1">Chi Tiết</p>
+	<h3 class="chitietsp"><?php echo $sanpham[0]["chitietsp"]?></h3>
+    
+    <div class="chiase">
+	<?php
+	//http://localhost/appfb/ishalistore/product?id=Mg==&sp=MTg=
+	//http://www.facebook.com/Phtpht/app_617277141622046
+		$linkpage =$this->linkpage;//http://www.facebook.com/Phtpht
+		$linksanpham = base64_encode($sanpham[0]["idloaisp"]).'-'.base64_encode($sanpham[0]["idsp"]);
+		$linkchiase = $linkpage.'/app_'.APP_ID.'?app_data='.$linksanpham;
+		$titlefb = $sanpham[0]["titlefb"];
+		$metafb = $sanpham[0]["metafb"];
+		$hinhanhshare = APP_DOMAIN . '/application/layouts/tmpstore/images/upload/images/' . $sanpham[0]["hinhchinh"];
+	?>
+        <a title="Chia sẻ lên Zing Me" target="_blank" href="http://link.apps.zing.vn/share?u=<?php echo $linkchiase ?>"><img src="http://ishali.com.vn/public/default/images/small_zing_icon.png"/></a>
+    	<a title="Chia sẻ trên Google" target="_blank" href="https://plus.google.com/share?url=<?php echo $linkchiase ?>"><img alt="Google +1" src="http://ishali.com.vn/public/default/images/icon_googleplus.jpg"/></a>
+    	<!--
+		<a title="Chia sẻ trên Facebook" target="_blank" href="https://www.facebook.com/sharer/sharer.php?s=100&p[title]=<?php echo $titlefb ?>&p[url]=<?php echo $linkchiase ?>&p[images][0]=<?php echo $hinhanhshare; ?>&p[summary]=<?php echo $metafb; ?>"><img alt="Facebook" src="http://ishali.com.vn/public/default/images/icon_facebook.png"/></a>
+		-->
+		
+		<a title="Chia sẻ trên Facebook" href="javascript:;" onclick="danglentuong(<?php echo "'".$titlefb ."', '". $sanpham[0]["tensp"] ."', '". $metafb ."', '". $linkchiase ."', '". $hinhanhshare ."'"; ?>)">
+			<!--danglentuong(title, cap, des, link, pic)-->
+			<img alt="Facebook" src="http://ishali.com.vn/public/default/images/icon_facebook.png"/>
+		</a>
+
+		<iframe src="//www.facebook.com/plugins/like.php?href=<?php echo $this->link_page;?>/&amp;send=false&amp;layout=button_count&amp;width=100&amp;show_faces=false&amp;font&amp;colorscheme=light&amp;action=like&amp;height=20&amp;appId=340376799398737" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:100px; height:20px;" allowTransparency="true"></iframe>
+		<br/>
+		<span style="font-size:12px">Link chia sẻ:</span>
+		<input class="input-share" type="text" value="<?php echo $linkchiase ?>"/>
+	</div>
+    
+    
+    <div class="splienquan">
+    <p class="text1">Sản phẩm liên quan</p>
+        <ul class="splienquan">
+        <?php 
+            for($i=0; $i<count($splienquan); $i++)
+            {
+        ?>
+            <li><a href="product?id=<?php echo base64_encode($splienquan[$i]['idloaisp']); ?>&sp=<?php echo base64_encode($splienquan[$i]['idsp']); ?>&idpage=<?php echo $this->idpage; ?>"><img src="<?php echo APP_DOMAIN . '/application/layouts/tmpstore/images/upload/images/' . $splienquan[$i]['hinhchinh'] ?>" /></a></li>
+            
+        <?php } ?>
+        </ul>
+    </div>
+
+</div>
+
+<?php
+	$list_menu = $this->list_menu;
+	if($list_menu != "")
+	{
+	$noidung = $this->noidung;
+?>
+
+<div class="clear"></div>
+
+<div class="ctn_ttsp">
+	<div class="list_tab">
+		<ul class="ul_list_tab">
+		<?php
+			$store = App_Models_StoreModel::getInstance();
+			$idpage = $this->idpage;
+			$color = $store->GetColor($idpage);
+			for($i=0; $i<count($list_menu); $i++)
+			{
+		?>
+			<li onclick="ChangeTabActive('<?php echo $sanpham[0]["idsp"]; ?>', this.id, '#<?php echo $color['bg_color_menu'];?>', '#<?php echo $color['color_text_menu'];?>', '#<?php echo $color['bg_color_menu_act'];?>', '#<?php echo $color['color_text_menu_act'];?>')" class="menu_tab <?php if($i == 0) echo 'active'; ?>" id="<?php echo $i+1; ?>"><a href="javascript:;"><?php echo $list_menu[$i]; ?></a></li>
+		
+		<?php } ?>
+			<!--
+				<li onclick="ChangeTabActive('<?php echo $sanpham[0]["idsp"]; ?>',this.id)" class="menu_tab" id="2"><a href="javascript:;">Tab1</a></li>
+			-->
+		</ul>
+	</div>
+	<?php 
+		for($i=0; $i<count($list_menu); $i++)
+		{
+	?>
+	<div id="ctn_tab<?php echo $i+1; ?>" class="ctn_tab">
+		<?php echo $noidung[$i]; ?>
+	</div>
+	<?php } ?>
+</div>
+<script>
+	ShowContentTab(1);
+	changeColorTab('#<?php echo $color['bg_color_menu'];?>', '#<?php echo $color['color_text_menu'];?>', '#<?php echo $color['bg_color_menu_act'];?>', '#<?php echo $color['color_text_menu_act'];?>');
+</script>
+<?php } ?>
+
+
+
+
+<div class="comment_facebook">
+
+<?php
+	$host = $_SERVER['HTTP_HOST']; //->ishalimedia.com
+	$path=$_SERVER['REQUEST_URI']; //->/appfb/ishalistore/product?id=Mg==&sp=MTc=
+	$link = 'http://'.$host.$path;
+?>
+
+
+	<div id="fb-root"></div>
+	<script>(function(d, s, id) {
+	  var js, fjs = d.getElementsByTagName(s)[0];
+	  if (d.getElementById(id)) return;
+	  js = d.createElement(s); js.id = id;
+	  js.src = "//connect.facebook.net/vi_VN/all.js#xfbml=1&appId=535578746483923";
+	  fjs.parentNode.insertBefore(js, fjs);
+	}(document, 'script', 'facebook-jssdk'));</script>
+	<div class="fb-comments" data-href="<?php echo $linkchiase; ?>" data-width="800" data-num-posts="10" data-colorscheme="light"></div>
+
+</div>

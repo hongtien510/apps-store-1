@@ -1,0 +1,40 @@
+<input type="hidden" name="idsp" id="idsp" value="123"/>
+<?php
+	$idsp = $this->idsp;
+	$keytab = $this->keytab;
+	$noidung = $this->noidung;
+	$list_menu = $this->list_menu;
+	$tensp = $this->tensp;
+?>
+<div class="ctn_ttsp">
+<form action=<?php echo APP_DOMAIN .'/admin/product/thongtinsanphamxuly'?> method="post">
+<p class="title_page">Tên SP : <?php echo $tensp ?></p>
+	<div class="list_tab">
+		<ul class="ul_list_tab">
+			<?php 
+				for($i=0; $i<count($list_menu); $i++) 
+				{
+			?>
+				<li class="menu_tab <?php if($keytab == ($i+1)) echo " active" ?>">
+					<a target='_top' href="<?php echo ROOT_DOMAIN .'/admin/product/thongtinsanpham?idsp='.$idsp.'&keytab='.($i+1) ?>"><?php echo $list_menu[$i] ?></a>
+				</li>
+			<?php 
+				}
+			?>
+		<!--
+			<li class="menu_tab <?php if($keytab == 1) echo " active" ?>" id="1"><a target='_top' href="<?php echo APP_DOMAIN .'/admin/product/thongtinsanpham?idsp='.$idsp.'&keytab=1' ?>">Tab1</a></li>
+		-->
+		</ul>
+	</div>
+	<div id="ctn_tab">
+		<textarea name="noidung" id="noidung"><?php echo $noidung?></textarea>
+	</div>
+	<input type="hidden" name="keytab" value="<?php echo $keytab;?>"/>
+	<input type="hidden" name="idsp" value="<?php echo $idsp;?>"/>
+	<input type="submit" name="luu" value="Lưu"/>
+</form>
+</div>
+<script>
+	var editor1 = CKEDITOR.replace('noidung');
+	//CKFinder.setupCKEditor( editor1, '../../public/ckfinder/' ) ;// Chen CKFinder
+</script>

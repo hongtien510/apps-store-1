@@ -1,0 +1,50 @@
+<?php
+	
+	$checkSessionIdpage = $this->checkSessionIdpage;
+	if($checkSessionIdpage == 0)
+	{
+		echo "<center><img  src='".APP_DOMAIN."/application/templates/giaodien_admin/images/chon page.jpg'/></center>";
+	}
+	else
+	{
+		$category = $this->category;
+
+?>
+
+<table class="spdg" border="1">
+	<tr>
+		<th width="30">STT</th>
+        <th width="30">Vị trí</th>
+		<th width="300">Tên loại sản phẩm</th>
+        <th width="50">Hiển thị</th>
+		<th width="100">Công Cụ</th>
+	</tr>
+	<?php
+    $parent_order = 0;
+        for($i=0; $i<count($category); $i++)
+        {
+            $parent_order = $category[$i]['parent_id'] == 0 ? $category[$i]['vitri'] : $parent_order;
+            $order = $category[$i]['parent_id'] == 0 ? $category[$i]['vitri'] : $parent_order .'.'. $category[$i]['vitri'];
+    ?>
+	<tr>
+		<td align="center"><?php echo $i+1; ?></td>
+        <td align="center"><strong><?php echo $order ?></strong></td>
+		<td><a href="category/detail?idcat=<?php echo base64_encode($category[$i]['idloaisp']) ?>"><?php echo $category[$i]['tenloaisp'] ?></a></td>
+        <td align="center">
+            <?php if ($category[$i]['anhien']==1){?>
+                <img src="<?php echo APP_DOMAIN . '/application/templates/giaodien_admin/images/tick.png' ?>" alt="hiện" title="Lọai sản phẩm này đã được hiển thị"/>
+            <?php } else {?>
+                <img src="<?php echo APP_DOMAIN . '/application/templates/giaodien_admin/images/publish.png' ?>" alt="ẩn" title="Lọai sản phẩm này đã được hiển thị"/>
+            <?php } ?>
+        </td>
+        <td align="center">
+			<a href="category/detail?idcat=<?php echo base64_encode($category[$i]['idloaisp']) ?>"><img src="<?php echo APP_DOMAIN . '/application/templates/giaodien_admin/images/chitiet.png' ?>" alt="ct" title="Chi Tiết Sản Phẩm"/></a>
+			<!--<a href="category/delete?idcat=<?php echo base64_encode($category[$i]['idloaisp']) ?>" onclick = "return confirm('Bạn có chắc chắn muốn xóa')"><img src="<?php echo APP_DOMAIN . '/application/templates/giaodien_admin/images/xoa.png' ?>" alt="xoa" title="Xóa Sản Phẩm"/></a>-->
+            <a onclick="delete_category('<?php echo base64_encode($category[$i]['idloaisp']) ?>')" href="javascript:void(0);"><img src="<?php echo APP_DOMAIN . '/application/templates/giaodien_admin/images/xoa.png' ?>" alt="xoa" title="Xóa Sản Phẩm"/></a>
+		</td>
+	</tr>
+    <?php } ?>
+
+</table>
+<input type="button" name="themspmoi" value="Thêm Loại Sản Phẩm Mới" onclick="window.location.href='category/add'"/>
+<?php } ?>

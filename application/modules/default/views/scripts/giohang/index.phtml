@@ -1,0 +1,140 @@
+<?php
+    $configApp = Zend_Registry::get(APPLICATION_CONFIG);
+    $path_image = $configApp->config->path_image;
+    $idpage = $this->idpage;
+    $config = $this->config;
+
+?>
+<div class="m-bottom">
+    <div class="shopping-page">
+    	<form method="" action="">
+    		<div class="box-cart">
+    			<div class="row-cart row-cart-title">	
+    				<div class="col1">
+    					<span class="cart-black">Giỏ hàng</span>
+    				</div>
+    				<div class="col2">
+    					Số lượng
+    				</div>
+                    <!--
+                    <div class="col2-5">
+    					Size
+    				</div>
+                    -->
+    				<div class="col3">
+    					Thành tiền
+    				</div>
+    			</div>
+                <?php
+                    $arraySanPham = $this->arraySanPham;
+                    $tongcong = 0;
+                    foreach($arraySanPham as $idsp=>$detail)
+                    {
+                        $giaban = ($detail['detail']['giagiam'] != 0) ? $detail['detail']['giagiam'] : $detail['detail']['gia'];
+                        $thanhtien = $giaban * $detail['soluong'];
+                        $tongcong += $thanhtien;
+                ?>
+    			<div class="row-cart">	
+    				<div class="col1">
+    					<div class="box-image">
+    						<img src="<?php echo $detail['detail']['hinhchinh']?>"/>
+    					</div>
+    					<div class="bg-name">
+    						<p class="name-p"><?php echo $detail['detail']['tensp'] ?></p>
+    						<p class="price"><?php echo number_format($giaban,0,',','.') .' '. $config['donvitien'] ?></p>
+    					</div>
+    				</div>
+    				<div class="col2">
+    					x <input id="sl_<?php echo $idsp ?>" onkeyup="changeCart(event, '<?php echo $idsp ?>')" type="text" name="" value="<?php echo $detail['soluong'] ?>"/>
+    				</div>
+                    <!--
+                    <div class="col2-5">
+                        <select id="size_<?php echo $idsp ?>" onchange="changeCart(event, '<?php echo $idsp ?>')" name="size" class="select">
+                        <?php 
+                            
+                            $size = array('S', 'M', 'L', 'XL');
+                            foreach($size as $value)
+                            {
+                                $selected = "";
+                                if($detail['size'] == $value) $selected ="selected='selected'";
+                                echo "<option $selected value='$value'>$value</option>";
+                            }
+                        ?>
+						</select>
+                    </div>
+                    -->
+    				<div class="col3">
+    					<?php echo number_format($thanhtien,0,',','.') .' '. $config['donvitien'] ?>
+    				</div>
+    				<div class="col4">
+    					<a href="javascript:void(0);" onclick="deleteCart('<?php echo $idsp ?>')" class="delete"></a>
+    				</div>
+    			</div>
+                <?php
+                    }
+                ?>
+    			
+    			<div class="addmore">
+    				<div class="left">
+    					<a href="<?php echo APP_DOMAIN .'?idpage='. $idpage ?>" class="more">Chọn thêm</a>
+    				</div>
+    				<div class="sum-money">
+    					<span>Tổng cộng: <?php echo number_format($tongcong,0,',','.') .' '. $config['donvitien'] ?></span>
+    					<div class="note">
+    						*<label style="text-decoration: underline;">Lưu ý</label>: Giá tiền này chưa bao gồm phí giao hàng, 
+    						bấm vào <a href="#" style="color: #b82020;text-decoration: underline;">đây</a> để biết thêm thông tin giao hàng
+    					</div>
+                        <?php
+                            if (isset($_SESSION["cart_$idpage"]) && count($_SESSION["cart_$idpage"]) > 0)
+                            {
+                        ?>
+    					<div class="btn-muahang">
+    						<input onclick="window.location = '<?php echo APP_DOMAIN ?>/dathang?idpage=<?php echo $idpage ?>'" type="button" value="Mua hàng"/>
+    					</div>
+                        <?php
+                            }
+                        ?>
+    				</div>
+    			</div>
+    		</div>
+    	</form>
+    	<div class="info-delivery">
+    		<div class="title-others">
+    			<div class="dotted"></div>
+    			<div class="title">Cách thanh toán</div>
+    		</div>
+    		<div class="info">
+    			<?php echo $config['checkout'] ?>
+    		</div>
+    	</div>
+    	<div class="clear"></div>
+        
+        <div class="info-delivery">
+    		<div class="title-others">
+    			<div class="dotted"></div>
+    			<div class="title">Thông tin giao hàng</div>
+    		</div>
+    		<div class="info">
+    			<?php echo $config['delivery'] ?>
+    			<br/><br/>
+    			Điện thoại: <span style="color:#053443;"><?php echo $config['phone'] ?></span><br/>
+    			Email: <span style="color:#053443;"><?php echo $config['emailfrom'] ?></span>
+    		</div>
+    	</div>
+        <div class="clear"></div>
+    </div>
+    <div class="cart-shop">
+    	<div class="cart-icon-right">
+    		<a href="<?php echo APP_DOMAIN .'/giohang?idpage='. $idpage ?>" class="cart-icon">
+    			<div class="total"><?php echo isset($_SESSION["cart_$idpage"]) ? count($_SESSION["cart_$idpage"]) : "0" ?></div>
+    		</a>
+    		<a href="#" class="search-icon"></a>
+    		<div class="search-content">
+    			<input onkeyup="searchProduct(event, this.value)" type="text" value="" placeholder="Tìm kiếm" />
+    		</div>
+    		
+    		<a href="javascript:void(0);" class="gotoTop"></a>
+    	</div>
+    </div>
+    <!--End product-->
+    </div>

@@ -1,0 +1,250 @@
+<?php
+    $store = App_Models_StoreModel::getInstance();
+    $configApp = Zend_Registry::get(APPLICATION_CONFIG);
+    $facebook = new Ishali_Facebook();
+    $controllerName = Zend_Controller_Front::getInstance()->getRequest()->getControllerName();
+	$idpage = "";
+    if(isset($_SESSION['idpage']) && $_SESSION['idpage'] != "")
+	{
+		$idpage = @$_SESSION['idpage'];
+	}
+	if(@$_GET["idpage"] != "")
+	{
+		$idpage = @$_GET["idpage"];
+	}
+
+    $appid = $configApp->facebook->appid;
+    $appurl = $configApp->facebook->appurl;
+    $linkCreateApps = "http://www.facebook.com/dialog/pagetab?app_id=$appid&next=$appurl";
+    
+    $config = $this->config;
+    
+    $linkPage = $store->getLinkPage($idpage);
+    $linkPageApp = $linkPage . '/?sk=app_' . $appid;
+?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+
+<head>
+
+	<title>BOOKSHOP 2013</title>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+	<meta name="format-detection" content="telephone=no"/>
+    <!--INDEX-->
+    <link rel="stylesheet" type="text/css" href="<?php echo APP_DOMAIN . '/application/layouts/bookshop/style.css'; ?>"/>
+    <link rel="stylesheet" type="text/css" href="<?php echo APP_DOMAIN . '/application/layouts/bookshop/css/font.css'; ?>"/>
+    <link rel="stylesheet" type="text/css" href="<?php echo APP_DOMAIN . '/application/layouts/bookshop/css/customSelectBox.css'; ?>"/>
+    <link rel="stylesheet" type="text/css" href="<?php echo APP_DOMAIN . '/application/layouts/bookshop/css/edit.css'; ?>"/>
+    
+    <!--DETAIL-->
+    <link rel="stylesheet" type="text/css" href="<?php echo APP_DOMAIN . '/application/layouts/bookshop/js/slideshow/styleslideshow.css' ?>" />
+	<link rel="stylesheet" type="text/css" href="<?php echo APP_DOMAIN . '/application/layouts/bookshop/css/lightbox.css' ?>" />
+	
+    <!--PHAN TRANG-->
+	<link rel="stylesheet" type="text/css" href="<?php echo APP_DOMAIN . '/application/layouts/bookshop/css/more-custom.css'; ?>"/>
+    
+    <script>
+        var APP_DOMAIN = '<?php echo APP_DOMAIN ?>';
+        var ID_PAGE = '<?php echo $idpage ?>';
+    </script>
+    
+    <!--INDEX-->
+	<script type="text/javascript" src="<?php echo APP_DOMAIN . '/application/layouts/bookshop/js/jquery-latest.min.js'; ?>"></script>
+	<script type="text/javascript" src="<?php echo APP_DOMAIN . '/application/layouts/bookshop/js/jScrollPane.js'; ?>"></script>
+	<script type="text/javascript" src="<?php echo APP_DOMAIN . '/application/layouts/bookshop/js/SelectBox.js'; ?>"></script>
+	<script type="text/javascript" src="<?php echo APP_DOMAIN . '/application/layouts/bookshop/js/siteMain.js'; ?>"></script>
+    
+    <!--DETAIL-->
+    <script type="text/javascript" src="<?php echo APP_DOMAIN . '/application/layouts/bookshop/js/jquery.js'; ?>"></script>
+    <script src="<?php echo APP_DOMAIN . '/application/layouts/bookshop/js/slideshow/jquery_002.js'; ?>"></script>
+	<script src="<?php echo APP_DOMAIN . '/application/layouts/bookshop/js/slideshow/script.js'; ?>"></script>
+	<script src="<?php echo APP_DOMAIN . '/application/layouts/bookshop/js/slideshow/options.js'; ?>"></script>
+	<script src="<?php echo APP_DOMAIN . '/application/layouts/bookshop/js/jquery.customSelect.js'; ?>"></script>
+	<script src="<?php echo APP_DOMAIN . '/application/layouts/bookshop/js/class.Products.js'; ?>"></script>
+     <script src="<?php echo APP_DOMAIN . '/application/layouts/bookshop/js/class.animation.logo.js'; ?>"></script>
+    <script src="<?php echo APP_DOMAIN . '/application/layouts/bookshop/js/main.js'; ?>"></script>
+    <style>
+		//body {overflow:hidden;}
+    </style>
+
+</head>
+<body>
+    <div class='bg-msg'></div>
+	<div class='ctn-msg'></div>
+	<div class="container">
+		<div class="images-lightbox">
+			<div class="bg-shadow"></div>
+			<div class="images-container">
+				<div class="box-image"><img src="" /></div>
+				<a href="javascript:void(0);" class="close"></a>
+				<div class="title"></div>
+			</div>
+		</div>
+		<!--header-->
+		<div class="header">
+			<!--h-left-->
+			<div class="h-left">
+				<!--l-top-->
+				<div class="l-top">
+					<a href="<?php echo APP_DOMAIN .'?idpage='. $idpage; ?>" class="logoshop"><?php echo ($config['shopname'] != "") ? $config['shopname'] : "NAME SHOP"; ?></a>
+					<ul>
+                        <?php
+                            @$iduser_fb = $facebook->getuserfbid();
+                            if(isset($iduser_fb) && $iduser_fb != 0)
+                            {
+                                if($store->checkManagerPage($idpage, $iduser_fb))
+                                {
+                                    $link_admin = FB_APP_DOMAIN .'/admin';
+                                    echo "<li><a target='_blank' href='$link_admin' >Quản lý</a></li>";
+                                }     
+                            }
+							$menu = isset($_GET['menu']) ? $_GET['menu'] : "1";
+                        ?>
+						<li><a href="<?php echo APP_DOMAIN .'?idpage='. $idpage.'&menu=1'?>" class="<?php echo ($menu == 1) ? 'active' : '' ?>">Trang chủ</a></li>
+						<li style="display:none;"><a href="<?php echo APP_DOMAIN .'/dathang?idpage='. $idpage .'&menu=2'?>" class="<?php echo ($menu == 2) ? 'active' : '' ?>">GIAO HÀNG</a></li>
+						<li><a href="<?php echo APP_DOMAIN .'/contact?idpage='. $idpage .'&menu=3'?>" class="<?php echo ($menu == 3) ? 'active' : '' ?>">LIÊN HỆ</a></li>
+					</ul>
+					<div class="create-shop">
+						<div class="bg-create">
+							<p>
+								Tạo shop <br/> miễn phí
+							</p>
+							<a target="_blank" href="<?php echo $linkCreateApps ?>">Click HERE</a>
+						</div>
+					</div>
+				</div><!--End l-top-->
+				<!--l-top-->
+				<div class="l-bottom">
+					<a href="<?php echo APP_DOMAIN .'?idpage='. $idpage?>" class="banner">
+						<img src="<?php echo APP_DOMAIN . '/application/layouts/bookshop/'?>images/banner.gif" alt="" title=""/>
+					</a>
+				</div>
+			</div>
+			<!--End h-left-->
+			<!--h-right-->			
+			<div class="h-right">				
+				<a href="#"></a>				
+					<img link_image="<?php echo APP_DOMAIN . '/application/layouts/bookshop/'?>" src="<?php echo APP_DOMAIN . '/application/layouts/bookshop/'?>images/bg-right-1.jpg" class="h-right-1"/>				
+							
+			</div>			<!--End h-right-->
+			<div class="clear"></div>
+		</div>
+		<!--End header-->
+		<!--content-->
+		<div class="content">
+			<!--sidebar-->
+			<div class="sidebar">
+				<ul>
+					<li class="first-child backnext">
+						<a href="<?php echo APP_DOMAIN .'?idpage='. $idpage ?>" class="home"></a>
+						<a href="javascript:void(0)" class="refesh"></a>
+						<!--
+                        <a href="javascript:void(0)" class="next"></a>
+						<a href="javascript:void(0)" class="back"></a>
+						-->
+					</li>
+                    
+                    
+                    <?php
+                        
+                        $data = $store->getAllCategoryByIdPage($idpage);
+                        //print_r($data);exit;
+						$category = null;
+                        foreach($data as $key=>$value)
+                        {
+                            $category[$value['parent_id']][] = $value;
+                        }
+                        echo menu($category, 0, $idpage);
+						
+						function menu($data = null,$parent = 0, $idpage=""){
+							if($data == null) return;
+                            
+                            if($parent != 0)
+                                $link = APP_DOMAIN .'/category/?idpage='.$idpage.'&id=';
+                            else
+                                $link = APP_DOMAIN .'/category/?idpage='.$idpage.'&idp=';
+                            $str = '';
+                            if(isset($data[$parent])){
+                                $str .= '<ul>';
+                                foreach($data[$parent] as $rs){
+                                    $id = isset($_GET['id']) ? $_GET['id'] : "";
+                                    $idp = isset($_GET['idp']) ? $_GET['idp'] : "";
+                                    $active = (($rs['idloaisp'] == $id) || ($rs['idp'] == $idp)) ? "class='active'" : "";
+                                    
+                                    $url = $link == "javascript:void(0)" ? $link : $link.$rs['idloaisp'];
+                                    $str .= '<li '.$active.'><a href="'.$url.'">'.$rs['tenloaisp'].'</a>';
+                                    $str .= menu($data,$rs['idloaisp'], $idpage);
+                                    $str .= '</li>';
+                                }
+                                $str .= '</ul>';
+                            }
+                            return $str;
+                        }
+                    ?>
+
+				</ul>
+				<div class="clear"></div>
+			</div>
+			<!--End sidebar-->
+			<!--main-content-->
+			<div class="main-content">
+				<?php echo $this->layout()->content; ?>
+			</div>
+			<!--End main-content-->
+			<div class="clear"></div>
+		</div>
+		<!--End content-->
+		<footer>
+			<div class="footer">
+				<div class="developer">
+					Design and developer by SHOPBOOK
+				</div>
+				<div class="menu-footer">
+					<a href="#"> DISCLAIMER</a> -
+					<a href="#"> CREDITS</a> -
+					<a href="#"> BOOKSHOP 2013</a>
+				</div>
+			</div>
+		</footer>
+        <p class="controllerName" style="display: none;"><?php echo $controllerName ?></p>
+        <p class="getPageSort" style="display: none;"><?php echo @$_GET['page'] ?></p>
+        <p class="getIdCategory" style="display: none;"><?php echo @$_GET['id'] ?></p>
+        <p class="getIdParent" style="display: none;"><?php echo @$_GET['idp'] ?></p>
+	</div>
+    <div id="fb-root"></div>
+    <script src="https://connect.facebook.net/en_US/all.js"></script>
+    <script>
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId : '', //Your facebook APP here
+          cookie : true // enable cookies to allow the server to access the session
+        });
+      }
+      window.onload = function() {
+        FB.Canvas.setAutoGrow(91);
+      }
+      
+      (function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) return;
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=";
+          fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
+    
+    <div id="fb-root"></div>
+<div class="popup-cart" style="display:none;" id="popup-cart">
+	<div class="bg-shadow"></div>
+	<div class="popup-content">
+		<div class="text">
+			Sản phẩm đã được cho vào giỏ hàng
+		</div>
+		<div class="link">
+			<a href="javascript:void(0);" onClick="$('#popup-cart').hide();" class="link-pp link-pp-first">Tiếp tục mua sắm</a>
+			<a href="javascript:void(0);" class="link-pp">vào xem giỏ hàng</a>
+		</div>
+	</div>
+</div>
+</body>
+</html>	

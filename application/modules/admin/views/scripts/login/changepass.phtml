@@ -1,0 +1,39 @@
+
+<div style="margin: 10px auto; width: 330px;;">
+
+    <table class='login'>
+        <tr>
+            <td width ="115">Mật khẩu cũ</td>
+            <td><input class='inputstyle2' type='password' id='oldpass'/></td>
+        </tr>
+        
+        <tr>
+            <td>Mật khẩu mới</td>
+            <td>
+                <input class='inputstyle2' type='password' id='newpass'/>
+            </td>
+        </tr>
+		
+		<tr>
+            <td>Nhập lại mật khẩu mới</td>
+            <td>
+                <input class='inputstyle2' type='password' id='newrepass'/>
+            </td>
+        </tr>
+        
+        <tr>
+            <td>
+                
+            </td>
+            <td>
+				<input type="hidden" id="iduser_fb" value="<?php echo $this->iduser_fb;?>"/>
+                <input class='btLoginAdmin inputstyle2' onclick="ChangePass(document.getElementById('iduser_fb').value, document.getElementById('oldpass').value, document.getElementById('newpass').value, document.getElementById('newrepass').value)" type='button' name='btnlogin' value='Đổi mật khẩu' />
+				<a href="<?php echo APP_DOMAIN . '/admin/login/' ?>">Đăng nhập</a>
+			</td>
+        </tr>
+		<tr>
+			<td colspan = "2"><p id="warning"></p></td>
+		</tr>
+        
+    </table>
+</div>

@@ -1,0 +1,209 @@
+<script>
+	$(document).ready(function(e) 
+	{
+		$("select.custom").each(function() {                    
+            var sb = new SelectBox({
+	            selectbox: $(this),
+	            height: 300,
+	            changeCallback : function (val){
+	               // $("#form_contact").find('[name="city_name"]').val(branches[val].city);
+	                //$("#form_contact").find('[name="branch_id"]').val(branches[val].branch_id);
+	            }
+        	});
+    	});	
+     });	
+</script>
+<div class="m-top">
+	<!--breadcrum-->
+	<div class="breadcrum">
+		<a href="#">Hàng mới</a> / <a href="#">Quần áo</a> / <a href="#">Nữ</a>/
+		<a href="#" class="active">Áo</a>
+	</div>
+	<!--End breadcrum-->
+	<!--sort-->
+	<div class="sort">
+		<select class="select custom" name="sort" id="sort-select">
+			<option value="0">Sắp xếp</option>
+			<option value="asc">Theo giá tăng dần</option>
+			<option value="desc">Theo giá giảm dần</option>
+			<option value="desc">Theo hàng mới</option>
+		</select>
+	</div>
+	<!--End sort-->
+</div>
+<div class="m-bottom">
+	<!--product-->
+	<div class="product">
+		<!--p-item-->
+		<div class="p-item">
+			<a href="details.html">
+				<img src="<?php echo APP_DOMAIN . '/application/layouts/bookshop/'?>images/s-1.jpg" alt="" title=""/>
+				<div class="new"></div><!--new and selloff-->
+				<div class="bg-name">
+					<p class="name-p">Áo LOTTE Korean</p>
+					<p class="price">180,000 đ</p>
+				</div>
+			</a>	
+		</div>
+		<!--End p-item-->
+		<!--p-item-->
+		<div class="p-item">
+			<a href="details.html">
+				<img src="<?php echo APP_DOMAIN . '/application/layouts/bookshop/'?>images/s-2.jpg" alt="" title=""/>
+				<div class="selloff"><span>30% off</span></div><!--new and selloff-->
+				<div class="bg-name">
+					<p class="name-p">Áo CHIBI Japanese</p>
+					<p class="price">280,000 đ</p>
+				</div>
+			</a>	
+		</div>
+		<!--End p-item-->
+		<!--p-item-->
+		<div class="p-item">
+			<a href="details.html">
+				<img src="<?php echo APP_DOMAIN . '/application/layouts/bookshop/'?>images/s-3.jpg" alt="" title=""/>
+				<div class="new"></div><!--new and selloff-->
+				<div class="bg-name">
+					<p class="name-p">Áo Nhà Nghèo Hở Rốn</p>
+					<p class="price">888,000 đ</p>
+				</div>
+			</a>	
+		</div>
+		<!--End p-item-->
+		<!--p-item-->
+		<div class="p-item">
+			<a href="details.html">
+				<img src="<?php echo APP_DOMAIN . '/application/layouts/bookshop/'?>images/s-1.jpg" alt="" title=""/>
+				<div class="new"></div><!--new and selloff-->
+				<div class="bg-name">
+					<p class="name-p">Áo LOTTE Korean</p>
+					<p class="price">180,000 đ</p>
+				</div>
+			</a>	
+		</div>
+		<!--End p-item-->
+		<!--p-item-->
+		<div class="p-item">
+			<a href="details.html">
+				<img src="<?php echo APP_DOMAIN . '/application/layouts/bookshop/'?>images/s-2.jpg" alt="" title=""/>
+				<div class="selloff"><span>30% off</span></div><!--new and selloff-->
+				<div class="bg-name">
+					<p class="name-p">Áo CHIBI Japanese</p>
+					<p class="price">280,000 đ</p>
+				</div>
+			</a>	
+		</div>
+		<!--End p-item-->
+		<!--p-item-->
+		<div class="p-item">
+			<a href="details.html">
+				<img src="<?php echo APP_DOMAIN . '/application/layouts/bookshop/'?>images/s-3.jpg" alt="" title=""/>
+				<div class="new"></div><!--new and selloff-->
+				<div class="bg-name">
+					<p class="name-p">Áo Nhà Nghèo Hở Rốn</p>
+					<p class="price">888,000 đ</p>
+				</div>
+			</a>	
+		</div>
+		<!--End p-item-->
+		<!--p-item-->
+		<div class="p-item">
+			<a href="details.html">
+				<img src="<?php echo APP_DOMAIN . '/application/layouts/bookshop/'?>images/s-1.jpg" alt="" title=""/>
+				<div class="new"></div><!--new and selloff-->
+				<div class="bg-name">
+					<p class="name-p">Áo LOTTE Korean</p>
+					<p class="price">180,000 đ</p>
+				</div>
+			</a>	
+		</div>
+		<!--End p-item-->
+		<!--p-item-->
+		<div class="p-item">
+			<a href="details.html">
+				<img src="<?php echo APP_DOMAIN . '/application/layouts/bookshop/'?>images/s-2.jpg" alt="" title=""/>
+				<div class="selloff"><span>30% off</span></div><!--new and selloff-->
+				<div class="bg-name">
+					<p class="name-p">Áo CHIBI Japanese</p>
+					<p class="price">280,000 đ</p>
+				</div>
+			</a>	
+		</div>
+		<!--End p-item-->
+		<!--p-item-->
+		<div class="p-item">
+			<a href="details.html">
+				<img src="<?php echo APP_DOMAIN . '/application/layouts/bookshop/'?>images/s-3.jpg" alt="" title=""/>
+				<div class="new"></div><!--new and selloff-->
+				<div class="bg-name">
+					<p class="name-p">Áo Nhà Nghèo Hở Rốn</p>
+					<p class="price">888,000 đ</p>
+				</div>
+			</a>	
+		</div>
+		<!--End p-item-->
+		<!--p-item-->
+		<div class="p-item">
+			<a href="details.html">
+				<img src="<?php echo APP_DOMAIN . '/application/layouts/bookshop/'?>images/s-1.jpg" alt="" title=""/>
+				<div class="new"></div><!--new and selloff-->
+				<div class="bg-name">
+					<p class="name-p">Áo LOTTE Korean</p>
+					<p class="price">180,000 đ</p>
+				</div>
+			</a>	
+		</div>
+		<!--End p-item-->
+		<!--p-item-->
+		<div class="p-item">
+			<a href="details.html">
+				<img src="<?php echo APP_DOMAIN . '/application/layouts/bookshop/'?>images/s-2.jpg" alt="" title=""/>
+				<div class="selloff"><span>30% off</span></div><!--new and selloff-->
+				<div class="bg-name">
+					<p class="name-p">Áo CHIBI Japanese</p>
+					<p class="price">280,000 đ</p>
+				</div>
+			</a>	
+		</div>
+		<!--End p-item-->
+		<!--p-item-->
+		<div class="p-item">
+			<a href="details.html">
+				<img src="<?php echo APP_DOMAIN . '/application/layouts/bookshop/'?>images/s-3.jpg" alt="" title=""/>
+				<div class="new"></div><!--new and selloff-->
+				<div class="bg-name">
+					<p class="name-p">Áo Nhà Nghèo Hở Rốn</p>
+					<p class="price">888,000 đ</p>
+				</div>
+			</a>	
+		</div>
+		<!--End p-item-->
+		<!--Paging-->
+		<div class="paging">
+			<div class="pg-num">
+				<a href="#" class="current">1</a>
+				<a href="#">2</a>
+				<a href="#" class="">3</a>
+				<span href="#" class="">...</span>
+				<a href="#" class="next">Next</a>
+			</div>
+		</div>
+		<!--End Paging-->
+	</div>
+	<div class="cart-shop">
+		<div class="cart-icon-right">
+			<a href="#" class="cart-icon">
+				<div class="total">4</div>
+			</a>
+			<a href="#" class="search-icon"></a>
+			<div class="search-content">
+				<form method="" action="">
+					<input type="text" value="" placeholder="Tìm kiếm" />
+				</form>
+			</div>
+			
+			<a href="javascript:void(0);" class="gotoTop"></a>
+		</div>
+	</div>
+	<!--End product-->
+</div>

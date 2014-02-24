@@ -1,0 +1,180 @@
+<?php
+    $product = $this->product;
+    //print_r($product);exit;
+    $product_hinhanh = $this->product_hinhanh;
+    $category = $this->category;
+    //print_r($category);
+?>
+<form id='form_update_sanpham'>
+<table width="100%">
+    <tr>
+		<td><span class="nameinput">Hiển Thị: </span></td>
+		<td>
+            <label><input type="checkbox" value="1" name="hienthi" <?php if($product[0]['anhien']==1) echo "checked='checked'" ?> />
+            (Bỏ chọn nếu không muốn hiển thị sản phẩm này)</label>
+        </td>
+	</tr>
+    <tr>
+		<td><span class="nameinput">Sản phẩm mới: </span></td>
+		<td>
+            <label><input type="checkbox" value="1" name="spmoi" <?php if($product[0]['spmoi']==1) echo "checked='checked'" ?> />(Chọn nếu muốn hiển thị sản phẩm mới)</label>
+        </td>
+	</tr>
+    <tr>
+		<td><span class="nameinput">Tên Sản Phẩm: </span></td>
+		<td><input class="inputstyle" type="text" name="tensp" id="tensp" value="<?php echo $product[0]['tensp'] ?>"/><span style="color: red;">(*)</span></td>
+	</tr>
+    <tr>
+		<td><span class="nameinput">Chọn danh mục: </span></td>
+		<td>
+            <select name='idcat'>
+                <option value="0">Chọn danh mục</option>
+            <?php 
+                for($i=0; $i<count($category); $i++)
+                {
+            ?>
+                <option value="<?php echo $category[$i]['idloaisp']?>" <?php if($category[$i]['idloaisp']==$product[0]['idloaisp']) echo "selected='selected'" ?>>
+                <?php echo $category[$i]['tenloaisp'] ?></option>
+            <?php } ?>
+            </select><span style="color: red;">(*)</span>
+        </td>
+	</tr>
+    <?php
+        $hide_giamgia = "";
+        if($product[0]['giagiam'] == 0 || $product[0]['giagiam'] == "")
+        {
+            $hide_giamgia = "style='display:none'";   
+        }
+    ?>
+	<tr>
+		<td><span class="nameinput">Giá Bán: </span></td>
+		<td>
+			<input class="inputstyle" type="text" name="giaban" id="giaban" value="<?php echo $product[0]['gia'] ?>"/><span style="color: red;">(*)</span><br/>
+			<em>(Chỉ nhập số, không có khoảng trắng và ký tự đặc biệt)</em>
+		</td>
+	</tr>
+    <tr>
+        <td><span class="nameinput">Giảm giá: </span></td>
+        <td>
+            <label>
+                <input <?php if($hide_giamgia == "") echo "checked='checked'" ?> type="checkbox" name="open_giagiam" value="" /> Giảm giá
+            </label>
+        </td>
+    </tr>
+    <tr class="tr_giagiam" <?php echo $hide_giamgia ?>>
+		<td><span class="nameinput">Giá sau khi giảm: </span></td>
+		<td>
+			<input class="inputstyle" type="text" name="giagiam" id="giagiam" value='<?php echo $product[0]['giagiam'] ?>'/><br/>
+			<em>(Chỉ nhập số, không có khoảng trắng và ký tự đặc biệt)</em>
+		</td>
+	</tr>
+    <tr class="tr_phantram_giagiam" <?php echo $hide_giamgia ?>>
+		<td><span class="nameinput">Giá giảm (%): </span></td>
+		<td>
+			<input class="inputstyle" type="text" name="sale_off" id="sale_off" value='<?php echo $product[0]['sale_off'] ?>'/><br/>
+			<em>(Nhập số phần trăm giảm giá)</em>
+		</td>
+	</tr>
+    <tr>
+        <td valign = "top"><span class="nameinput">Hình ảnh: </span></td>
+        <td>
+            <div class="update_photo_sanpham">
+                <ul class="ul_list_img_fb">
+                <?php
+                    if($product[0]['hinhchinh'] != "")
+                    {
+                ?>
+                    <li class="selected">
+                        <label>
+                        <p class="img_fb">
+                            <img src="<?php echo $product[0]['hinhchinh'] ?>" alt="" title="" />
+                            <input checked='checked' type="radio" name="photo_sanpham" value="<?php echo $product[0]['hinhchinh'] ?>"/>
+                            <input type="hidden" name="photo_sanpham_1" value="<?php echo $product[0]['hinhchinh'] ?>" />
+                            <span>Ảnh chính</span>
+                        </p>
+                        
+                        </label>
+                        <input type="text" name="order_photo_sanpham_1" value="" title="Vị trí hình ảnh hiển thị" />
+                        <a href="javascript:void(0)">
+                            <img src="<?php echo APP_DOMAIN . '/application/templates/giaodien_admin/images/xoa.png' ?>" alt="del" title="Xóa Hình"/>
+                        </a>
+                    </li>
+                <?php
+                    }
+                ?>
+                
+                <?php
+                    $count_photo = 1;
+                    foreach($product_hinhanh as $key=>$value)
+                    {
+                        $count_photo ++;
+                ?>
+                    <li>
+                        <label>
+                        <p class="img_fb">
+                            <img src="<?php echo $value['source'] ?>" alt="" title="" />
+                            <input type="radio" name="photo_sanpham" value="<?php echo $value['source'] ?>"/>
+                            <span>Ảnh chính</span>
+                        </p>
+                        </label>
+                        <input type="hidden" name="photo_sanpham_<?php echo $count_photo ?>" value="<?php echo $value['source'] ?>" />
+                        <input type="text" name="order_photo_sanpham_<?php echo $count_photo ?>" value="<?php echo $value['sapxep'] ?>" />
+                        <a href="javascript:void(0)">
+                            <img src="<?php echo APP_DOMAIN . '/application/templates/giaodien_admin/images/xoa.png' ?>" alt="del" title="Xóa Hình"/>
+                        </a>
+                    </li>
+                <?php
+                    }
+                ?>
+                    <!--
+                    <li>
+                        <label>
+                        <p class="img_fb">
+                            <img src="http://localhost/appfb/apps-store/application/layouts/tmpstore/images/upload/images/1363321950_smn5.jpg" alt="" title="" />
+                            <input type="radio" name="photo_sanpham" value="60"/>
+                            <input type="hidden" name="photo_sanpham_11" value="60" />
+                            
+                        </p>
+                        </label>
+                        <input type="text" name="order_photo_sanpham_11" value="" />
+                        <a href="javascript:void(0)">
+                            <img src="<?php echo APP_DOMAIN . '/application/templates/giaodien_admin/images/xoa.png' ?>" alt="del" title="Xóa Hình"/>
+                        </a>
+                    </li>
+                    -->
+                </ul>
+                <p style="clear: both; margin-top:10px">
+                    <input type="button" value="Tải hình" name="btn_get_image_on_fb" onclick="download_photo_fb('update', '<?php echo $count_photo ?>')"/>
+                </p>
+            </div>
+        </td>
+    </tr>
+    
+	<tr>
+		<td valign = "top"><span class="nameinput">Mô tả SP: </span></td>
+		<td><textarea  class="textareastyle" id="mota" ><?php echo $product[0]['mota'] ?></textarea></td>
+	</tr>
+</table>
+<input type="hidden" name="idsp" value="<?php echo $product[0]['idsp'] ?>" />
+<input type="button" name="btnsubmit" value="Cập Nhật Sản Phẩm"/>
+<input type="button" onclick="top.location.href = '<?php echo ROOT_DOMAIN ?>/admin/product'" value="Quay lại" />
+</form>
+
+<script>
+	var editor1 = CKEDITOR.replace( 'mota' );
+	CKFinder.setupCKEditor( editor1, '../public/ckfinder/' ) ;
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

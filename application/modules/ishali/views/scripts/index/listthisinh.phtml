@@ -1,0 +1,87 @@
+    <?php
+//    echo "<pre>";
+//    print_r($this->listthisinh);
+//    echo "</pre>";
+    ?>
+
+
+	<table width="100%" border="1" cellspacing="1" style="text-align:center; vertical-align: middle;">
+	  <tr bgcolor="whitesmoke" height="35px">
+	    <th width="35px" >Stt</th>
+	      <th width="100px"  >Tên thí sinh</th>
+	       <th width="100px"  >Giới tính</th>
+	        <th width="100px"  >Email</th>
+	       <th width="50px" >Ẩn/Hiển</th>
+	  </tr>
+	
+	<?php 
+	$appid = $this->appid;
+	$pagelistarr = $this->listthisinh;
+	
+	$facebook = new Ishali_Facebook(); 
+	$fb = $facebook->getFB();
+							 
+	foreach ($pagelistarr AS $k=>$page)
+	{
+	
+		$cltr = ' cl1 ';
+		if($k % 2 == 0)
+		{
+			$cltr = ' cl2 ';
+		}
+	?>
+	<tr class="<?php echo $cltr?>" >
+		    <td><?php echo $k+1; ?></td>
+		    
+	         <td>
+	        	 <a href='javascript:void(0)'  onClick="window.open('http://www.facebook.com/<?php echo $page['id_fb_thi_sinh'] ?>')" ><?php echo $page['ten_thi_sinh'] ?></a>
+	  		</td>
+	  		
+			 <td>
+			 	  <?php 
+	          if($page['gioi_tinh'] == 1)
+	          {
+	          	echo "Nam";
+	          }else{
+	          	echo "Nữ";
+	          }
+	          ?>
+	  		</td>
+			
+			<td>
+			 	  <?php 
+	          		echo $page['email'];
+	         		 ?>
+	  		</td>
+
+   			<td>
+   			<div id="an_hien_page_<?php echo $page['id_pages']?>">
+			          <?php 
+			          if($page['an_hien'] == 1)
+			          {
+						?>
+								<img   src="<?php echo $this->baseUrl ('application/templates/giaodien_ishali/images/publish_g.png') ?>" />
+						<?php 
+			          }else{
+			          ?>
+							<img   src="<?php echo $this->baseUrl ('application/templates/giaodien_ishali/images/publish_r.png') ?>" />
+						<?php 
+			          }
+			          ?>
+	          </div>
+	  		</td>
+	 </tr>
+	<?php 
+	}
+	if(count($pagelistarr)<=0)
+	{
+		?>
+		<tr height="35px" class="cl1">
+			<td colspan="5">
+				Chưa có thí sinh
+			</td>
+		</tr>
+		<?php 
+	}
+	?>
+	</table>

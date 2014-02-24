@@ -1,0 +1,29 @@
+
+<div style="margin: 10px auto; width: 330px;;">
+<span style="color: #2A842D; font-weight:bold">Bạn cần phải đăng nhập vào quyền quản trị Admin</span>
+    <table class='login'>
+        <tr>
+            <td width ="115">Tên Ðăng Nhập</td>
+            <td><input class='inputstyle2' type='text' id='useradmin' name='usernameadmin'/></td>
+        </tr>
+        
+        <tr>
+            <td>Mật Khẩu</td>
+            <td>
+                <input class='inputstyle2' type='password' id='passadmin' name='passwordadmin'/>
+            </td>
+        </tr>
+        
+        <tr>
+            <td>
+                
+            </td>
+            <td>
+                <input class='btLoginAdmin inputstyle2' onclick="LoginAdmin(document.getElementById('useradmin').value, document.getElementById('passadmin').value)" type='button' name='btnlogin' value='Ðăng Nhập' />
+				<a href="<?php echo APP_DOMAIN . '/admin/register/' ?>">Đăng ký tài khoản</a>
+			</td>
+        </tr>
+
+        
+    </table>
+</div>

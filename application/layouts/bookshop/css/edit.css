@@ -1,0 +1,161 @@
+.sort .title{
+   float: left;
+font-size: 11px;
+z-index: 10;
+position: absolute;
+left: -39px;
+top: 2px;
+}
+.main-content .sort select.select{
+
+}
+.sidebar ul li ul{
+	border-left:none;
+	box-shadow:none;
+	margin-left:0;
+	top:-1px;
+}
+.sidebar ul li.first-child:hover{
+	background:url("../images/dot.png") repeat-x scroll center bottom rgba(0, 0, 0, 0);
+}
+.sort .customSelect .itm-0{
+	display:none;
+}
+.pagination{
+	margin-bottom:20px;
+}
+
+.right-product .product-description .row_desc.row_desc_details{
+	
+}
+.row_desc.row_desc_details{
+    padding-bottom: 5px;
+	
+   
+}
+.row_desc.row_desc_details .title{
+	padding-bottom:5px;
+}
+.product .p-item img{
+	max-width: 200px;
+max-height: 241px;
+	
+}
+.product .other-products .slider-details .p-item img {
+width: 170px;
+height: 205px;
+}
+.sort-products{
+    float: left;
+	
+    margin-left: 20px;
+    position: relative;
+    top: 16px;
+}
+.sort-products a{
+    background: #f2f2f2;
+	
+    color: #707070;
+    font-size: 13px;
+    padding: 6px 18px;
+    border-left: 1px solid #989898;
+    margin-right: 10px;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-top: 1px solid #989898;
+    border-right: 1px solid #989898;
+    border-radius: 2px 2px 0 0;
+    border-bottom: 1px solid #989898;
+    position: relative;
+    top: -1px;
+}
+.sort-products a.active{
+	color:#000;
+	background:#ffffff;
+	box-shadow: 0px -2px 2px #a3a3a3;
+	border-bottom: none;
+	top: 0;
+}
+.sort-products .new-products{
+	
+}
+.sort-products .sale-products{
+	
+}
+.sort-products .all-products{
+	
+}
+.tooltip_image_big{
+	position: fixed;
+border: 1px solid #e1e1e1;
+padding: 10px;
+background: #fff;
+z-index: 10;
+	width: 45%;
+	height: auto;
+}
+.tooltip_image_big .box-image-big{
+	
+}
+.tooltip_image_big .box-image-big img{
+width: 85%!important;
+/* height: 80%!important; */
+max-height: 80%!important;
+margin: 0 auto!important;
+display: table;
+}
+ul.sliders-wrap-inner li img {
+padding: 0px;
+max-width: 100%!important;
+/* max-height: 299px !important; */
+/* width: 100% !important; */
+max-height: 99% !important;
+}
+
+/*Edit logo*/
+.header .h-right{
+	background: transparent;
+	min-height: 175px;
+	height:auto;
+	position:relative;
+}
+.header .h-right a{
+	position: absolute;
+height: 85px;
+width: inherit;
+width: 80px;
+right: 0;
+}
+.header .h-left .l-bottom {
+	background: #fff;
+}
+.content {
+	position: relative;
+	top: -31px;
+}
+img.h-right-1.h-right-7{
+	
+}
+.lof-slidecontent .button-next{
+	z-index: 0!important;
+}
+.header .h-left .l-top{
+	height:32px;
+}
+.p-item-table{
+	
+}
+.product .p-item img{
+	position:absolute;
+	left: 0;
+}
+.sidebar{
+	width:137px;
+	height:100%;
+}
+.main-content{
+	border:none;
+}
+.sidebar ul li ul li a{
+	text-align:left;
+}

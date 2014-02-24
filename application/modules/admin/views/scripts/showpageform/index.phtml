@@ -1,0 +1,391 @@
+<?php 
+//	echo "<pre>";
+//		print_r($this->mausac );
+//		echo "</pre>";
+//foreach ($this->mausac  AS $ms)
+//	{
+//		
+//echo $ms['ten'];
+//
+//		
+//	}
+	
+
+		$pageid=$_REQUEST['pageid'];
+ 		$userid=$_REQUEST['userid'];
+ 		$appid=$_REQUEST['appid'];
+		
+		$facebook = new Ishali_Facebook(); 
+		$fb = $facebook->getFB();
+		$pages =  $fb->api('/'.$pageid);
+		$has_added_app = $pages['has_added_app'];
+	/*
+	    	echo "<pre>";
+    	print_r($pages);
+    	echo "</pre>";
+*/
+	if($has_added_app == 1)
+	{
+		 $page_detail = App_Models_PagesModel::getInstance()->getDetail("$pageid");
+		?>
+		
+		<!--- ****************Form nhap lieu ****************** -->
+		<h1><?php echo $pages['name']; ?> </h1>		
+		
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<form method="post" action="admin/showpageform/luu" enctype="multipart/form-data">
+<div class="nut_page">
+	<input type="submit" name="submit" value="Lưu">
+	<input onClick="window.open('<?php echo $pages['link']."?sk=app_".$appid ?>')" type="button" value="Xem">
+</div>
+
+<div>
+	<div class='page_cat'>
+		<div class='page_title' >
+		Banner
+		</div>
+		
+		<div class='page_input'>
+			<input class="input500" type="file" name="banner" size="35px"  id="banner" value="<?php echo $page_detail->banner ?>">
+		</div>
+	</div>
+
+	<div class='page_cat'>
+		<div class='page_title' >
+		Liên kết của banner
+		</div>
+		
+	<div class='page_input'>			
+			<input class="input500" type="text" name="banner_link" size="50px" id="banner_link" value="<?php echo $page_detail->banner_link ?>">
+		</div>
+	</div>
+
+<div class='page_cat'>
+		<div class='page_title' >
+		Giao diện của ứng dụng
+		</div>
+		
+		<div class='page_input'>				
+				<?php 
+				$selected='';$selected1='';$selected2='';$selected3='';$selected4='';$selected5='';$selected6='';$selected7='';$selected8='';$selected9='';
+				switch ($page_detail->templates)
+				{
+					case  'giaodien1.jpg':
+						$selected1 = " selected='selected' ";
+						break;
+						
+					case  'giaodien2.jpg':
+						$selected2 = " selected='selected' ";
+						break;
+						
+					case  'giaodien3.jpg':
+						$selected3 = " selected='selected' ";
+						break;
+						
+					case  'giaodien4.jpg':
+						$selected4 = " selected='selected' ";
+						break;
+						
+					case  'giaodien5.jpg':
+						$selected5 = " selected='selected' ";
+						break;
+						
+					case  'giaodien6.jpg':
+						$selected6 = " selected='selected' ";
+						break;
+						
+					case  'giaodien7.jpg':
+						$selected7 = " selected='selected' ";
+						break;
+				
+					case  'giaodien8.jpg':
+						$selected8 = " selected='selected' ";
+						break;
+						
+					case  'giaodien9.jpg':
+						$selected9 = " selected='selected' ";
+						break;
+						
+						default: $selected = " selected='selected' ";
+				}
+				
+				$url_img= 'public/images/giaodien/'.$page_detail->templates;
+				?>
+				<select name='templates'  style="width: 130px;"  size="8px" onchange="doihinh(this.value)" >
+					<option <?php echo $selected ?>  value='tmpstore'>Mặc định</option>
+	
+				</select>
+			<img  id='img_giaodien' src="<?php echo $this->baseUrl ($url_img) ?>" width='130px' height='130px'  style='padding-left:50px'/>
+		</div>
+</div>
+<!--
+	<div class='page_cat'>
+		<div class='page_title' style=" margin-top: 16px;">
+		Số lần bình chọn
+		</div>
+		
+		<div class='page_input'>
+			<input class="input500" maxlength="4" style="padding-right: 100px;  margin-top: 13px;"  type="text" name="so_lan_binh_chon" id="so_lan_binh_chon" value="<?php echo $page_detail->so_lan_binh_chon ?>">
+		
+		</div>
+	</div>
+
+	
+	<div class='page_cat'>
+		<div class='page_title' >
+		Lời cảm ơn khi bình chọn: 
+		</div>
+		
+	<div class='page_input'>
+			<textarea class="textarea700" name="cam_on_binh_chon" id="cam_on_binh_chon" style="text-align:left;height: 55px; width: 500px; resize: none; border: medium 1;"><?php echo $page_detail->cam_on_binh_chon ?></textarea>
+		</div>
+	</div>
+	
+	<div class='page_cat'>
+		<div class='page_title' >
+		Lời cảm ơn khi thí sinh tham gia
+		</div>
+		
+		<div class='page_input'>
+			<textarea class="textarea700" name="cam_on_tham_gia" id="cam_on_tham_gia"  style="text-align:left;height: 55px; width: 500px; resize: none; border: medium 1;" ><?php echo $page_detail->cam_on_tham_gia ?></textarea>
+		</div>
+	</div>
+	<div class='page_cat'>
+		<div class='page_title' >
+		Footer
+		</div>
+		
+		<div class='page_input'>
+				<textarea class="textarea700" name="footer" id="footer" style="text-align:left;height: 55px; width: 500px; resize: none; border: medium 1;" ><?php echo $page_detail->footer ?></textarea>
+		</div>
+	</div>
+	<div class='page_cat'>
+		<div class='page_title' >
+		font size
+		</div>
+		
+		<div class='page_input' >
+		<?php 
+				$selected12='';$selected14='';$selected16='';$selected18='';$selected20='';$selected22='';$selected24='';$selected26='';$selected28='';
+				switch ($page_detail->font_size)
+				{
+					case  '12px':
+						$selected12 = " selected='selected' ";
+						break;
+						
+					case  '14px':
+						$selected14 = " selected='selected' ";
+						break;
+						
+					case  '16px':
+						$selected16 = " selected='selected' ";
+						break;
+						
+					case  '18px':
+						$selected18 = " selected='selected' ";
+						break;
+						
+					case  '20px':
+						$selected20 = " selected='selected' ";
+						break;
+						
+					case  '22px':
+						$selected22 = " selected='selected' ";
+						break;
+						
+					case  '24px':
+						$selected24 = " selected='selected' ";
+						break;
+				
+					case  '26px':
+						$selected26 = " selected='selected' ";
+						break;
+						
+					case  '28px':
+						$selected28 = " selected='selected' ";
+						break;
+						
+						default: $selected12 = " selected='selected' ";
+				}
+				?>
+				<select name='font_size' style="margin-right: 100px; margin-top: 13px;">
+					<option <?php echo $selected12 ?> value='12px'>12px</option>
+					<option <?php echo $selected16 ?> value='16px'>16px</option>
+					<option <?php echo $selected18 ?> value='18px'>18px</option>
+					<option <?php echo $selected20 ?> value='20px'>20px</option>
+					<option <?php echo $selected22 ?> value='22px'>22px</option>
+					<option <?php echo $selected24 ?> value='24px'>24px</option>
+					<option <?php echo $selected26 ?> value='26px'>26px</option>
+					<option <?php echo $selected28 ?> value='28px'>28px</option>					
+				</select>
+		</div>
+	</div>
+	<div class='page_cat'>
+		<div class='page_title' >
+		Màu nền của ứng dụng
+		</div>
+		
+		<div class='page_input'  >
+
+		<select name='background_color' style="background-color:<?php echo $page_detail->background_color ?>; margin-right: 100px; margin-top: 13px;">
+		<?php 
+		foreach($this->mausac AS $ms )
+		{
+				$selected = '';
+			if($ms['ma']==$page_detail->background_color){
+				$selected = " selected='selected' ";
+			}
+		echo "<option value='$ms[ma]' $selected style='background-color:$ms[ma]' >$ms[ten]</option>";
+		}
+		?>
+		</select>
+		</div>
+	</div>
+
+	<div class='page_cat'>
+		<div class='page_title' >
+		Hình nền của ứng dụng
+		</div>
+		
+		<div class='page_input'>
+			<input class="input500" type="file" name="background_images" size="35px"  id="background_images" value="<?php echo $page_detail->background_images ?>">
+		</div>
+	</div>
+	
+	<div class='page_cat'>
+		<div class='page_title' >
+		Màu chữ
+		</div>
+		
+		<div class='page_input'>
+		<select name='color' style="background-color:<?php echo $page_detail->color ?>; margin-right: 100px; margin-top: 13px;">
+		<?php 
+		foreach($this->mausac AS $ms )
+		{
+			$selected = '';
+			if($ms['ma']==$page_detail->color){
+				$selected = " selected='selected' ";
+			}	
+		echo "<option value='$ms[ma]' $selected style='background-color:$ms[ma]' >$ms[ten]</option>";
+		}
+		?>
+		</select>			
+		</div>
+	</div>
+
+	<div class='page_check_showlike'>
+		<div class='page_title_showlike' >
+		Mục hiển thị
+		</div>
+		<div>
+			<ul class="list_show">
+					<li>						
+						<span class='list_show_text'>
+							<input type="checkbox" <?php if($page_detail->show_ma==1)echo " checked='checked' " ?>  value="1" name="show_ma"> 
+							Hiển thị mã thí sinh
+						</span>						
+					</li>
+						<li>
+						<span class='list_show_text'>
+							<input type="checkbox" <?php if($page_detail->show_ten==1)echo " checked='checked' " ?> value="1" name="show_ten"> 						
+						Hiển thị tên thí sinh		
+						</span>									
+					</li>
+
+					<li>
+					<span class='list_show_text'>
+						<input type="checkbox" <?php if($page_detail->show_gioi_tinh==1)echo " checked='checked' " ?>  value="1" name="show_gioi_tinh"> 						
+						Hiển thị giới tính	
+						</span>			
+					</li>
+					
+					<li>
+						<span class='list_show_text'>
+							<input type="checkbox"  <?php if($page_detail->show_gioi_thieu==1)echo " checked='checked' " ?>  value="1" name="show_gioi_thieu"> 					
+							Hiển thị giới thiệu		
+						</span>
+					</li>
+					
+					<li>
+						<span class='list_show_text'>
+							<input type="checkbox" <?php if($page_detail->show_luot_xem==1)echo " checked='checked' " ?>  value="1" name="show_luot_xem"> 						
+							Hiển thị lượt xem	
+						</span>											
+					</li>					
+
+					<li>
+						<span class='list_show_text'>
+							<input type="checkbox" <?php if($page_detail->show_so_binh_chon==1)echo " checked='checked' " ?>  value="1" name="show_so_binh_chon"> 
+							Hiển thị số bình chọn		
+						</span>								
+					</li>				
+			</ul>
+		</div>
+	</div>
+	
+	<div class='page_check_showlike'>
+		<div class='page_title_showlike' >
+		Mục Like
+		</div>
+		<div>
+			<ul class="list_show">
+					
+					<li>
+						<span class='list_show_text'>
+							<input type="checkbox" <?php if($page_detail->like_binh_chon==1)echo " checked='checked' " ?>  value="1" name="like_binh_chon"> 					
+							Like mới được bình chọn		
+						</span>
+					</li>
+					
+					<li>
+						<span class='list_show_text'>
+							<input type="checkbox" <?php if($page_detail->like_tham_gia==1)echo " checked='checked' " ?>  value="1" name="like_tham_gia"> 						
+							Like mới được tham gia	
+						</span>											
+					</li>					
+
+					<li>
+						<span class='list_show_text'>
+							<input type="checkbox" <?php if($page_detail->like_comment==1)echo " checked='checked' " ?> value="1" name="like_comment"> 
+							Like mới được comment		
+						</span>								
+					</li>	
+					
+			</ul>
+		</div>
+	</div>
+	
+-->
+	
+	
+	
+</div>
+<input type='hidden' value='<?php echo $pageid ?>' name='id_fb_page' />
+</form>
+
+
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<?php
+	}
+	else
+	{
+		// TODO: adpage tab
+		echo "Trang ".$pages['name']." chưa gắn vào ứng dụng hoặc nếu bạn đã gắn vào rồi thì vui lòng load lại trang";
+		echo "<br/>";
+		$pagesname = $pages['name'];
+		echo "<a href='#' onclick=\"has_added_app($pageid, '$pagesname', $userid, $appid)\" > ==> Load lại trang</a>";
+	}
+?>
+

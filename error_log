@@ -1,0 +1,40 @@
+[21-Jan-2014 11:44:45 Asia/Ho_Chi_Minh] PHP Parse error:  syntax error, unexpected '&' in /home/socialne/public_html/apps/apps-store/application/layouts/bookshop/layout.phtml on line 100
+[21-Jan-2014 13:46:00 Asia/Ho_Chi_Minh] PHP Warning:  Invalid argument supplied for foreach() in /home/socialne/public_html/apps/apps-store/application/modules/default/views/scripts/contact/index.phtml on line 22
+[08-Feb-2014 22:03:31 Asia/Ho_Chi_Minh] PHP Fatal error:  Uncaught OAuthException: Error validating access token: Session has expired on 8 Tháng 2 2014 5:00. The current time is 8 Tháng 2 2014 7:03.
+  thrown in /home/socialne/public_html/apps/apps-store/library/Facebook/base_facebook.php on line 1197
+[10-Feb-2014 18:48:41 Asia/Ho_Chi_Minh] PHP Fatal error:  Uncaught GraphMethodException: Unsupported get request.
+  thrown in /home/socialne/public_html/apps/apps-store/library/Facebook/base_facebook.php on line 1197
+[10-Feb-2014 18:49:46 Asia/Ho_Chi_Minh] PHP Fatal error:  Uncaught GraphMethodException: Unsupported get request.
+  thrown in /home/socialne/public_html/apps/apps-store/library/Facebook/base_facebook.php on line 1197
+[10-Feb-2014 18:51:17 Asia/Ho_Chi_Minh] PHP Fatal error:  Uncaught GraphMethodException: Unsupported get request.
+  thrown in /home/socialne/public_html/apps/apps-store/library/Facebook/base_facebook.php on line 1197
+[10-Feb-2014 18:52:21 Asia/Ho_Chi_Minh] PHP Fatal error:  Uncaught GraphMethodException: Unsupported get request.
+  thrown in /home/socialne/public_html/apps/apps-store/library/Facebook/base_facebook.php on line 1197
+[10-Feb-2014 18:57:17 Asia/Ho_Chi_Minh] PHP Fatal error:  Uncaught GraphMethodException: Unsupported get request.
+  thrown in /home/socialne/public_html/apps/apps-store/library/Facebook/base_facebook.php on line 1197
+[10-Feb-2014 19:08:06 Asia/Ho_Chi_Minh] PHP Fatal error:  Uncaught GraphMethodException: Unsupported get request.
+  thrown in /home/socialne/public_html/apps/apps-store/library/Facebook/base_facebook.php on line 1197
+[10-Feb-2014 22:13:22 Asia/Ho_Chi_Minh] PHP Fatal error:  Uncaught GraphMethodException: Unsupported get request.
+  thrown in /home/socialne/public_html/apps/apps-store/library/Facebook/base_facebook.php on line 1197
+[10-Feb-2014 22:30:22 Asia/Ho_Chi_Minh] PHP Fatal error:  Uncaught GraphMethodException: Unsupported get request.
+  thrown in /home/socialne/public_html/apps/apps-store/library/Facebook/base_facebook.php on line 1197
+[10-Feb-2014 23:35:43 Asia/Ho_Chi_Minh] PHP Fatal error:  Uncaught GraphMethodException: Unsupported get request.
+  thrown in /home/socialne/public_html/apps/apps-store/library/Facebook/base_facebook.php on line 1197
+[11-Feb-2014 09:12:59 Asia/Ho_Chi_Minh] PHP Fatal error:  Uncaught GraphMethodException: Unsupported get request.
+  thrown in /home/socialne/public_html/apps/apps-store/library/Facebook/base_facebook.php on line 1197
+[11-Feb-2014 09:52:57 Asia/Ho_Chi_Minh] PHP Fatal error:  Uncaught OAuthException: Error validating access token: Session has expired on 10 Tháng 2 2014 11:00. The current time is 10 Tháng 2 2014 18:52.
+  thrown in /home/socialne/public_html/apps/apps-store/library/Facebook/base_facebook.php on line 1197
+[11-Feb-2014 09:53:45 Asia/Ho_Chi_Minh] PHP Fatal error:  Uncaught OAuthException: An active access token must be used to query information about the current user.
+  thrown in /home/socialne/public_html/apps/apps-store/library/Facebook/base_facebook.php on line 1197
+[11-Feb-2014 09:54:00 Asia/Ho_Chi_Minh] PHP Fatal error:  Uncaught OAuthException: An active access token must be used to query information about the current user.
+  thrown in /home/socialne/public_html/apps/apps-store/library/Facebook/base_facebook.php on line 1197
+[11-Feb-2014 19:13:29 Asia/Ho_Chi_Minh] PHP Fatal error:  Uncaught GraphMethodException: Unsupported get request.
+  thrown in /home/socialne/public_html/apps/apps-store/library/Facebook/base_facebook.php on line 1197
+[11-Feb-2014 20:02:45 Asia/Ho_Chi_Minh] PHP Fatal error:  Uncaught GraphMethodException: Unsupported get request.
+  thrown in /home/socialne/public_html/apps/apps-store/library/Facebook/base_facebook.php on line 1197
+[12-Feb-2014 00:55:34 Asia/Ho_Chi_Minh] PHP Fatal error:  Uncaught OAuthException: An active access token must be used to query information about the current user.
+  thrown in /home/socialne/public_html/apps/apps-store/library/Facebook/base_facebook.php on line 1197
+[12-Feb-2014 09:10:43 Asia/Ho_Chi_Minh] PHP Fatal error:  Uncaught GraphMethodException: Unsupported get request.
+  thrown in /home/socialne/public_html/apps/apps-store/library/Facebook/base_facebook.php on line 1197
+[12-Feb-2014 09:13:20 Asia/Ho_Chi_Minh] PHP Fatal error:  Uncaught GraphMethodException: Unsupported get request.
+  thrown in /home/socialne/public_html/apps/apps-store/library/Facebook/base_facebook.php on line 1197

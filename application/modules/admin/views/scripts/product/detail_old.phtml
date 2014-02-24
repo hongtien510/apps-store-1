@@ -1,0 +1,188 @@
+<?php
+    $product = $this->product;
+    //print_r($product);exit;
+    $category = $this->category;
+    //print_r($category);
+?>
+<table width="100%">
+	<tr>
+		<td width="100"><span class="nameinput">Mã Sản Phẩm: </span></td>
+		<td><input class="inputstyle" type="text" name="masp" id="masp" value="<?php echo $product[0]['masp'] ?>"/></td>
+	</tr>
+    <tr>
+		<td><span class="nameinput">Tên Sản Phẩm: </span></td>
+		<td><input class="inputstyle" type="text" name="tensp" id="tensp" value="<?php echo $product[0]['tensp'] ?>"/></td>
+	</tr>
+    <tr>
+		<td><span class="nameinput">Thuộc Loại SP: </span></td>
+		<td>
+            <select id="thuocloaisp">
+                <option value="0">Chọn Loại Sản Phẩm</option>
+            <?php 
+                for($i=0; $i<count($category); $i++)
+                {
+            ?>
+                <option value="<?php echo $category[$i]['idloaisp']?>" <?php if($category[$i]['idloaisp']==$product[0]['idloaisp']) echo "selected='selected'" ?>>
+                <?php echo $category[$i]['tenloaisp'] ?></option>
+            <?php } ?>
+            </select>
+        </td>
+	</tr>
+	<tr>
+		<td><span class="nameinput">Giá Bán: </span></td>
+		<td>
+			<input class="inputstyle" type="text" name="giaban" id="giaban" value="<?php echo $product[0]['gia'] ?>"/><br/>
+			<em>(Chỉ nhập số, không có khoảng trắng và ký tự đặc biệt)</em>
+		</td>
+	</tr>
+    <tr>
+		<td><span class="nameinput">Giá Giảm: </span></td>
+		<td>
+			<input class="inputstyle" type="text" name="giagiam" id="giagiam" value='<?php echo $product[0]['giagiam'] ?>'/><br/>
+			<em>(Chỉ nhập số, không có khoảng trắng và ký tự đặc biệt)</em>
+		</td>
+	</tr>
+    <tr>
+		<td><span class="nameinput">Giá giảm (%): </span></td>
+		<td>
+			<input class="inputstyle" type="text" name="sale_off" id="sale_off" value='<?php echo $product[0]['sale_off'] ?>'/><br/>
+			<em>(Nhập số phần trăm giảm giá)</em>
+		</td>
+	</tr>
+    <tr>
+		<td><span class="nameinput">Sản phẩm mới: </span></td>
+		<td>
+            <label><input type="checkbox" value="1" id="spmoi" <?php if($product[0]['spmoi']==1) echo "checked='checked'" ?> />(Chọn nếu muốn hiển thị sản phẩm mới)</label>
+        </td>
+	</tr>
+	<tr>
+		<td><span class="nameinput">Ảnh Chính: </span></td>
+		<td>
+            <p class="detail_sp_achinh">
+                <img src="<?php echo APP_DOMAIN . '/application/layouts/tmpstore/images/upload/images/' . $product[0]['hinhchinh'] ?>" />
+            </p>
+        
+        
+        <form method="post" enctype="multipart/form-data"  >
+        	<p class="uploadimg">Chỉ chọn 1 tập tin hình ảnh từ máy của bạn làm ảnh chính hiển thị</p>
+        	<input class="inputuploadimg" type="file" name="images" id="images" multiple />
+            (Bỏ qua bước này nếu không muốn thay đổi hình ảnh)
+        	<p class="loading_img"><img src="<?php echo APP_DOMAIN . '/application/layouts/tmpstore/images/loading.gif' ?>"/></p>
+        	<ul class="image_list"></ul>
+            <input type="hidden" id="string_img_upload" value="" />
+
+        	<script src="<?php echo APP_DOMAIN . '/application/templates/giaodien_admin/js/upload.js' ?>"></script>
+
+        </form>	
+		<em>Kích thước ảnh hiển thị đẹp nhất ở (385x450)</em>
+        </td>
+	</tr>
+    <tr>
+		<td><span class="nameinput">Ảnh Phụ: </span></td>
+		<td>
+                <ul class="detail_sp_aphu">
+                    <li>
+                    <?php 
+                        $anhphu = explode(",",$product[0]['hinhphu']);
+                        for($i=0; $i<count($anhphu); $i++)
+                        {
+                    ?>
+                        <img src="<?php echo APP_DOMAIN . '/application/layouts/tmpstore/images/upload/images/' . $anhphu[$i]?>" />
+                    <?php
+                        }
+                    ?>
+                    
+                    </li>
+                </ul> 
+            <p style="clear: both;; margin-bottom:10px;"></p>
+            <form method="post" enctype="multipart/form-data"  >
+            	<p class="uploadimg">Chỉ chọn 4 tập tin hình ảnh từ máy của bạn làm ảnh phụ</p>
+				<input  class="inputuploadimg" type="file" name="images" id="images_ch" multiple />
+                (Bỏ qua bước này nếu không muốn thay đổi hình ảnh)
+				<p class="loading_img_ch"><img src="<?php echo APP_DOMAIN . '/application/layouts/tmpstore/images/loading.gif' ?>"/></p>
+				<ul class="image_list_ch"></ul>
+                <input type="hidden" id="string_img_upload_ch" value="" />
+            	<script src="<?php echo APP_DOMAIN . '/application/templates/giaodien_admin/js/upload_ha_ch.js' ?>"></script>
+    
+            
+            	</div>
+            </form>	
+			<em>Kích thước ảnh hiển thị đẹp nhất ở (385x450)</em>
+        </td>
+	</tr>
+	<tr>
+		<td valign = "top"><span class="nameinput">Mô tả SP: </span></td>
+		<td><textarea  class="textareastyle" name="mota" id="mota" ><?php echo $product[0]['mota'] ?></textarea></td>
+	</tr>
+	<tr>
+		<td><span class="nameinput">Hết Hàng: </span></td>
+		<td>
+            <label><input type="checkbox" value="1" id="hethang" <?php if($product[0]['hethang']==1) echo "checked='checked'" ?> />
+            (Chọn nếu sản phẩm này đã hết hàng)</label>
+        </td>
+	</tr>
+    <tr>
+		<td><span class="nameinput">Hiển Thị: </span></td>
+		<td>
+            <label><input type="checkbox" value="1" id="hienthi" <?php if($product[0]['anhien']==1) echo "checked='checked'" ?> />
+            (Bỏ chọn nếu không muốn hiển thị sản phẩm này)</label>
+        </td>
+	</tr>
+    <tr>
+		<td><span class="nameinput">Hiển Thị Ngoài Trang Chủ: </span></td>
+		<td>
+            <label><input type="checkbox" value="1" id="showindex" <?php if($product[0]['showindex']==1) echo "checked='checked'" ?>/>
+            (Chọn muốn hiển thị sản phẩm này ngoài trang chủ)</label>
+        </td>
+	</tr>
+	<tr>
+		<td valign = "top"><span class="nameinput">Tiêu đề<br/>chia sẻ<br/>Facebook: </span></td>
+		<td><textarea id="titlefb" class="textareastyle2" type="text" name="titlefb"><?php echo $product[0]['titlefb'] ?></textarea></td>
+	</tr>
+	<tr>
+		<td valign = "top"><span class="nameinput">Mô tả<br/>chia sẻ<br/>Facebook: </span></td>
+		<td><textarea id="metafb" class="textareastyle2" type="text" name="metafb"><?php echo $product[0]['metafb'] ?></textarea></td>
+	</tr>
+</table>
+<input type="hidden" id="idsp" value="<?php echo $product[0]['idsp'] ?>" />
+<input type="button" name="btnsubmit" value="Cập Nhật Sản Phẩm"
+    onclick="CapNhatSanPham(
+    document.getElementById('idsp').value, 
+    document.getElementById('masp').value, 
+    document.getElementById('tensp').value, 
+    document.getElementById('thuocloaisp').value, 
+    document.getElementById('giaban').value,
+    document.getElementById('giagiam').value, 
+    document.getElementById('sale_off').value, 
+    document.getElementById('spmoi').checked,  
+    document.getElementById('string_img_upload').value, 
+    document.getElementById('string_img_upload_ch').value, 
+    $('.cke_wysiwyg_frame').contents().find('.cke_editable').html(), 
+    document.getElementById('hethang').checked, 
+    document.getElementById('hienthi').checked, 
+    document.getElementById('showindex').checked, 
+    document.getElementById('titlefb').value, 
+    document.getElementById('metafb').value
+   )"
+/>
+<input type="button" onclick="top.location.href = '<?php echo ROOT_DOMAIN ?>/admin/product'" value="Quay lại" />
+
+
+<script>
+	var editor1 = CKEDITOR.replace( 'mota' );
+	CKFinder.setupCKEditor( editor1, '../public/ckfinder/' ) ;
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

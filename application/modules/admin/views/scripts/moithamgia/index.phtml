@@ -1,0 +1,60 @@
+	
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<h1>Mời bạn bè tham gia cuộc thi</h1>
+<h4>(<?php echo $pagename=$_REQUEST['pagename'];?>)</h4>
+<?php 
+$pageid=$_REQUEST['pageid'];
+$pagename=$_REQUEST['pagename'];
+
+
+
+	$facebook = new Ishali_Facebook(); 
+	$fb = $facebook->getFB();
+$app_id = '254387861355717';
+   $app_secret = '0501b8e9ba9b879ca7fceb739371e8e6';
+    $app_token = $app_id . '|' . $app_secret;
+
+
+    
+			$pages = 	$fb->api('/'.$pageid);
+			$pages_link = $pages['link'];
+			$link_post_face=$pages_link."?sk=app_". APP_ID;
+//			echo "<pre>";
+//			print_r($pages);
+//			print_r($link_post_face);
+//			echo "</pre>";
+//			exit;	
+			
+//TODO: list user send
+
+$data = array(
+    'data'=> $link_post_face,
+    'access_token'=> $app_token,
+    'template'=> 'test'
+);
+//100003941320525
+//100003742776669
+$sendnotification = $fb->api('/100003742776669/notifications', 'post', $data);
+
+?>
+
+ <script src="http://connect.facebook.net/en_US/all.js"></script>
+
+	<script type="text/javascript">
+	  
+			FB.init({
+			appId:'<?php echo APP_ID ?>',
+			cookie:true,
+			status:true,
+			xfbml:true
+			});
+
+			function FacebookInviteFriends()
+			{
+			FB.ui({
+			method: 'apprequests',
+			data: '<?php echo $link_post_face ?>',
+			message: 'Your Message diaolog'
+			});
+			}
+		</script>

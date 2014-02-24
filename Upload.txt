@@ -1,0 +1,21 @@
+﻿Upload Apps lên Hosting lưu ý
+
+Giữ lại thư mục Public/images/banner
+Set quyền 777 cho thư mục banner
+
+Giữ lại thư mục Application/layouts/tmpstore/images
+Set quyền 777 cho thư mục images
+
+
+
+
+
+
+
+
+
+
+
+
+
+

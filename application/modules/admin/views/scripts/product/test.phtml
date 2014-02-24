@@ -1,0 +1,44 @@
+<?php
+$albums = $this->albums;
+$accessToken = $this->accessToken;
+//print_r($albums);
+?>
+
+<select onchange="showAlbum(this.value)" class="albums">
+    <?php
+        foreach($albums['data'] as $k => $v)
+            echo "<option value='". $v['id'] ."'>". $v['name'] ."</option>";
+    ?>
+    
+</select>
+
+<div id="txtHint"></div>
+
+<script> 
+      function showAlbum(album_id)
+     {
+        //alert(album_id);return false;
+      //until it loads the photos show a loading gif
+      //document.getElementById("txtHint").innerHTML = "<br><img src='images/ajax-loader.gif' /><br/><br/>Loading photos...";
+
+
+    //here is the IE fix
+     $.support.cors = true;
+
+    // get images - the addition of the callback parameter is the 2nd IE fix
+    $.getJSON('https://graph.facebook.com/' + album_id + '/photos?access_token=<?php echo $accessToken ?>&callback=?', function(json, status, xhr) {
+      var imgs = json.data;
+
+      var images='';  
+      for (var i = 0; i < imgs.length; i++) {
+       //each image has a variety of different dimensions
+       //i am selecting the first dimension i.e. [0] and set my own width
+        images +='<br /><img src="' + imgs[i]['images'][0]['source'] + '" width=320><br><br>';
+      }
+      //append all the photos found for this album id inside the div 
+      document.getElementById("txtHint").innerHTML = images;
+
+      }).error(function(jqXHR, textStatus, errorThrown) { alert(errorThrown); });
+
+   } 
+</script>

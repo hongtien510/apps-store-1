@@ -1,0 +1,51 @@
+<script>
+	kiemtraIdUserFB('<?php echo $this->iduser_fb;?>');
+	
+</script>
+<div style="margin: 10px auto; width: 330px;;">
+<span style="color: #2A842D; font-weight:bold">Bạn cần phải đăng nhập vào quyền quản trị Admin</span>
+    <table class='login'>
+	
+		<tr>
+            <td width ="115">Tên đăng nhập: </td>
+            <td><input class='inputstyle2' type='text' id='useradmin' name='usernameadmin'/></td>
+        </tr>
+		<tr>
+            <td>Mật Khẩu</td>
+            <td>
+                <input class='inputstyle2' type='password' id='passadmin' name='passwordadmin'/>
+            </td>
+        </tr>
+		<tr>
+            <td>nhập lại mật Khẩu</td>
+            <td>
+                <input class='inputstyle2' type='password' id='repassadmin' name='repasswordadmin'/>
+            </td>
+        </tr>
+        <tr>
+            <td width ="115">Họ tên: </td>
+            <td><input class='inputstyle2' type='text' id='hotenadmin' name='hotenadmin'/></td>
+        </tr>
+		<tr>
+            <td width ="115">Email: </td>
+            <td><input class='inputstyle2' type='text' id='emailadmin' name='emailadmin'/></td>
+        </tr>
+		<tr>
+            <td width ="115">Điện thoại: </td>
+            <td><input class='inputstyle2' type='text' id='dienthoaiadmin' name='dienthoaiadmin'/></td>
+        </tr>
+        
+        <tr>
+            <td>
+                
+            </td>
+            <td>
+				<input type="hidden" id="iduser_fb" value="<?php echo $this->iduser_fb;?>"/>
+                <input class='btLoginAdmin inputstyle2' onclick="RegisterAdmin({iduser_fb:document.getElementById('iduser_fb').value, useradmin:document.getElementById('useradmin').value, passadmin:document.getElementById('passadmin').value, repassadmin:document.getElementById('repassadmin').value, hotenadmin:document.getElementById('hotenadmin').value, emailadmin:document.getElementById('emailadmin').value, dienthoaiadmin:document.getElementById('dienthoaiadmin').value})" type='button' name='btnlogin' value='Ðăng Ký' />
+				<a href="<?php echo APP_DOMAIN . '/admin/login/' ?>">Đăng nhập</a>
+			</td>
+        </tr>
+    </table>
+	
+	<p id="warning_register"></p>
+</div>
