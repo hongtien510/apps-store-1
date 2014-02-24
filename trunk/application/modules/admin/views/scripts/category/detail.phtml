@@ -1,0 +1,56 @@
+<?php 
+    $category = $this->category;
+    $list_loaisp = $this->list_loaisp;
+    //print_r($category);
+?>
+<form action = "addcategory/themloaisp" method = "post" enctype="multipart/form-data">
+<table width="100%">
+    <tr>
+		<td width="140"><span class="nameinput">Thuộc danh mục: </span></td>
+		<td>
+            <select name="parent_id" id="parent_id">
+                <option value="0">Không thuộc danh mục nào</option>
+                <?php
+                    foreach($list_loaisp as $key=>$value)
+                    {
+                        $selected = "";
+                        $selected = $category[0]['parent_id'] == $value['idloaisp'] ? "selected='selected'" : "";
+                        echo "<option $selected value='{$value['idloaisp']}'>{$value['tenloaisp']}</option>";
+                    }
+                ?>
+            </select>
+            <input type="hidden" id="idloaisp" name="idloaisp" value="<?php echo $category[0]['idloaisp']?>" />
+        </td>
+	</tr>
+	<tr>
+		<td width="140"><span class="nameinput">Tên loại sản phẩm: </span></td>
+		<td><input class="inputstyle" type="text" name="tenlsp" id="tenlsp" value="<?php echo $category[0]['tenloaisp'] ?>"/></td>
+	</tr>
+	<tr>
+		<td><span class="nameinput">Vị trí: </span></td>
+		<td><input class="inputstyle" type="text" name="vitri" id="vitri" value="<?php echo $category[0]['vitri'] ?>"/></td>
+	</tr>
+    <tr>
+		<td><span class="nameinput">Hiển thị: </span></td>
+		<td><label><input type="checkbox" value="" name="anhien" id="anhien" <?php if($category[0]['anhien']==1) echo "checked='checked'"; ?> /> (bỏ chọn để ẩn loại sản phẩm này)</label></td>
+	</tr>
+	
+</table>
+<input type="hidden" id="idcategory" value="<?php echo $category[0]['idloaisp'] ?>"/>
+<input type="button" name="btnsubmitt" value="Cập Nhật Loại Sản Phẩm"
+    onclick = "CapNhatLoaiSanPham(document.getElementById('parent_id').value, document.getElementById('idcategory').value, document.getElementById('tenlsp').value, document.getElementById('vitri').value, document.getElementById('anhien').checked)"
+/>
+<input type="button" onclick="top.location.href = '<?php echo ROOT_DOMAIN ?>/admin/category'" value="Quay lại" />
+</form>
+
+
+
+
+
+
+
+
+
+
+
+

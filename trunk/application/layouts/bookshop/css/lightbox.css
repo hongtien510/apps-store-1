@@ -1,0 +1,49 @@
+.images-lightbox{
+    position: fixed;
+	display:none;
+    z-index: 1000;
+    width: 810px;
+    height: 100%;
+    top: auto;
+    left: auto;
+}
+.images-lightbox .bg-shadow{
+    background: #fff;
+	
+    position: fixed;
+    width: 807px;
+    height: 100%;
+    top: auto;
+    left: auto;
+    opacity: 0.6;
+}
+.images-lightbox .images-container{
+    position: relative;
+	width:60%;
+    display: table;
+    margin: 100px auto;
+    background: #b82020;
+    padding: 2px;
+}
+.images-lightbox .images-container .box-image{
+	
+}
+.images-lightbox .images-container .box-image img{
+    width: 100%;
+	
+}
+.images-lightbox .images-container .close{
+    background: url(../images/close.png) no-repeat;
+	
+    width: 27px;
+    height: 27px;
+    float: right;
+    margin-top: 0px;
+    margin-bottom: 2px;
+}
+.images-lightbox .images-container .title{
+    color: #fff;
+	
+    padding: 5px;
+    width: 85%;
+}

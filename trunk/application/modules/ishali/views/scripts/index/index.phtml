@@ -1,0 +1,113 @@
+<div id='paging'  align="center" style="display: none;margin: 5px;">
+    <?php
+    echo $this->paging;
+    ?>
+</div>
+
+
+<script>
+    common.renderPagingSearch('paging', 'trang trước', 'trang sau', 'Trang đầu', 'Trang cuối', 'a=1');
+</script>
+
+	<table width="100%" border="1" cellspacing="1" style="text-align:center; vertical-align: middle;">
+	  <tr bgcolor="whitesmoke" height="35px">
+	    <th width="35px" >Stt</th>
+	    <th width="300px"  >Tên fanpages</th>
+	      <th width="100px"  >Số thí sinh</th>
+	      <th width="100px"  >Xem App</th>
+	       <th width="50px" >Ẩn/Hiển</th>
+	       <th width="50px" >Xóa</th>
+	  </tr>
+	
+	<?php 
+	$appid = $this->appid;
+	$pagelistarr = $this->pageslist;
+	
+	$facebook = new Ishali_Facebook(); 
+	$fb = $facebook->getFB();
+							 
+	foreach ($pagelistarr AS $k=>$page)
+	{
+	
+		$cltr = ' cl1 ';
+		if($k % 2 == 0)
+		{
+			$cltr = ' cl2 ';
+		}
+	?>
+	<tr class="<?php echo $cltr?>" >
+		    <td><?php echo $k+1; ?></td>
+		    
+		    <td>
+		  	   <a href='javascript:void(0)'  onClick="window.open('http://www.facebook.com/<?php echo $page['id_fb_page'] ?>')" ><?php echo $page['page_name']; ?></a>
+		    </td>
+	    
+	       	 <td>
+	       	  <?php 
+		       $idpage_encode = base64_encode('13'.$page['id_fb_page']);
+		       $linkts = APP_DOMAIN.'/ishali/index/listthisinh?idpage='.$idpage_encode;
+		       ?>
+				<a href='<?php echo $linkts?>' ><?php echo App_Models_IshaliModel::getInstance()->sothisinh($page['id_fb_page']); ?></a>
+	       	</td>
+	       	
+	         <td>
+	        	 <a href='javascript:void(0)'  onClick="window.open('http://www.facebook.com/<?php echo $page['id_fb_page']."?sk=app_".$appid ?>')" >xem App</a>
+	  		</td>
+			
+
+   			<td>
+   			<div id="an_hien_page_<?php echo $page['id_pages']?>">
+			          <?php 
+			          if($page['an_hien'] == 1)
+			          {
+						?>
+						    <a href='javascript:void(0)'  onClick="updatestatus_page('<?php echo $page['an_hien']?>', '<?php echo $page['id_pages']?>')" >
+								<img   src="<?php echo $this->baseUrl ('application/templates/giaodien_ishali/images/publish_g.png') ?>" />
+							</a>
+						<?php 
+			          }else{
+			          ?>
+			           <a href='javascript:void(0)'  onClick="updatestatus_page('<?php echo $page['an_hien']?>', '<?php echo $page['id_pages']?>')" >
+							<img   src="<?php echo $this->baseUrl ('application/templates/giaodien_ishali/images/publish_r.png') ?>" />
+						</a>
+						<?php 
+			          }
+			          ?>
+	          </div>
+	  		</td>
+	       		
+	       <td>
+	       <?php 
+	       $idpage_encode = base64_encode('13'.$page['id_fb_page']);
+	       $linkdel = APP_DOMAIN.'/ishali/index/delpage?idpage='.$idpage_encode;
+	       ?>
+	       		<a  onClick="confirmdelpage('<?php echo $linkdel ?>')" href='javascript:void(0)'  >
+	       			<img width='25px'   src="<?php echo $this->baseUrl ('application/templates/giaodien_ishali/images/edit-trash.png') ?>" />
+	       		</a>
+	       	</td>
+	 </tr>
+	<?php 
+	}
+	if(count($pagelistarr)<=0)
+	{
+		?>
+		<tr height="35px" class="cl1">
+			<td colspan="5">
+				Chưa có trang nào, Chọn trang ở góc phải trên
+			</td>
+		</tr>
+		<?php 
+	}
+	?>
+	</table>
+
+<div id='phantrangishali'  align="center" style="display: none;margin: 5px;">
+    <?php
+    echo $this->paging;
+    ?>
+</div>
+
+
+<script>
+    common.renderPagingSearch('phantrangishali', 'trang trước', 'trang sau', 'Trang đầu', 'Trang cuối', 'a=1');
+</script>

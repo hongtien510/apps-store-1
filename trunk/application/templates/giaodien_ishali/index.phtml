@@ -1,0 +1,102 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML+RDFa 1.0//EN" "http://www.w3.org/MarkUp/DTD/xhtml-rdfa-1.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://www.facebook.com/2008/fbml" xmlns:og="http://opengraphprotocol.org/schema/"><head>
+        <title>Photo Gallery</title>  
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" type="text/css" href="canvas_admin.css">
+		<script>
+			var taaa = {};
+			taaa.appdomain = "<?php echo APP_DOMAIN ?>";
+			taaa.fbappdomain = "<?php echo FB_APP_DOMAIN ?>";
+		</script>
+        <script src="<?php echo APP_DOMAIN . '/public/js/modal.popup.0.2.js'; ?>" type="text/javascript"></script>
+		<?php
+			echo $this->headLink ()
+					// ->appendStylesheet ( $this->baseUrl ('public/css/style.css'))
+					->appendStylesheet ( $this->baseUrl ('application/templates/giaodien_ishali/css/ishali_admin.css'))
+					;
+					
+		
+			echo $this->headScript ()
+					// ->appendFile ( $this->baseUrl ( '/public/js/aj.js' ) )
+					->appendFile ( $this->baseUrl ('application/templates/giaodien_ishali/js/aj.js') )
+					->appendFile ( $this->baseUrl ('/application/layouts/tmpl1/js/jquery-1.7.2.min.js') )
+					->appendFile ( $this->baseUrl ('/application/layouts/tmpl1//js/common.js') )
+//					->appendFile ( $this->baseUrl ('/public/ckeditor/ckeditor.js') )
+
+					
+					;
+				
+		?>
+		
+		</head>
+    <body>
+    <?php  echo $this->render('_header.phtml')?>
+	<div id="" class="wrapper">
+	<div class="container">
+
+	<?php
+	$controllerName = Zend_Controller_Front::getInstance()->getRequest()->getControllerName();
+	$activeindex ='';
+	$activearticle ='';
+	$activethisinh ='';
+	$activehuongdan ='';
+	
+if($controllerName=='index')
+{
+$activeindex = 'active';
+}/* else
+if($controllerName=='article')
+{
+$activearticle = 'active';
+}else
+if($controllerName=='thisinh')
+{
+$activethisinh = 'active';
+}else
+{
+$activehuongdan = 'active';
+}
+*/
+	?>
+				<div class="list_menu">
+					<ul>
+						<li class="menu <?php echo $activeindex ?>">
+							<a style="display: inline;" href="<?php echo FB_APP_DOMAIN ?>/ishali" target="_top">Quản lý fan-page</a>
+						</li>
+						<!--
+						<li class="menu <?php echo $activearticle ?>">
+							<a style="display: inline;" href="<?php echo FB_APP_DOMAIN ?>/admin/article" target="_top">Quản lý bài viết</a>
+						</li>	
+
+						<li class="menu <?php echo $activethisinh ?>">
+							<a style="display: inline;" href="<?php echo FB_APP_DOMAIN ?>/admin/thisinh" target="_top">Quản lý thí sinh</a>
+						</li>	
+						
+						<li class="menu <?php echo $activehuongdan ?>">
+							<a style="display: inline;" href="http://ishali.com.vn/lien-he.html" target="_bank">Hướng dẫn sử dụng</a>
+						</li>			
+						-->						
+					</ul>
+				</div>
+				
+				<div class="contents">					
+					<div class="galleries_contents">	
+			<center>			
+			<!-- <h1><div id="title_pages">Chọn trang</div></h1> -->			
+				<img id="loading" style="display: none"  src="<?php echo $this->baseUrl ('application/templates/giaodien_admin/images/loading.gif') ?>" />		
+				<div id="show_pages"></div>
+				
+		</center>
+						<div id='quanlidanhsachtrang' style="display: block"  >
+								<?php echo $this->layout()->content; ?>	
+						</div>
+					</div>
+				</div>
+			<?php  echo $this->render('_footer.phtml')?>	
+	</div>
+
+	</div>
+			
+
+	</body>
+</html>

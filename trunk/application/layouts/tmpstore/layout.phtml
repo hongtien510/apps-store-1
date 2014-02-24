@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<!--
+<link type="text/css" rel="stylesheet" href="<?php echo APP_DOMAIN . '/application/layouts/' . $this->page->templates . '/css/style.css'; ?>"></link>
+-->
+
+<link type="text/css" rel="stylesheet" href="<?php echo APP_DOMAIN . '/application/layouts/tmpstore/css/style.css'; ?>"></link>
+<script type="text/javascript" src="<?php echo APP_DOMAIN . '/application/layouts/tmpstore/js/jquery-1.8.0.min.js'; ?>"></script>
+<script type="text/javascript" src="<?php echo APP_DOMAIN . '/application/layouts/tmpstore/js/main.js'; ?>"></script>
+<script>
+	var taaa = {};
+	taaa.appdomain = "<?php echo APP_DOMAIN ?>";
+	taaa.fbappdomain = "<?php echo FB_APP_DOMAIN ?>";
+</script>
+<title>Apps Store</title>
+
+</head>
+
+<body>
+
+<?php
+	$store = App_Models_StoreModel::getInstance();
+	/*
+	$facebook = new Ishali_Facebook();
+	$idpage = $facebook->getpageid();
+	if(isset($idpage))
+            $_SESSION['idpage'] = $idpage;
+        else
+	*/
+        //@$idpage = $_SESSION['idpage'];
+		if(isset($_SESSION['idpage']) && $_SESSION['idpage'] != "")
+		{
+			$idpage = $_SESSION['idpage'];
+		}
+		else
+		{
+			$idpage = $_GET["idpage"];
+		}
+		
+		@$banner = $store->GetBanner($idpage);
+?>
+
+	<div id="container">
+    	<div id="banner">
+			<?php if(@$banner[0]['banner'] != ""){ ?>
+				<img src="<?php echo APP_DOMAIN.'/public/images/banner/'.$banner[0]['banner']?>"/>
+			<?php } ?>
+		</div><!--End #banner-->
+		
+		
+    	<div id="main_nav">
+        <?php 
+            $id = Zend_Controller_Front::getInstance()->getRequest()->getParam('id');
+            $category = $store->GetidCategory($idpage); 
+        ?>
+        	<ul class="menu">
+            <a href="index?idpage=<?php echo $idpage ?>"><li <?php if($id=="") echo "class='active'";?> >Home</li></a>
+            <?php 
+                for($i=0; $i<count($category); $i++)
+                {
+            ?>
+            	<a href="category?id=<?php echo base64_encode($category[$i]["idloaisp"]) ?>&idpage=<?php echo $idpage ?>">
+                    <li <?php if($id == base64_encode($category[$i]["idloaisp"])) echo "class='active'"; ?>><?php echo $category[$i]["tenloaisp"] ?></li>
+                </a>
+            <?php 
+                } 
+            ?>
+            </ul>
+        </div><!--End #main_nav-->
+        <div id="content">
+        	<?php echo $this->layout()->content; ?>
+        </div><!--End #content-->
+        <div id="footer"></div><!--End #footer-->
+        
+	</div><!--End #container-->
+	<?php
+		$color = $store->GetColor($idpage);
+	?>
+	<script>
+		$("#main_nav ul.menu li").css("background","#<?php echo $color['bg_color_menu'] ?>");
+		$("#main_nav ul.menu li").css("color","#<?php echo $color['color_text_menu'] ?>");
+		$("#main_nav ul.menu li").css("border-color","#<?php echo $color['bg_color_menu_act'] ?>");
+
+		$("#main_nav ul.menu li.active").css("background","#<?php echo $color['bg_color_menu_act'] ?>");
+		$("#main_nav ul.menu li.active").css("color","#<?php echo $color['color_text_menu_act'] ?>");
+
+		$("#main_nav").css("border-bottom-color","#<?php echo $color['bg_color_menu_act'] ?>");
+	</script>
+</body>
+</html>

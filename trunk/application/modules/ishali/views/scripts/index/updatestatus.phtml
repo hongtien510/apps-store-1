@@ -1,0 +1,28 @@
+	         	<?php 
+	         	$anhien = $_GET['status'];
+    			$idpage = $_GET['idpage'];
+    			 if($anhien == 0)
+		        {
+		        	$an_hien = 1;
+		        }else{
+		        	$an_hien = 0;
+		        }
+	         	?>
+	         	<div id="an_hien_thisinh_<?php echo $idpage?>">
+			          <?php 
+			          if($an_hien == 1)
+			          {
+						?>
+						    <a href='javascript:void(0)'  onClick="updatestatus_page('<?php echo $an_hien?>', '<?php echo $idpage?>')" >
+								<img   src="<?php echo $this->baseUrl ('application/templates/giaodien_admin/images/publish_g.png') ?>" />
+							</a>
+						<?php 
+			          }else{
+			          ?>
+			           <a href='javascript:void(0)'  onClick="updatestatus_page('<?php echo $an_hien?>', '<?php echo $idpage?>')" >
+							<img   src="<?php echo $this->baseUrl ('application/templates/giaodien_admin/images/publish_r.png') ?>" />
+						</a>
+						<?php 
+			          }
+			          ?>
+	          </div>

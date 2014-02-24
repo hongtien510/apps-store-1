@@ -1,0 +1,51 @@
+<?php 
+    $maxvitri = $this->maxvitri +1;
+    $list_loaisp = $this->list_loaisp;
+?>
+<form action = "addcategory/themloaisp" method = "post" enctype="multipart/form-data">
+<table width="100%">
+    <tr>
+		<td width="140"><span class="nameinput">Thuộc danh mục: </span></td>
+		<td>
+            <select id="parent_id">
+                <option value="0">Không thuộc danh mục nào</option>
+                <?php
+                    foreach($list_loaisp as $key=>$value)
+                    {
+                        echo "<option value='{$value['idloaisp']}'>{$value['tenloaisp']}</option>";
+                    }
+                ?>
+            </select>
+        </td>
+	</tr>
+	<tr>
+		<td width="140"><span class="nameinput">Tên loại sản phẩm: </span></td>
+		<td><input class="inputstyle" type="text" name="tenlsp" id="tenlsp"/></td>
+	</tr>
+	<tr>
+		<td><span class="nameinput">Vị trí: </span></td>
+		<td><input class="inputstyle" type="text" name="vitri" id="vitri" value="<?php echo $maxvitri ?>"/></td>
+	</tr>
+    <tr>
+		<td><span class="nameinput">Hiển thị: </span></td>
+		<td><label><input type="checkbox" value="1" checked="checked" name="anhien" id="anhien" /> (bỏ chọn để ẩn loại sản phẩm này)</label></td>
+	</tr>
+	
+</table>
+<input type="button" name="" value="Thêm Loại Sản Phẩm"
+    onclick = "ThemLoaiSanPham(document.getElementById('parent_id').value, document.getElementById('tenlsp').value, document.getElementById('vitri').value, document.getElementById('anhien').checked)"
+/>
+<input type="button" onclick="top.location.href = '<?php echo ROOT_DOMAIN ?>/admin/category'" value="Quay lại" />
+</form>
+
+
+
+
+
+
+
+
+
+
+
+

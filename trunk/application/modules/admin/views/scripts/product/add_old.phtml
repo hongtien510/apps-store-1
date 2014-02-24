@@ -1,0 +1,168 @@
+<?php
+    $category = $this->category;
+    //print_r($category);
+?>
+<table width="100%">
+	<tr>
+		<td width="100"><span class="nameinput">Mã S?n Ph?m: </span></td>
+		<td><input class="inputstyle" type="text" name="masp" id="masp"/></td>
+	</tr>
+    <tr>
+		<td><span class="nameinput">Tên S?n Ph?m: </span></td>
+		<td><input class="inputstyle" type="text" name="tensp" id="tensp"/></td>
+	</tr>
+    <tr>
+		<td><span class="nameinput">Thu?c Lo?i SP: </span></td>
+		<td>
+            <select id="thuocloaisp">
+                <option value="0">Ch?n Lo?i S?n Ph?m</option>
+            <?php 
+                for($i=0; $i<count($category); $i++)
+                {
+            ?>
+                <option value="<?php echo $category[$i]['idloaisp'] ?>"><?php echo $category[$i]['tenloaisp'] ?></option>
+            <?php } ?>
+            </select>
+        </td>
+	</tr>
+	<tr>
+		<td><span class="nameinput">Giá Bán: </span></td>
+		<td>
+			<input class="inputstyle" type="text" name="giaban" id="giaban"/><br/>
+			<em>(Ch? nh?p s?, không có kho?ng tr?ng và ký t? d?c bi?t)</em>
+		</td>
+	</tr>
+    <tr>
+		<td><span class="nameinput">Giá Gi?m: </span></td>
+		<td>
+			<input class="inputstyle" type="text" name="giagiam" id="giagiam" value='0'/><br/>
+			<em>(Ch? nh?p s?, không có kho?ng tr?ng và ký t? d?c bi?t)</em>
+		</td>
+	</tr>
+    <tr>
+		<td><span class="nameinput">Giá gi?m (%): </span></td>
+		<td>
+			<input class="inputstyle" type="text" name="sale_off" id="sale_off" value='0'/><br/>
+			<em>(Nh?p s? ph?n tram gi?m giá)</em>
+		</td>
+	</tr>
+    <tr>
+		<td><span class="nameinput">S?n ph?m m?i: </span></td>
+		<td>
+            <label><input type="checkbox" value="1" id="spmoi" />(Ch?n n?u mu?n hi?n th? s?n ph?m m?i)</label>
+        </td>
+	</tr>
+	<tr>
+		<td><span class="nameinput">?nh Chính: </span></td>
+		<td>
+        <form method="post" enctype="multipart/form-data"  >
+        	<p class="uploadimg">Ch? ch?n 1 t?p tin hình ?nh t? máy c?a b?n làm ?nh chính hi?n th?</p>
+        	<input class="inputuploadimg" type="file" name="images" id="images" multiple />
+        	<p class="loading_img"><img src="<?php echo APP_DOMAIN . '/application/layouts/tmpstore/images/loading.gif' ?>"/></p>
+        	<ul class="image_list"></ul>
+            <input type="hidden" id="string_img_upload" value="" />
+
+        	<script src="<?php echo APP_DOMAIN . '/application/templates/giaodien_admin/js/upload.js' ?>"></script>
+
+        </form>	
+		<em>Kích thu?c ?nh hi?n th? d?p nh?t ? (385x450)</em>
+        </td>
+	</tr>
+    <tr>
+		<td><span class="nameinput">?nh Ph?: </span></td>
+		<td>
+
+            <form method="post" enctype="multipart/form-data"  >
+            	<p class="uploadimg">Ch? ch?n 4 t?p tin hình ?nh t? máy c?a b?n làm ?nh ph?</p>
+							<input  class="inputuploadimg" type="file" name="images" id="images_ch" multiple />
+							<p class="loading_img_ch"><img src="<?php echo APP_DOMAIN . '/application/layouts/tmpstore/images/loading.gif' ?>"/></p>
+							<ul class="image_list_ch"></ul>
+                            <input type="hidden" id="string_img_upload_ch" value="" />
+            	<script src="<?php echo APP_DOMAIN . '/application/templates/giaodien_admin/js/upload_ha_ch.js' ?>"></script>
+    
+            
+            	</div>
+            </form>
+			<em>Kích thu?c ?nh hi?n th? d?p nh?t ? (385x450)</em>
+        </td>
+	</tr>
+	<tr>
+		<td valign = "top"><span class="nameinput">Mô t? SP: </span></td>
+		<td><textarea  class="textareastyle" name="mota" id="mota"></textarea></td>
+	</tr>
+    <!--
+	<tr>
+		<td valign = "top"><span class="nameinput">Chi Ti?t SP: </span></td>
+		<td><textarea  class="textareastyle" name="chitiet" id="chitiet"></textarea></td>
+	</tr>
+    -->
+	<tr>
+		<td><span class="nameinput">H?t Hàng: </span></td>
+		<td>
+            <label><input type="checkbox" value="1" id="hethang" />(Ch?n n?u s?n ph?m này dã h?t hàng)</label>
+        </td>
+	</tr>
+    <tr>
+		<td><span class="nameinput">Hi?n Th?: </span></td>
+		<td>
+            <label><input type="checkbox" checked="checked" value="1" id="hienthi" />(B? ch?n n?u không mu?n hi?n th? s?n ph?m này)</label>
+        </td>
+	</tr>
+    <tr>
+		<td><span class="nameinput">Hi?n Th? Ngoài Trang Ch?: </span></td>
+		<td>
+            <label><input type="checkbox" value="1" id="showindex" />(Ch?n mu?n hi?n th? s?n ph?m này ngoài trang ch?)</label>
+        </td>
+	</tr>
+	<tr>
+		<td valign = "top"><span class="nameinput">Tiêu d?<br/>chia s?<br/>Facebook: </span></td>
+		<td><textarea id="titlefb" class="textareastyle2" type="text" name="titlefb"></textarea></td>
+	</tr>
+	<tr>
+		<td valign = "top"><span class="nameinput">Mô t?<br/>chia s?<br/>Facebook: </span></td>
+		<td><textarea id="metafb" class="textareastyle2" type="text" name="metafb"></textarea></td>
+	</tr>
+</table>
+<input type="button" name="btnsubmit" value="Thêm S?n Ph?m"
+    onclick="ThemMoiSanPham(
+    document.getElementById('masp').value, 
+    document.getElementById('tensp').value, 
+    document.getElementById('thuocloaisp').value, 
+    document.getElementById('giaban').value, 
+    document.getElementById('giagiam').value, 
+    document.getElementById('sale_off').value, 
+    document.getElementById('spmoi').checked, 
+    document.getElementById('string_img_upload').value, 
+    document.getElementById('string_img_upload_ch').value,  
+    $('.cke_wysiwyg_frame').contents().find('.cke_editable').html(),
+    document.getElementById('hethang').checked, 
+    document.getElementById('hienthi').checked, 
+    document.getElementById('showindex').checked, 
+    document.getElementById('titlefb').value, 
+    document.getElementById('metafb').value
+   )"
+/>
+<input type="button" onclick="top.location.href = '<?php echo ROOT_DOMAIN ?>/admin/product'" value="Quay l?i" />
+
+<script>
+	var editor1 = CKEDITOR.replace( 'mota' );
+	CKFinder.setupCKEditor( editor1, '../public/ckfinder/' ) ;
+	/*
+	var editor1 = CKEDITOR.replace( 'chitiet' );
+	CKFinder.setupCKEditor( editor1, '../public/ckfinder/' ) ;
+    */
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

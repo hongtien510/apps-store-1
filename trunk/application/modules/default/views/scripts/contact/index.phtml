@@ -1,0 +1,51 @@
+<?php
+    $idpage = $this->idpage;
+    $config = $this->config;
+    //print_r($config);
+?>
+<div class="m-top">
+	<h3 class="title-page">Liên hệ</h3>
+</div>
+<div class="m-bottom">
+	
+	<!--product-->
+	<div class="product product-details">
+		<div class="introduce-contact">
+			<?php echo $config['contact'] ?>
+		</div>
+		<div class="other-products">			
+			<div class="title-others">
+				<div class="dotted"></div>
+				<div class="title">Thông tin giao hàng</div>
+			</div>
+			<div class="introduce-contact">
+			     <?php echo $config['delivery'] ?>
+			</div>
+		</div>
+		<!--comment-product-->
+		<div class="comment-product">
+			<div class="title-others">
+				<div class="dotted"></div>
+				<div class="title">Cách thức thanh toán</div>
+			</div>
+            <div class="introduce-contact">
+                <?php echo $config['checkout'] ?>
+			</div>
+		</div>
+		<!--End comment-product-->
+	</div>
+	<div class="cart-shop">
+		<div class="cart-icon-right">
+			<a href="<?php echo APP_DOMAIN .'/giohang?idpage='. $idpage ?>" class="cart-icon">
+				<div class="total"><?php echo isset($_SESSION["cart_$idpage"]) ? count($_SESSION["cart_$idpage"]) : "0" ?></div>
+			</a>
+			<a href="#" class="search-icon"></a>
+			<div class="search-content">
+				<input onkeyup="searchProduct(event, this.value)" type="text" value="" placeholder="Tìm kiếm" />
+			</div>
+			
+			<a href="javascript:void(0);" class="gotoTop"></a>
+		</div>
+	</div>
+	<!--End product-->
+</div>

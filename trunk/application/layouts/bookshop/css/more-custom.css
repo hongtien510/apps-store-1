@@ -1,0 +1,177 @@
+
+.pagination {
+    bottom: 0;
+    position: absolute;
+    text-align: center;
+    width: 630px;
+}
+ul.ul-pagination {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+}
+ul.ul-pagination li {
+    float: left;
+    list-style: none outside none;
+    margin: 0 5px;
+}
+ul.ul-pagination li.pageActive a {
+    color: #000000;
+    cursor: default;
+    font-size: 13px;
+    font-weight: bold;
+    pointer-events: none;
+}
+ul.ul-pagination li.pageDisable a {
+    color: #CCCCCC;
+    cursor: default;
+    display: none;
+    pointer-events: none;
+}
+ul.ul-pagination li.pageSeparator {
+    border: medium none;
+    cursor: default;
+    margin-top: -5px;
+    pointer-events: none;
+}
+ul.ul-pagination li.pageSeparator a {
+    padding: 5px 2px 0;
+}
+ul.ul-pagination a {
+    color: #909090;
+    display: block;
+    font-size: 13px;
+    padding: 0;
+    text-decoration: none;
+}
+ul.ul-pagination a:hover {
+    color: #000000;
+}
+.pagination .meta-pagination {
+    color: #909090;
+    float: left;
+    font-size: 10px;
+    margin-left: 5px;
+    margin-top: 3px;
+}
+
+
+.message{
+    float: right;
+    margin-right: 10px;
+    margin-top: 7px;
+}
+.message span.warning{color:#FF0000}
+.message span.success{color:#008000}
+
+.bg-msg {
+    background: none repeat scroll 0 0 #000000;
+    height: 100%;
+    opacity: 0.8;
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+    display: none;
+}
+.ctn-msg {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: 1px solid #832626;
+    border-radius: 5px;
+    box-shadow: 0 0 10px #FFFFFF;
+    position: fixed;
+    width: 350px;
+    z-index: 1000;
+    display: none;
+}
+.header-msg {
+    background: none repeat scroll 0 0 #832626;
+    border-radius: 3px 3px 0 0;
+    color: #FFFFFF;
+    font-size: 13px;
+    font-weight: bold;
+    padding: 7px;
+    text-transform: uppercase;
+}
+.content-msg {
+    font-size: 15px;
+    padding: 10px 10px 40px;
+    position: relative;
+    text-align: justify;
+}
+.close-msg {
+    border: 2px solid #832626;
+    bottom: 10px;
+    color: #832626;
+    cursor: pointer;
+    display: inline;
+    font-size: 12px;
+    padding: 5px 15px 3px;
+    position: absolute;
+    right: 10px;
+    text-transform: uppercase;
+	font-weight:bold;
+}
+.close-msg:hover{background: #832626; color: #FFF}
+
+.shopping-page .box-cart .row-cart .col2-5 {
+    float: left;
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 64px;
+    width: 65px;
+}
+
+.shopping-page .box-cart .row-cart .col2-5 span {
+	margin-top:-40px;
+}
+.shopping-page .box-cart .row-cart.row-cart-title .col2-5{
+    float: left;
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 28px;
+    width: 60px;
+}
+
+.product-description .price-real{}
+.product-description .price-sale{
+	background: url("../images/line.png") repeat-x scroll center center rgba(0, 0, 0, 0);
+    margin-left: 10px;
+}
+
+.like-fb{
+	float: right;
+    margin-right: 35px;
+    margin-top: 2px;
+}
+
+
+.shopping-page .addmore .sum-money .btn-muahang input[type="button"],
+.btn-muahang input[type="button"]{
+    background: #b82020;
+	
+    border: none;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: bold;
+    box-shadow: 1px 1px 12px #909090;
+    padding: 7px 14px;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.form-info .type-info .row-info textarea{
+     border-left: 1px solid #909090;
+    border-top: 1px solid #909090;
+    box-shadow: -1px -1px 2px #909090;
+    height: 50px;
+    line-height: 25px;
+    max-height: 50px;
+    max-width: 345px;
+    min-height: 50px;
+    min-width: 345px;
+    width: 345px;
+}
+
+
+
+

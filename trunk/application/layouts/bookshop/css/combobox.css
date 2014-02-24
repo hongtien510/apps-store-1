@@ -1,0 +1,131 @@
+/* Combobox styles */
+
+        .combowrap {
+	overflow:hidden;
+	padding:0;
+	float:left;
+	width:248px;
+	background:url(../_images/bg_combo.jpg) left top no-repeat;
+	height:22px;
+	margin-left:10px;
+}
+.combogrey {
+	background-color: #f2f3f2;
+}
+.combowrap input {
+	border:0px;
+	background:none;
+	-webkit-box-shadow:none;
+	-moz-box-shadow: none;
+	box-shadow: none;
+	-moz-border-radius:0;
+	-webkit-border-radius:0;
+	border-radius:0;
+}
+.combowrap .ui-button {
+	border:none;
+	border-spacing:0;
+	background:transparent url(../_images/button_combo.jpg) left top no-repeat;
+	height:22px;
+	width:22px;
+	cursor:pointer;
+}
+.combowrap .ui-button:hover {
+}
+.combowrap input[type=text]:focus,  .combowrap input[type=email]:focus,  .combowrap input.hasvalue {
+	background:none;
+}
+.combowrap .ui-autocomplete-input {
+	width:221px;
+	line-height:22px;
+	height:22px;
+	margin:0;
+	cursor:default;
+	position:relative;
+	top:-2px;
+	padding-left:5px;
+	font-size:12px;
+	color:#000000;
+}
+.ui-autocomplete {
+	position: absolute;
+	cursor: default;
+	background:#fff;
+	border:1px solid #000000;
+	max-height:200px;
+	width:246px;
+	overflow-y:auto;
+	overflow-x:hidden;
+}
+.ui-menu {
+	display:block;
+}
+.ui-menu .ui-menu {
+	margin-top: -3px;
+}
+.ui-menu .ui-menu-item {
+	margin:0;
+	padding: 0;
+	width: 100%;
+}
+.ui-menu .ui-menu-item a {
+	text-decoration:none;
+	display:block;
+	padding:0 20px 0 8px;
+	line-height:22px;
+	font-size:11px;
+	color:#000000;
+	white-space:nowrap;
+}
+.ui-menu .ui-menu-item a.ui-state-hover,  .ui-menu .ui-menu-item a.ui-state-active {
+	background-color:#ffffff;
+	color:#000000;
+	font-size:11px;
+}
+/* Radio button and check box  */
+span.ui-radio {
+	  background:url(../../image/custome/checkbox.png) no-repeat 0px 0px;
+    display: inline-block;
+    height: 17px;
+    position: relative;
+    top: 0.214em;
+    width: 17px;
+}
+span.ui-radio-state-checked-hover {
+	background:url(../../image/custome/checkbox.png) no-repeat 0px -17px;
+}
+span.ui-radio-state-checked-disabled-hover, span.ui-radio-state-checked-disabled, span.ui-radio-state-checked {
+	background:url(../../image/custome/checkbox-checked.png) no-repeat 0px 0px;
+}
+span.ui-checkbox {
+	width: 17px;
+	height: 17px;
+	background:url(../../image/custome/checkbox.png) no-repeat 0px 0px;
+	display:inline-block;
+	margin-right:4px;
+	position:relative;
+	float:left;
+	top:2px;
+}
+span.ui-checkbox-state-checked-hover {
+	background:url(../../image/custome/checkbox.png) no-repeat 0px -17px;
+}
+span.ui-checkbox-state-checked {
+	background:url(../../image/custome/checkbox.png) no-repeat 0px -17px;
+}
+.checkfield .ui-checkbox {
+	margin-right:5px;
+	float:left;
+	position:relative;
+	top:-2px;
+}
+.ui-helper-hidden-accessible {
+	position: absolute;
+	left: -999em;
+}
+.register_form .error {
+	border: 1px solid #FF0000;
+}
+.combowrap .error {
+	border: 1px solid #FF0000;
+}

@@ -1,0 +1,349 @@
+<?php
+    $detailProduct = $this->detailProduct;
+    $configApp = Zend_Registry::get(APPLICATION_CONFIG);
+    $path_image = $configApp->config->path_image;
+    $config = $this->config;
+    $sanPhamLienQuan = $this->sanPhamLienQuan;
+    $idpage = $this->idpage;
+    $idsp = $this->idsp;
+    //$link_share = APP_DOMAIN ."/detail?idpage=$idpage&id=$idsp";
+    $idsp = base64_encode($idsp);
+    $link_share = FB_APP_DOMAIN . "?app_data=" . $idsp;
+?>
+<script>
+	$(document).ready(function(e) {
+	    Products.init();
+	    
+	});
+</script>
+<div class="m-top">
+	<!--breadcrum-->
+	<div class="breadcrum" style="display:none;">
+		<a href="#">Hàng mới</a> / <a href="#">Quần áo</a> / <a href="#">Nữ</a>/
+		<a href="#" class="">Áo</a> / 
+		<a href="#" class="active">Áo CHIBI Japanese</a>
+	</div>
+	<!--End breadcrum-->
+	
+</div>
+<style>
+	.product.product-details{
+		box-shadow:none;
+		border:none;
+	}
+</style>
+<div class="m-bottom">
+	<!--product-->
+	<div class="product product-details">
+		 <div class="slidedetails">
+		 	<!--slideshow-->
+        	<div id="slideshow">
+            	 
+				<div id="jslidernews2" class="lof-slidecontent" style="width:345px; height:307px;">
+                    
+		    		 <!-- MAIN CONTENT --> 
+		              <div class="main-slider-content">
+		              	<div class="button-previous">Previous</div>
+             			<div class="button-next">Next</div>
+		                <div class="sliders-wrapper">
+		                	
+		                	<ul class="sliders-wrap-inner">
+				                 <li>
+			                          <div class="bd-around">
+			                          		<!--
+											<a href="<?php echo APP_DOMAIN .'/'. $path_image . $detailProduct['hinhchinh']?>" class="jqzoom" rel=''  title="" >
+									            <img src="<?php echo APP_DOMAIN .'/'. $path_image . $detailProduct['hinhchinh']?>"  title="triumph"  style=""/>
+									        </a>
+											-->
+											<a class="light-box-big" href="<?php echo $detailProduct['hinhchinh']?>">
+												<img class="example-image" src="<?php echo $detailProduct['hinhchinh']?>" alt="thumb-1"/>
+												<div class="tooltip_image_big" style="display:none;">
+													<div class="box-image-big">
+														<img src=""/>
+													</div>
+												<div>
+											</a>
+			                          </div>           
+			                        
+			                    </li>
+                                <?php
+                                    $array_hinhphu = $this->array_hinhphu;
+                                    foreach($array_hinhphu as $key=>$value)
+                                    {
+
+                                ?>
+								<!--
+                                     <li>
+			                          <div class="bd-around"><a href="<?php echo APP_DOMAIN .'/'. $path_image . $value?>" class="jqzoom"><img src="<?php echo APP_DOMAIN .'/'. $path_image . $value?>" alt=""/></a></div>           
+			                         </li>
+								-->
+									<li>
+										<div class="bd-around">
+											<a class="light-box-big" href="<?php echo $value['source']?>">
+												<img class="example-image" src="<?php echo $value['source']?>" alt="thumb-1"/>
+											</a>
+										</div>           
+									</li> 
+                                <?php
+                                    }
+                                ?>
+			                     
+		                  </ul>
+		                  </div>  	
+		            </div>
+		 		   <!-- END MAIN CONTENT --> 
+		           <!-- NAVIGATOR -->
+		           	<div class="navigator-content">
+		           		
+		                  <div class="navigator-wrapper">
+		                        <ul class="navigator-wrap-inner">
+			                        <li class="">
+		                                <div>
+		                                   <img src="<?php echo $detailProduct['hinhchinh']?>" alt=""/> 
+		                                </div>    
+		                            </li>
+                                    <?php
+                                        $array_hinhphu = $this->array_hinhphu;
+                                        foreach($array_hinhphu as $key=>$value)
+                                        {
+
+                                    ?>
+		                            <li class="">
+		                                <div>
+		                                    <img src="<?php echo $value['source']?>" alt=""/>
+		                                </div>    
+		                            </li>
+                                    <?php
+                                        }
+                                    ?>
+		                        </ul>
+		                  </div>
+		   
+		             </div>
+		             
+		              <!-- BUTTON PLAY-STOP -->
+		              <div class="button-control action-start hover-stop" style="display:none;"></div>
+		          <!-- END OF BUTTON PLAY-STOP -->     
+				</div>  
+	       </div>
+	        <!--slideshow -->	
+		</div>
+		<style>
+		.slidedetails{
+			border-right:none;
+		}
+			.right-product {
+				float: left;
+				width: 300px;
+				margin-top: 5px;
+				min-height: 306px;
+				margin-left: -5px;
+				border-left: 1px dotted #909090;
+				border-bottom: 1px dotted #909090;
+			}
+			.row_desc_product_name{
+				
+			}
+			.row_desc_product_name .title-products{
+				font-size: 18px;
+				font-weight: bold;
+				margin-top: 19px;
+				padding-left: 10px;
+				padding-bottom: 16px;
+				border-bottom: 1px dotted #909090;
+				color: #000;
+			}
+			.price-product-edit .price-real-big{
+				font-weight: bold;
+				font-size: 22px;
+				margin-top: 12px;
+				float: left;
+				width: 100%;
+				margin-left: 9px;
+				margin-bottom: 7px;
+			}
+			.price-product-edit .price-title{
+				margin-left: 9px;
+			}
+			.right-product .likethis .like-fb{
+				float: left;
+				margin-left: 10px;
+			}
+			.addthis_toolbox a.addthis_button_google_plusone_badge{
+				margin-top: 6px;
+				margin-left: 5px;
+				margin-right: 5px;
+			}
+			.addthis_toolbox a.addthis_counter.addthis_pill_style{
+				margin-top: 4px;
+			}
+			.right-product .product-description .row_desc {
+				padding: 5px 8px 0px 5px;
+				float: left;
+				width: 100%;
+				margin-top: 5px;
+				margin-left: 4px;
+			}
+			.buynow {
+				margin-top: 12px;
+				margin-left: 9px;
+			}
+			.right-product .likethis {
+				margin-top: 9px;
+				margin-bottom: 5px;
+				border-bottom: 1px dotted #909090;
+				padding-bottom: 15px;
+				min-height: 25px;
+			}
+		</style>
+		<div class="right-product">
+			<div class="row_desc row_desc_product_name">
+				<div class="title title-products" id="title-product-name-details"><?php echo $detailProduct['tensp'] ?></div>					
+			</div>
+			<!--likethis-->
+			<div class="likethis">
+				
+			    <div class="like-fb">
+					<!--iframe src="//www.facebook.com/plugins/like.php?href=<?php echo $link_share ?>&amp;width=100&amp;layout=button_count&amp;action=like&amp;show_faces=false&amp;share=false&amp;height=21&amp;appId=200746673462064" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:100px; height:21px;" allowTransparency="true"></iframe-->
+					<!-- AddThis Button BEGIN -->
+					<div class="addthis_toolbox addthis_default_style">
+					<a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+					<a class="addthis_button_google_plusone_badge" g:plusone:size="small"></a>
+					<a class="addthis_counter addthis_pill_style"></a>
+					</div>
+					<script type="text/javascript">var addthis_config = {"data_track_addressbar":true};</script>
+					<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-50c7f8c06629b2bf"></script>
+					<!-- AddThis Button END -->
+                </div>
+            </div>
+			<!--End likethis-->
+			<!--product-description-->
+			<div class="product-description">
+				
+				<div class="price-product price-product-edit">
+					<?php 
+						if($detailProduct['giagiam'] != 0)
+						{
+					?>
+						<span class="price-real-big"><?php echo number_format($detailProduct['giagiam'],0,',','.') .' '. $config['donvitien'] ?></span>
+						<span class="price-title">Giá trước đây</span><span class="price-sale"><?php echo number_format($detailProduct['gia'],0,',','.') .' '. $config['donvitien'] ?>,</span>
+						<span class="price-real"><?php echo ($detailProduct['sale_off'] != "") ? " Tiết kiệm {$detailProduct['sale_off']}%" : "" ?></span>
+						
+					<?php
+						}else{
+					?>
+						<span class="price-real-big"><?php echo number_format($detailProduct['gia'],0,',','.') .' '. $config['donvitien'] ?></span>
+					<?php      
+						}
+					?>
+				</div>
+				<div class="row_desc">
+					<div class="title">Số lượng:</div>
+					<div class="desc">
+						<select name="amount" class="select">
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+						</select>
+					</div>
+				</div>
+                <!--
+				<div class="row_desc">
+					<div class="title">Size:</div>
+					<div class="desc">
+						<select name="size" class="select">
+							<option value="M">M</option>
+							<option value="L">L</option>
+							<option value="S">S</option>
+						</select>
+					</div>
+				</div>
+                -->
+				<div class="buynow"><a onclick="muahang('<?php echo $detailProduct['idsp'] ?>')" href="javascript:void(0);">Mua ngay</a></div>
+			</div>
+		</div>
+        
+		<div class="other-products">			<div class="title-others">				<div class="dotted"></div>				<div class="title">Mô tả sản phẩm</div>			</div>			<div class="description" style="padding-bottom:15px;padding-top:15px;padding-left: 40px;padding-right: 20px;"><?php echo $detailProduct['mota'] ?></div>
+			<div class="title-others">
+				<div class="dotted"></div>
+				<div class="title">Sản phẩm tương tự</div>
+			</div>
+				<!--p-item-->
+				<div class="slider-details">
+					<div class="arrow_slider">
+						<a href="javascript:void(0)" class="prev"></a>
+						<a href="javascript:void(0)" class="next"></a>
+					</div>
+					<div class="wrapper-slider">
+						<div class="content-slider">
+							<?php
+                            foreach($sanPhamLienQuan as $value)
+                            {
+                            ?>
+                                <div class="p-item">
+    								<a href="<?php echo APP_DOMAIN .'/detail?idpage='. $idpage .'&id='. $value['idsp'] ?>">
+    									<img src="<?php echo $value['hinhchinh']?>" alt="" title=""/>
+    									<?php
+                                            if($value['spmoi'] == 1) echo "<div class='new'></div>";
+                                        ?>
+                                        <?php
+                                            if($value['giagiam'] != 0) echo "<div class='selloff'><span>{$value['sale_off']}% off</span></div>";
+                                        ?>
+    									<div class="bg-name">
+    										<p class="name-p"><?php echo $value['tensp'] ?></p>
+    										<p class="price">
+                                            <?php
+                                                if($value['giagiam'] != 0)
+                                                {
+                                            ?>
+                                                <span class="price-real"><?php echo number_format($value['gia'],0,',','.') .' '. $config['donvitien'] ?></span>
+                                                <span class="price-sale"><?php echo number_format($value['giagiam'],0,',','.') .' '. $config['donvitien'] ?></span>
+                                            <?php
+                                                }
+                                                else
+                                                {
+                                            ?>
+                                                <span class="price-sale"><?php echo number_format($value['gia'],0,',','.') .' '. $config['donvitien'] ?></span>
+                                            <?php
+                                                }
+                                            ?>
+                                            </p>
+    									
+                                        
+                                        </div>
+    								</a>	
+    							</div>
+                            <?php
+                                }
+                            ?>
+						</div>
+					</div>
+				</div>
+		</div>
+		<!--comment-product-->
+		<div class="comment-product">
+			<div class="title-others">
+				<div class="dotted"></div>
+				<div class="title">Nhận xét của người mua</div>
+			</div>
+            <div class="fb-comments" data-href="<?php echo $link_share ?>" data-width="660" data-numposts="5" data-colorscheme="light"></div>
+		</div>
+		<!--End comment-product-->
+	</div>
+	<div class="cart-shop">
+		<div class="cart-icon-right">
+			<a href="<?php echo APP_DOMAIN .'/giohang?idpage='. $idpage ?>" class="cart-icon">
+				<div class="total"><?php echo isset($_SESSION["cart_$idpage"]) ? count($_SESSION["cart_$idpage"]) : "0" ?></div>
+			</a>
+			<a href="#" class="search-icon"></a>
+			<div class="search-content">
+				<input onkeyup="searchProduct(event, this.value)" type="text" value="" placeholder="Tìm kiếm" />
+			</div>
+			
+			<a href="javascript:void(0);" class="gotoTop"></a>
+		</div>
+	</div>
+	<!--End product-->
+</div>

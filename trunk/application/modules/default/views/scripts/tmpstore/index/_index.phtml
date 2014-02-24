@@ -1,0 +1,73 @@
+<div id="fb-root"></div>
+<script src="http://connect.facebook.net/en_US/all.js"></script>
+<script>
+
+	FB.init({
+	 appId  : '117126145156645',
+	 status : true, // check login status
+	 cookie : true, // enable cookies to allow the server to access the session
+	 xfbml  : true// parse XFBML
+	 });
+	FB.Canvas.setSize({ width: 800, height: 2000 });
+
+ </script>
+<?php
+	$idpage = $this->idpage;
+    $showsp = $this->showsp;
+	$donvitien = $this->donvitien;
+    
+    if(isset($this->sotrang))
+    {
+       $sotrang = $this->sotrang; 
+    }
+?>
+<div id="product">
+	<ul class="pro">
+        <?php
+            for($i=0; $i<count($showsp); $i++)
+            {  
+        ?>
+    	<li <?php if(($i+1)%4==0) echo "class='pro_last'"; ?>>
+			<p class="pro_img">
+				<a href="product?id=<?php echo base64_encode(stripslashes($showsp[$i]["idloaisp"])) ?>&sp=<?php echo base64_encode(stripslashes($showsp[$i]["idsp"]))?>&idpage=<?php echo $idpage ?>">
+					<img src="<?php echo APP_DOMAIN . '/application/layouts/tmpstore/images/upload/images/' . $showsp[$i]["hinhchinh"]?>" alt="<?php echo $showsp[$i]["tensp"] ?>" title="<?php echo $showsp[$i]["tensp"] ?>" />
+				</a>
+			</p>
+            <p class="pro_name"><a href="product?id=<?php echo base64_encode(stripslashes($showsp[$i]["idloaisp"])) ?>&sp=<?php echo base64_encode(stripslashes($showsp[$i]["idsp"]))?>&idpage=<?php echo $idpage ?>"><?php echo $showsp[$i]["tensp"] ?></a></p>
+            <p class="pro_price"><?php echo number_format($showsp[$i]["gia"],0,',','.') .' '. $donvitien;?></p>
+        </li>
+        <?php } ?>
+    </ul>
+</div>
+<?php 
+    if(isset($sotrang))
+    {
+?>
+    <div class="page">
+        <ul class="ulpage">
+        <?php
+            if(!isset($_GET['page']))
+            {
+                echo "<a class='page_open' href='javascript:;'><li>1</li></a>";
+                    
+                for($i=2; $i<=$sotrang; $i++)
+                {
+                    echo "<a href='index?idpage=$idpage&page=". base64_encode($i) ."'><li>". $i ."</li></a>";
+                }
+            }
+            else
+            {
+                $npage = base64_decode($_GET['page']);
+                
+                for($i=1; $i<=$sotrang; $i++)
+                {
+                    if($i== $npage)
+                        echo "<a class='page_open' href='javascript:;'><li>". $npage ."</li></a>";
+                    else
+                        echo "<a href='index?idpage=$idpage&page=". base64_encode($i) ."'><li>". $i ."</li></a>";
+                }
+            }
+        ?>
+        </ul>
+    </div>
+<?php } ?>

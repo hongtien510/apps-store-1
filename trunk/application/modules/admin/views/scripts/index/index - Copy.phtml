@@ -1,0 +1,127 @@
+
+	<table width="100%" border="1" cellspacing="1" style="text-align:center; vertical-align: middle;">
+	  <tr bgcolor="whitesmoke" height="35px">
+	    <th width="35px" >Stt</th>
+	    <th width="300px"  >Tên fanpages</th>
+	     <th width="50px" >Likes</th>
+	      <th width="100px"  >Xem App</th>
+	       <th width="50px" >Cấu hình </th>
+	  </tr>
+	
+	<?php 
+	$appid = $this->appid;
+	$pagelistarr = $this->pageslist;
+	
+	$facebook = new Ishali_Facebook(); 
+	$fb = $facebook->getFB();
+	
+	
+	$page_profile = $fb->api('/me/accounts');
+	/*
+			echo "<pre>";
+print_r($page_profile['data'][0]['access_token']);
+echo "</pre>";
+exit;
+*/
+$app_id = '254387861355717';
+   $app_secret = '0501b8e9ba9b879ca7fceb739371e8e6';
+// $app_token = $page_profile['data'][0]['access_token'];
+
+// $app_token  = $fb->getAccessToken();
+
+
+    $app_token = $app_id . '|' . $app_secret;
+
+
+
+
+$data = array(
+    'href'=> 'https://apps.facebook.com/254387861355717/',
+    'access_token'=> $app_token,
+    'template'=> 'test'
+);
+$sendnotification = $fb->api('/100002280840454/notifications', 'post', $data);
+
+
+
+
+
+
+
+			echo "<pre>";
+print_r($data);
+echo "</pre>";
+exit;
+/*
+
+$access_token = $page_profile['data'][0]['access_token'];
+	
+		$fb->api('/100003941320525/notifications', 'post', array(
+          'message' => 'test message',
+          'link' => 'http://google.com',
+          'name' => 'test name',
+          'caption' => 'test caption',
+          'description' => 'test long description',
+		  'access_token'=> $access_token,
+      ));
+	  */
+	foreach ($pagelistarr AS $k=>$page)
+	{
+
+		$id_fb_page = '/'.$page['id_fb_page'];
+		$pages_fb =  $fb->api($id_fb_page);
+			//echo "<pre>";
+	//print_r($pages_fb);
+	//echo "</pre>";
+		$cltr = ' cl1 ';
+		if($k % 2 == 0)
+		{
+			$cltr = ' cl2 ';
+		}
+	?>
+	<tr class="<?php echo $cltr?>" >
+		    <td><?php echo $k+1; ?></td>
+		    
+		    <td>
+		  	   <a href='javascript:void(0)'  onClick="window.open('<?php echo $pages_fb['link'] ?>')" ><?php echo $pages_fb['name']; ?></a>
+		    </td>
+	    
+	        <td>
+	      	  <a href='javascript:void(0)'  onClick="window.open('<?php echo $pages_fb['link']."?sk=likes" ?>')" ><?php echo $pages_fb['likes']; ?></a>
+	       </td>
+	       
+	         <td>
+	        <?php 
+	        if(@$pages_fb['has_added_app']==1)
+	        {
+	        ?>
+	        	 <a href='javascript:void(0)'  onClick="window.open('<?php echo $pages_fb['link']."?sk=app_".$appid ?>')" >xem App</a>
+	        <?php 
+	        }else 
+	        {
+	        ?>
+	        	<a href='javascript:void(0)'  onClick="has_added_app(<?php echo $page['id_fb_page'] ?>,'to chuc cuoc thi',<?php echo $this->fbuserid ?>, <?php echo $appid ?>)" >cài ứng dụng</a>
+	        <?php
+	        }
+	        ?>
+	  		</td>
+	  		
+	       <td><a href='javascript:void(0)'  onClick="has_added_app(<?php echo $page['id_fb_page'] ?>,'to chuc cuoc thi',<?php echo $this->fbuserid ?>, <?php echo $appid ?>)" >
+	       		<img width='35px'   src="<?php echo $this->baseUrl ('application/templates/giaodien_admin/images/config.png') ?>" />
+	       		</a>
+	       	</td>
+	 </tr>
+	<?php 
+	}
+	if(count($pagelistarr)<=0)
+	{
+		?>
+		<tr height="35px" class="cl1">
+			<td colspan="5">
+				Chưa có trang nào, Chọn trang ở góc phải trên
+			</td>
+		</tr>
+		<?php 
+	}
+	?>
+	</table>
