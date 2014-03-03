@@ -10,8 +10,8 @@ define('LIB_LOG_PATH', LIBS_PATH.'/Log');
 define('CONFIG_PATH', APPLICATION_PATH . '/configs');
 define('LAYOUT_PATH', APPLICATION_PATH . '/layouts');
 
-define('APP_DOMAIN', 'http://localhost/appfb/apps-store');//Khong co dau /
-define('FB_APP_DOMAIN', 'http://apps.facebook.com/apps-store-local');
+define('APP_DOMAIN', 'https://localhost/appfb/apps-store');//Khong co dau /
+define('FB_APP_DOMAIN', 'https://apps.facebook.com/apps-store-local');
 
 define('ROOT_DOMAIN', APP_DOMAIN);
 define('APP_ID', '200746673462064');

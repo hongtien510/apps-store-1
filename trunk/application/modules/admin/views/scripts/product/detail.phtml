@@ -152,7 +152,7 @@
     
 	<tr>
 		<td valign = "top"><span class="nameinput">Mô tả SP: </span></td>
-		<td><textarea  class="textareastyle" id="mota" ><?php echo $product[0]['mota'] ?></textarea></td>
+		<td><textarea  class="textareastyle" name="mota" id="mota" ><?php echo $product[0]['mota'] ?></textarea></td>
 	</tr>
 </table>
 <input type="hidden" name="idsp" value="<?php echo $product[0]['idsp'] ?>" />
@@ -161,8 +161,8 @@
 </form>
 
 <script>
-	var editor1 = CKEDITOR.replace( 'mota' );
-	CKFinder.setupCKEditor( editor1, '../public/ckfinder/' ) ;
+	//var editor1 = CKEDITOR.replace( 'mota' );
+    tinymce.init({selector:'textarea[name=mota]'});
 </script>
 
 
