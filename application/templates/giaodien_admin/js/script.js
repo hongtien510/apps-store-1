@@ -300,7 +300,7 @@ $(document).ready(function(){
         var tensp = $('input[name=tensp]').val();
         var idcat = $('select[name=idcat]').val();
         var giaban = $('input[name=giaban]').val();
-        var mota = $('.cke_wysiwyg_frame').contents().find('.cke_editable').html()
+        //var mota = $('.cke_wysiwyg_frame').contents().find('.cke_editable').html()
         var checked_hinh_chinh = $('input[type=radio]').is(':checked');
         if(tensp == "")
         {
@@ -339,9 +339,10 @@ $(document).ready(function(){
                         $.ajax({
                             url:taaa.appdomain+'/admin/product/xulyupdate',
                             type:'post',
-                            data:$("form#form_update_sanpham").serialize()+'&mota='+mota,
+                            data:$("form#form_update_sanpham").serialize(),
                             success:function(data){
-                                //alert(data);
+                                //alert(data); return false;
+                                
                                 if(data == 1)
                                 {
                                     ThongBao('Cập nhật sản phẩm thành công',2000);
