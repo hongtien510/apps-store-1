@@ -42,6 +42,7 @@
 	
     <!--PHAN TRANG-->
 	<link rel="stylesheet" type="text/css" href="<?php echo APP_DOMAIN . '/application/layouts/bookshop/css/more-custom.css'; ?>"/>
+	<link rel="stylesheet" type="text/css" href="<?php echo APP_DOMAIN . '/application/layouts/bookshop/css/order.css'; ?>"/>
     
     <script>
         var APP_DOMAIN = '<?php echo APP_DOMAIN ?>';
@@ -103,6 +104,7 @@
 						<li><a href="<?php echo APP_DOMAIN .'?idpage='. $idpage.'&menu=1'?>" class="<?php echo ($menu == 1) ? 'active' : '' ?>">Trang chủ</a></li>
 						<li style="display:none;"><a href="<?php echo APP_DOMAIN .'/dathang?idpage='. $idpage .'&menu=2'?>" class="<?php echo ($menu == 2) ? 'active' : '' ?>">GIAO HÀNG</a></li>
 						<li><a href="<?php echo APP_DOMAIN .'/contact?idpage='. $idpage .'&menu=3'?>" class="<?php echo ($menu == 3) ? 'active' : '' ?>">LIÊN HỆ</a></li>
+                        <li><a href="<?php echo APP_DOMAIN .'/giohang/find?idpage='. $idpage .'&menu=4'?>" class="<?php echo ($menu == 4) ? 'active' : '' ?>">TÌM ĐƠN HÀNG</a></li>
 					</ul>
 					<div class="create-shop">
 						<div class="bg-create">

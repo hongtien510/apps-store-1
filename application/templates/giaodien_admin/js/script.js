@@ -324,6 +324,8 @@ $(document).ready(function(){
         }
         else
         {
+            $('#form_update_sanpham').submit();
+            /*
             $.ajax({
                 url:taaa.appdomain+'/admin/product/checkhavechildcat',
                 type:'post',
@@ -359,6 +361,7 @@ $(document).ready(function(){
                     }
                 }
             });
+            */
         }
     });
     

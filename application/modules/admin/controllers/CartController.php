@@ -228,7 +228,7 @@ class Admin_CartController extends App_Controller_AdminController {
                                         <td>
                                             <div class="name_detail_cart">
                                                 <p class="name_pro"><?php echo $sp['tensp']?></p>
-                                                <p class="price_pro"><?php echo $value['gia']?></p>
+                                                <p class="price_pro"><?php echo number_format($value['gia'],0,',','.') .' '. $config['donvitien']?></p>
                                             </div>
                                         </td>
                                         <td align='center'><span class="text3"><?php echo $value['soluong']?></span></td>

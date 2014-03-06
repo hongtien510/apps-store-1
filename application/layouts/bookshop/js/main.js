@@ -132,6 +132,42 @@ $(document).ready(function(){
         window.history.back();
     });
     
+    $('.btn_find_cart').click(function(){
+        var key = $('input[name=key_find_cart]').val();
+        var act = "";
+        if(checkmail(key) == true)
+        {
+            act = "email";
+        }
+        else
+        {
+            if(checkphone(key) == true)
+            {
+                act = "phone";
+            }
+            else
+            {
+                if(key.substring(0,2) == "DH")
+                {
+                    act = "dh";
+                }
+                else
+                {
+                    act = "other";
+                }
+            }
+        }
+        if(act == "other")
+        {
+            $('input[name=key_find_cart]').val('');
+            $('p.warning').html('Dữ liệu nhập vào không không đúng định dạng');
+            setTimeout(function(){$('p.warning').html('');},3000);
+            return false;
+        }
+        var link = APP_DOMAIN +"/giohang/list?idpage="+ ID_PAGE +"&act="+ act +"&key="+ key +"&menu=4";
+        window.location = link;
+    });
+    
 });
 
 //Kiem tra Email
