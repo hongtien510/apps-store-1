@@ -495,13 +495,72 @@ class Admin_ProductController extends App_Controller_AdminController {
     
     public function detailAction() {
         $idpage = $_SESSION['idpage'];
-        /*
-        if(!isset($this->_SESSION->iduseradmin))
-			header("Location:../login");
-        */
 		$_SESSION['list_page'] = "0";
-		
         $store = App_Models_StoreModel::getInstance();
+        
+        if(isset($_POST['tensp']))
+        {
+            $idsp = $_POST['idsp'];
+            $anhien = isset($_POST['hienthi']) ? $_POST['hienthi'] : 0;
+            $spmoi = isset($_POST['spmoi']) ? $_POST['spmoi'] : 0;
+            $tensp = $_POST['tensp'];
+            $idcat = $_POST['idcat'];
+            $giaban = $_POST['giaban'];
+            $giagiam = $_POST['giagiam'];
+            $sale_off = $_POST['sale_off'];
+            $mota = $_POST['mota'];
+            
+            $photo_main_sanpham = $_POST['photo_sanpham'];
+            $photo_sanpham = array();
+            $j = 0;
+            for($i = 1; $i <= 20; $i++)
+            {
+                if(isset($_POST["photo_sanpham_$i"]))
+                {
+                    if($_POST["photo_sanpham_$i"] != $photo_main_sanpham)
+                    {
+                        $photo_sanpham[$j]['photo'] = $_POST["photo_sanpham_$i"];
+                        $photo_sanpham[$j]['order'] = $_POST["order_photo_sanpham_$i"];
+                        $j++;
+                    }    
+                }
+                
+            }
+            
+            $sql = "update ishali_sanpham set `anhien` = '$anhien', 
+                                                `spmoi` = '$spmoi',
+                                                `tensp` = '$tensp',
+                                                `idloaisp` = '$idcat',
+                                                `gia` = '$giaban',
+                                                `giagiam` = '$giagiam',
+                                                `sale_off` = '$sale_off',
+                                                `mota` = '$mota',
+                                                `hinhchinh` = '$photo_main_sanpham'
+                    where `idsp` = '$idsp'";
+            $data = $store->InsertDeleteUpdateQuery($sql);
+            if($data == 1)
+            {
+                echo "<script>ThongBao('Cập nhật sản phẩm thành công',2000);</script>";
+            }
+            //Them anh phu
+            $sql = "delete from ishali_sanpham_hinhanh where `idsp` = '$idsp'";
+            $store->InsertDeleteUpdateQuery($sql);
+            //print_r($photo_sanpham);
+            if(count($photo_sanpham) > 0)
+            {
+                $sql = "insert into ishali_sanpham_hinhanh (`idsp`, `source`, `sapxep`) values ";
+                $i = 0;
+                foreach($photo_sanpham as $key=>$value)
+                {
+                    if($i++ == 0)
+                        $sql .= "('$idsp', '{$value['photo']}', '{$value['order']}') ";
+                    else
+                        $sql .= ",('$idsp', '{$value['photo']}', '{$value['order']}') ";
+                }
+                $store->InsertDeleteUpdateQuery($sql);
+            }
+        }
+        
         
         $idsp = base64_decode($this->_request->getParam("idsp"));
         $sql = "Select * from ishali_sanpham where idsp = ". $idsp ." and idpage = ". $idpage;

@@ -1,0 +1,93 @@
+<div class="manage-order">
+<div class="m-top">
+	<h3 class="title-page">Tình trạng đơn hàng của bạn</h3>
+</div>
+<div class="m-bottom">
+<?php
+    $list_cart = $this->list_cart;
+    $idpage = $this->idpage;
+    if(!empty($list_cart))
+    {
+?>
+	<div class="product" style="display: block">
+		<div class="clear"></div>
+		<table class="spdg" border="1">
+			<tbody><tr>
+				<th class="first" width="3%">STT</th>
+				<th width="6%">Mã đơn hàng</th>
+				<th width="8%">Ngày đặt</th>
+				<th width="15%">Tên khách hàng</th>
+				<!--<th width="7%">Tổng tiền <br/>(VNĐ)</th>-->
+				<th width="8%">Tình trạng</th>
+				<th width="8%">Công Cụ</th>
+			</tr>
+            <?php
+                $i = 1;
+                foreach($list_cart as $key=>$value)
+                {
+                    $date_create = substr($value['date_create'],0,10);
+                    $arr_date_create = explode('-', $date_create);
+                    $date_create = $arr_date_create['2'] .'-'. $arr_date_create['1'] .'-'. $arr_date_create['0'];
+                    
+                    switch ($value['status']) {
+                        case "0":
+                            $status = "Chưa xem";
+                            $class_st = "class='not-read'";
+                            break;
+                        case "1":
+                            $status = "Chưa giao";
+                            $class_st = "class='not-delivery'";
+                            break;
+                        case "2":
+                            $status = "Đã giao";
+                            $class_st = "class='ready-delivery'";
+                            break;
+                    }
+                    //https://localhost/appfb/apps-store/giohang/detail?idpage=356730004423499
+                    $link_detail = APP_DOMAIN . '/giohang/detail?idpage='. $idpage .'&dh='. $value['id_cart'] .'&menu=4';
+            ?>
+			<tr>
+				<td class="first" align="center"><?php echo $i++ ?></td>
+				<td align="center"><?php echo $value['id_cart'] ?></td>
+				<td align="center"><?php echo $date_create ?></td>
+				<td align="center"><?php echo $value['name'] ?></td>
+				<!--<td>300.000</td>-->
+				<td align="center" <?php echo $class_st ?>>
+					<div style="position: relative;">
+						<p class="status_cart"><?php echo $status ?></p>
+					</div>
+				</td>
+				<td class="last chi_tiet" align="center">
+					<a href="<?php echo $link_detail ?>" class="details">Chi tiết</a>
+				</td>
+			</tr>
+            <?php
+                }
+            ?>
+		</tbody></table>
+	</div>
+<?php
+    }
+    else
+    {
+        echo "<p style='margin-left:10px'>Không tìm thấy đơn hàng</p>";
+    }
+?>
+	
+	<!--product-->
+	<div class="cart-shop">
+		<div class="cart-icon-right">
+			<a href="https://socialnetshop.com/apps/apps-store/giohang?idpage=" class="cart-icon">
+				<div class="total">0</div>
+			</a>
+			<a href="#" class="search-icon"></a>
+			<div class="search-content">
+				<input onkeyup="searchProduct(event, this.value)" type="text" value="" placeholder="Tìm kiếm">
+			</div>
+			
+			<a href="javascript:void(0);" class="gotoTop"></a>
+		</div>
+	</div>
+	<!--End product-->
+</div>
+</div>

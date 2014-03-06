@@ -441,6 +441,30 @@ class App_Models_StoreModel {
         $data = $this->SelectQuery($sql);
 		return $data;
     }
+    
+    public function getListCart($idpage = "", $act = "", $key = "")
+    {
+        if($idpage == "") return;
+        if($act == "other") return;
+        
+        $sql = "select * from cart where `idpage` = '$idpage' ";
+        
+        switch ($act) {
+            case "email":
+                $sql .= "and `email` = '$key'";
+                break;
+            case "phone":
+                $sql .= "and `phone` = '$key'";
+                break;
+            case "dh":
+                $sql .= "and `id_cart` = '$key'";
+                break;
+        }
+        $sql .= " order by date_create desc";
+        
+        $data = $this->SelectQuery($sql);
+		return $data;
+    }
 
 	
 }

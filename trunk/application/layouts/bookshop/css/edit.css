@@ -155,6 +155,7 @@ img.h-right-1.h-right-7{
 }
 .main-content{
 	border:none;
+    min-height:400px;
 }
 .sidebar ul li ul li a{
 	text-align:left;

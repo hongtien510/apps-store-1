@@ -1,0 +1,142 @@
+<div class="manage-order">
+<div class="m-top">
+	<h3 class="title-page">CHI TIẾT ĐƠN HÀNG CỦA BẠN</h3>
+</div>
+<div class="m-bottom">
+	<div class="product" style="display: block">
+		<div class="clear"></div>
+        <?php
+            $config = $this->config;
+            $infoCart = $this->infoCart;
+            if(!empty($infoCart))
+            {
+            $infoCart = $infoCart[0];
+            $detailCart = $this->detailCart;
+            
+            
+            switch ($infoCart['status']) {
+                case "0":
+                    $status = "Chưa xem";
+                    break;
+                case "1":
+                    $status = "Chưa giao";
+                    break;
+                case "2":
+                    $status = "Đã giao";
+                    break;
+            }
+        ?>
+        
+		<div class="page-orderdetails">
+			<div class="bg-name">
+				<div class="id-orders">Mã Đơn Hàng: <span><?php echo $infoCart['id_cart'] ?></span></div>
+				<div class="status-odersdetail">
+					<div class="title">Tình Trạng:</div>
+					<div class="box-status"><?php echo $status ?></div>
+				</div>
+			</div>
+			<div class="info-orderdetails">
+				<div class="info-row">
+					<h3>Thông Tin Người Đặt Hàng</h3>
+					<ul>
+						<li class="col"><div class="col-1">Họ và Tên:</div><div class="col-2"><?php echo $infoCart['name'] ?></div></li>
+						<li class="col"><div class="col-1">Số điện thoại:</div><div class="col-2"><?php echo $infoCart['phone'] ?></div></li>
+						<li class="col"><div class="col-1">Email:</div><div class="col-2"><?php echo $infoCart['email'] ?></div></li>
+						<!--<li class="col"><div class="col-1">Facebook:</div><div class="col-2">https://www.facebook.com/tran.t.quang.912</div></li>-->
+					</ul>
+				</div>
+				<div class="info-row">
+					<h3>Thông Tin Nơi Nhận Hàng</h3>
+					<ul>
+						<li class="col"><div class="col-1">Tỉnh/Thành Phố:</div><div class="col-2"><?php echo $infoCart['city'] ?></div></li>
+						<li class="col"><div class="col-1">Quận/Huyện:</div><div class="col-2"><?php echo $infoCart['district'] ?></div></li>
+						<li class="col"><div class="col-1">Địa Chỉ:</div><div class="col-2"><?php echo $infoCart['address'] ?></div> </li>
+                        <li class="col"><div class="col-1">Ghi chú:</div><div class="col-2"><?php echo $infoCart['comment'] ?></div> </li>
+					</ul>
+				</div>
+				<div class="clear"></div>
+			</div>
+			<div class="shopping-page">
+				<form method="" action="info.html">
+					<div class="box-cart">
+						<div class="row-cart row-cart-title">	
+							<div class="col1">
+								<span class="cart-black">Thông Tin Chi Tiết Đơn Hàng</span>
+							</div>
+							<div class="col2">
+								Số lượng
+							</div>
+							<div class="col3">
+								Thành tiền
+							</div>
+						</div>
+                        <?php
+                            $tong_tien = 0;
+                            foreach($detailCart as $key=>$value)
+                            {
+                                $sql = "select * from ishali_sanpham where idsp = ". $value['idsp'];
+                                $data = mysql_query($sql);
+                                $sp = mysql_fetch_assoc($data);
+    							
+    							$gia = ($value['giagiam'] != 0) ? $value['giagiam'] : $value['gia'];
+    							$thanh_tien = $value['soluong'] * $gia;
+    							$tong_tien += $thanh_tien;
+                        ?>
+						<div class="row-cart">	
+							<div class="col1">
+								<div class="box-image">
+									<img src="<?php echo $sp['hinhchinh'] ?>"/>
+								</div>
+								<div class="bg-name">
+									<p class="name-p"><?php echo $sp['tensp']?></p>
+									<p class="price"><?php echo number_format($value['gia'],0,',','.') .' '. $config['donvitien']?></p>
+								</div>
+							</div>
+							<div class="col2">
+								x <input disabled="disable" type="text" name="" value="<?php echo $value['soluong']?>"/>
+							</div>
+							<div class="col3">
+								<?php echo number_format($thanh_tien,0,',','.') .' '. $config['donvitien']?>
+							</div>
+							
+						</div>
+                        <?php
+                            }
+                        ?>
+						
+						<div class="addmore">
+							
+							<div class="sum-money">
+								<span>Tổng cộng: <?php echo number_format($tong_tien,0,',','.') .' '. $config['donvitien']?></span>
+
+							</div>
+						</div>
+					</div>
+				</form>
+				
+		</div>
+		
+	</div>
+    <?php
+        }
+    ?>
+
+	<div class="cart-shop">
+		<div class="cart-icon-right">
+			<a href="https://socialnetshop.com/apps/apps-store/giohang?idpage=" class="cart-icon">
+				<div class="total">0</div>
+			</a>
+			<a href="#" class="search-icon"></a>
+			<div class="search-content">
+				<input onkeyup="searchProduct(event, this.value)" type="text" value="" placeholder="Tìm kiếm">
+			</div>
+			
+			<a href="javascript:void(0);" class="gotoTop"></a>
+		</div>
+	</div>
+	<!--End product-->
+</div>			
+</div>
+<!--End main-content-->
+<div class="clear"></div>
+</div>

@@ -5,7 +5,7 @@
     $category = $this->category;
     //print_r($category);
 ?>
-<form id='form_update_sanpham'>
+<form id='form_update_sanpham' action="" method="post">
 <table width="100%">
     <tr>
 		<td><span class="nameinput">Hiển Thị: </span></td>
@@ -161,8 +161,8 @@
 </form>
 
 <script>
-	//var editor1 = CKEDITOR.replace( 'mota' );
-    tinymce.init({selector:'textarea[name=mota]'});
+	var editor1 = CKEDITOR.replace( 'mota' );
+    //tinymce.init({selector:'textarea[name=mota]'});
 </script>
 
 
