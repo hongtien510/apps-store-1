@@ -888,6 +888,18 @@ function SearchCategory(idcat)
         window.location = 'product?idcat=' + idcat;
 }
 
+function searchProduct(event, keyword)
+{
+    keyword = keyword.trim();
+    keyword = keyword.replace(/ /g, "_");
+    var key = event.keyCode || event.charCode;//13
+    if(key == 13)//Nhan Enter
+    {
+        window.location = 'search?key=' + keyword;
+    }
+    return false;   
+}
+
 //Get URL
 function getParameterValue(name)
 {
