@@ -107,7 +107,7 @@ class Admin_ProductController extends App_Controller_AdminController {
 			$this->view->idpage = $idpage;
 		}
     }
-    
+	
     public function addAction() {
         $store = App_Models_StoreModel::getInstance();
         /*

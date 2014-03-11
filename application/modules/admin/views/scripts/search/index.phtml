@@ -78,39 +78,45 @@
 		<th width="30">Công Cụ</th>
 	</tr>
     <?php 
-        for($i=0; $i<count($product); $i++)
-        {
-            $danhmuc = ($product[$i]['tenloaisp_parent'] == "") ? $product[$i]['tenloaisp'] : $product[$i]['tenloaisp_parent'] .' >> '. $product[$i]['tenloaisp'];
-    ?>
+		if($product != null){
+			for($i=0; $i<count($product); $i++)
+			{
+				$danhmuc = ($product[$i]['tenloaisp_parent'] == "") ? $product[$i]['tenloaisp'] : $product[$i]['tenloaisp_parent'] .' >> '. $product[$i]['tenloaisp'];
+	?>
 	<tr>
 		<td align="center"><?php echo $i+1 ?></td>
-        <td align="center"><img class="hinhchinh_product" src="<?php echo $product[$i]['hinhchinh'] ?>" /></td>
+		<td align="center"><img class="hinhchinh_product" src="<?php echo $product[$i]['hinhchinh'] ?>" /></td>
 		<td><a href="product/detail?idsp=<?php echo base64_encode($product[$i]['idsp']) ?>"><?php echo $product[$i]['tensp'] ?></a></td>
-        <td><?php echo number_format($product[$i]['gia'],0,',','.') ?></td>
-        <td><?php echo $danhmuc ?></td>
-        <td align="center">
-            <?php if ($product[$i]['spmoi'] == 1){?>
-                <img src="<?php echo APP_DOMAIN . '/application/templates/giaodien_admin/images/tick.png' ?>" alt="hiện" title="Sản phẩm này đang ở trạng thái (Mới)"/>
-            <?php }?> 
-        </td>
-        <td align='center'>
-            <?php echo ($product[$i]['giagiam'] != 0) ? number_format($product[$i]['giagiam'],0,',','.') .'<br/>'. '<em>(giảm '. $product[$i]['sale_off'] .'%)</em>': "<img src='". APP_DOMAIN . "/application/templates/giaodien_admin/images/publish.png" ."' alt='Sản phẩm không giảm giá' title='Sản phẩm này không giảm giá'/>"; ?>
-            
-        </td>
-        <td align="center">
-            <?php if ($product[$i]['anhien'] == 1){?>
-                <img src="<?php echo APP_DOMAIN . '/application/templates/giaodien_admin/images/tick.png' ?>" alt="hiện" title="Sản phẩm này đang được hiển thị"/>
-            <?php } else {?>
-                <img src="<?php echo APP_DOMAIN . '/application/templates/giaodien_admin/images/publish.png' ?>" alt="ẩn" title="Sản phẩm này không được hiển thị"/>
-            <?php } ?>
-        </td>
-        
-        <td align="center">
+		<td><?php echo number_format($product[$i]['gia'],0,',','.') ?></td>
+		<td><?php echo $danhmuc ?></td>
+		<td align="center">
+			<?php if ($product[$i]['spmoi'] == 1){?>
+				<img src="<?php echo APP_DOMAIN . '/application/templates/giaodien_admin/images/tick.png' ?>" alt="hiện" title="Sản phẩm này đang ở trạng thái (Mới)"/>
+			<?php }?> 
+		</td>
+		<td align='center'>
+			<?php echo ($product[$i]['giagiam'] != 0) ? number_format($product[$i]['giagiam'],0,',','.') .'<br/>'. '<em>(giảm '. $product[$i]['sale_off'] .'%)</em>': "<img src='". APP_DOMAIN . "/application/templates/giaodien_admin/images/publish.png" ."' alt='Sản phẩm không giảm giá' title='Sản phẩm này không giảm giá'/>"; ?>
+			
+		</td>
+		<td align="center">
+			<?php if ($product[$i]['anhien'] == 1){?>
+				<img src="<?php echo APP_DOMAIN . '/application/templates/giaodien_admin/images/tick.png' ?>" alt="hiện" title="Sản phẩm này đang được hiển thị"/>
+			<?php } else {?>
+				<img src="<?php echo APP_DOMAIN . '/application/templates/giaodien_admin/images/publish.png' ?>" alt="ẩn" title="Sản phẩm này không được hiển thị"/>
+			<?php } ?>
+		</td>
+		
+		<td align="center">
 			<a href="product/detail?idsp=<?php echo base64_encode($product[$i]['idsp']) ?>"><img src="<?php echo APP_DOMAIN . '/application/templates/giaodien_admin/images/sua.png' ?>" alt="ct" title="Chi Tiết Sản Phẩm"/></a>
 			<a href="javascript:;" onclick = "DeleteProduct(<?php echo $product[$i]['idsp'] ?>)"><img src="<?php echo APP_DOMAIN . '/application/templates/giaodien_admin/images/xoa.png' ?>" alt="xoa" title="Xóa Sản Phẩm"/></a>
 		</td>
 	</tr>
-    <?php } ?>
+	  <?php } 
+		} 
+		else { 
+			echo '<tr><td colspan=9 align="center">Không tìm thấy sản phẩm</td></tr>';
+		}
+	  ?>
 
 </table>
 <input type="button" name="themspmoi" value="Thêm Sản Phẩm Mới" onclick="window.location.href='product/add'"/>
