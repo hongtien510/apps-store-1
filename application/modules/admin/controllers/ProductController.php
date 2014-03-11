@@ -540,7 +540,7 @@ class Admin_ProductController extends App_Controller_AdminController {
             $data = $store->InsertDeleteUpdateQuery($sql);
             if($data == 1)
             {
-                echo "<script>ThongBao('Cập nhật sản phẩm thành công',2000);</script>";
+                echo "<script>setTimeout(function(){FB.Canvas.scrollTo(0,0); ThongBao('Cập nhật sản phẩm thành công',2000);},2000);</script>";
             }
             //Them anh phu
             $sql = "delete from ishali_sanpham_hinhanh where `idsp` = '$idsp'";
