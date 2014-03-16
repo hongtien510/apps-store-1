@@ -251,13 +251,13 @@ $(document).ready(function(){
     $('input[name=open_giagiam]').change(function(){
         if($(this).is(':checked'))
         {
-            $('tr.tr_giagiam').show();
-            $('tr.tr_phantram_giagiam').show();
+            $('.div_giagiam').show();
+            $('.div_phantram_giagiam').show();
         }
         else
         {
-            $('tr.tr_giagiam').hide();
-            $('tr.tr_phantram_giagiam').hide();
+            $('.div_giagiam').hide();
+            $('.div_phantram_giagiam').hide();
             
             $('input[name=giagiam]').val('');
             $('input[name=sale_off]').val('');
@@ -416,14 +416,14 @@ function number_format (number, decimals, dec_point, thousands_sep) {
 
 function show_photo_facebook(status, count_photo)
 {
-    var content_table = $('table.show_photo_fb').html().trim();
-    if(content_table == "")
-        var ct_table = '1';
-    else
-        var ct_table = '2';
-
     if(status == 'add')
     {
+        var content_table = $('table.show_photo_fb').html().trim();
+        if(content_table == "")
+            var ct_table = '1';
+        else
+            var ct_table = '2';
+            
         var rowCount = $('.show_photo_fb tr').length;
         $.ajax({
             url:taaa.appdomain+'/admin/product/showphotofb',
@@ -452,8 +452,16 @@ function show_photo_facebook(status, count_photo)
             type:'post',
             data:$("form#form_list_image_fb").serialize()+"&count_photo="+count_photo,
             success:function(data){
-                $('ul.ul_list_img_fb').append(data);
-                $('#popup_content').fadeOut();
+                if(data == 0)
+                {
+                    $('.warning').show();
+                    setTimeout(function(){$('.warning').fadeOut();},2000);
+                }
+                else
+                {
+                    $('ul.ul_list_img_fb').append(data);
+                    $('#popup_content').fadeOut();
+                }
             }
         });
     }

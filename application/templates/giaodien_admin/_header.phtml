@@ -1,9 +1,41 @@
+<?php
+	$controllerName = Zend_Controller_Front::getInstance()->getRequest()->getControllerName();
+	$activeindex = '';
+	$activeconfig = '';
+	$activecategory = '';
+	$activeproduct = '';
+    $activechangepass = '';
+    $activecart = '';
+    
+    switch ($controllerName) {
+        case 'index':
+            $activeindex = "class='active'";
+            break;
+        case 'config':
+            $activeconfig = "class='active'";
+            break;
+        case 'category':
+            $activecategory = "class='active'";
+            break;
+        case 'product':
+            $activeproduct = "class='active'";
+            break;
+        case 'changepass':
+            $activechangepass = "class='active'";
+            break;
+        case 'cart':
+            $activecart = "class='active'";
+            break;
+		case 'search':
+			$activeproduct = "class='active'";
+            break;
+    }
+?>
 <div class="container">
 	<header>
         <?php
-			$list_page = $_SESSION['list_page'];
-            
-			
+			     $list_page = $_SESSION['list_page'];
+
 				$store = App_Models_StoreModel::getInstance();
 				$lpage = $store->GetPageFbByIdUserFB();
 				@$idpage = $_SESSION['idpage'];
@@ -13,7 +45,11 @@
     
 		<div class="header">
 			<!--<a href="#" class="create-page">Tạo trang</a>-->
-			<select id="slist_page" onchange="ChangeListPage(document.getElementById('slist_page').value)" class="select select_list_page">
+			<?php
+                if($controllerName != 'index')
+                {
+            ?>
+            <select id="slist_page" onchange="ChangeListPage(document.getElementById('slist_page').value)" class="select select_list_page">
 				<option value="0">Chọn Page cần thao tác</option>
 				<?php
 					for($i=0; $i<count($lpage); $i++)
@@ -30,42 +66,11 @@
 					}
 				?>
 			</select>
+            <?php } ?>
 			<a href="#" class="upload">Upload</a>
 		</div>
         <?php } ?>
-        <?php
-        	$controllerName = Zend_Controller_Front::getInstance()->getRequest()->getControllerName();
-        	$activeindex = '';
-        	$activeconfig = '';
-        	$activecategory = '';
-        	$activeproduct = '';
-            $activechangepass = '';
-            $activecart = '';
-            
-            switch ($controllerName) {
-                case 'index':
-                    $activeindex = "class='active'";
-                    break;
-                case 'config':
-                    $activeconfig = "class='active'";
-                    break;
-                case 'category':
-                    $activecategory = "class='active'";
-                    break;
-                case 'product':
-                    $activeproduct = "class='active'";
-                    break;
-                case 'changepass':
-                    $activechangepass = "class='active'";
-                    break;
-                case 'cart':
-                    $activecart = "class='active'";
-                    break;
-        		case 'search':
-        			$activeproduct = "class='active'";
-                    break;
-            }
-        ?>
+        
 		<div class="navigation">
 			<ul>
 				<li><a target="_top" href="<?php echo ROOT_DOMAIN ?>/admin" <?php echo $activeindex ?>>Home</a></li>

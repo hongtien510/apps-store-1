@@ -333,6 +333,10 @@ class Admin_ProductController extends App_Controller_AdminController {
         if(isset($_POST['list_main_photo']))
         {
             $list_main_photo = $_POST['list_main_photo'];
+            if(count($list_main_photo) == 0)
+            {
+                echo '0';exit;
+            }
             $key_photo = new Zend_Session_Namespace('key_photo');
             $key_photo->data = $list_main_photo; 
             
@@ -352,19 +356,24 @@ class Admin_ProductController extends App_Controller_AdminController {
             {
                 $i++;
             ?>   
+            
+            
             <li>
                 <label>
                 <p class="img_fb">
-                    <img src="<?php echo $value['source'] ?>" alt="" title="<?php echo @$value['name'] ?>" />
-                    <input type="radio" name="photo_sanpham" value="<?php echo $value['source'] ?>"/>
+                    <img src="<?php echo $value['source'] ?>" alt="" title="">
+                    <input type="radio" name="photo_sanpham" value="<?php echo $value['source'] ?>">
+                    <input type="hidden" name="photo_sanpham_<?php echo $i ?>" value="<?php echo $value['source'] ?>">
+                    <span>Ảnh chính</span>
                 </p>
+                
                 </label>
-                <input type="hidden" name="photo_sanpham_<?php echo $i ?>" value="<?php echo $value['source'] ?>" />
-                <input type="text" name="order_photo_sanpham_<?php echo $i ?>" value="" />
+                <input type="text" name="order_photo_sanpham_<?php echo $i ?>" value="" title="Vị trí hình ảnh hiển thị">
                 <a href="javascript:void(0)">
-                    <img src="<?php echo APP_DOMAIN . '/application/templates/giaodien_admin/images/xoa.png' ?>" alt="del" title="Xóa Hình"/>
+                    <img src="<?php echo APP_DOMAIN . '/application/templates/giaodien_admin/images/delete.png' ?>" alt="del" title="Xóa Hình">
                 </a>
             </li>
+
             <?php
             $i++;
             } 

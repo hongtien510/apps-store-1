@@ -152,7 +152,7 @@ class Admin_CartController extends App_Controller_AdminController {
         ?>
         <div class="header_popup_content">
             Chi tiết đơn hàng <?php echo $idCart ?>
-            <p class="close_popup" onclick="close_popup()">X</p>
+            <p class="close_popup" onclick="close_popup()"><img src="<?php echo APP_DOMAIN ?>/application/templates/giaodien_admin/images/delete.png"/></p>
         </div>
         <div class="popup_content">
             <table class="table_detail_cart">

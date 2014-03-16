@@ -2,7 +2,7 @@
 	$checkSessionIdpage = $this->checkSessionIdpage;
 	if($checkSessionIdpage == 0)
 	{
-		echo "<center><img  src='".APP_DOMAIN."/application/templates/giaodien_admin/images/chon page.jpg'/></center>";
+		echo "<center style='color:#41BBDE; padding:20px 0px'>Chọn Page cần thao tác</center>";
 	}
 	else
 	{
@@ -78,10 +78,10 @@
         			<th width="5%">Stt</th>
         			<th width="12%">Hình Ảnh</th>
         			<th width="22%">Tên sản phẩm</th>
-        			<th width="10%">Giá</th>
+        			<th width="10%">Giá (<?php echo $donvitien ?>)</th>
         			<th width="16%">Danh Mục</th>
         			<th width="7%">Mới</th>
-        			<th width="12%">Giá đã giảm</th>
+        			<th width="12%">Giá đã giảm (<?php echo $donvitien ?>)</th>
         			<th width="8%">Sử Dụng</th>
         			<th width="8%">Công cụ</th>
         		</tr>
@@ -138,6 +138,4 @@
         	<a href="product/add" class="add">Thêm sản phẩm mới</a>
         <div class="clear"></div>
     </div>
-
-
 <?php } ?>
