@@ -186,28 +186,32 @@ class Admin_ProductController extends App_Controller_AdminController {
         //print_r($albums);
         ?>     
                 <div class="header_popup_content">
-                    Chọn hình đại diện sản phẩm            
-                    <p onclick="close_popup()" class="close_popup">X</p>
+                    Chọn hình đại diện cho sản phẩm            
+                    <p onclick="close_popup()" class="close_popup"><img src="<?php echo APP_DOMAIN ?>/application/templates/giaodien_admin/images/delete.png"/></p>
                 </div>
                 <div class="popup_content">
                     <form name="form_list_image_fb" id="form_list_image_fb" action="" method="post">
-                        <p class="select_album_fb">
-                            chọn Album: 
-                            <select>
-                                <option value="ko">Chọn Album</option>
-                            <?php
-                                foreach($albums['data'] as $key=>$value)
-                                {
-                                    echo "<option value='{$value['id']}'>{$value['name']}</option>";
-                                }
-                            ?> 
-                            </select>
-                            <input onclick="show_photo_facebook('<?php echo $status ?>', '<?php echo $count_photo ?>')" class="btn_submit_image" type="button" name="btn_submit_image" value="Chọn" />
-                        </p>
+                    <div class="album">
+                        <div class="choose">
+    						<form action="" method="">
+    							<span>chọn hình từ Album</span>
+    							<select class="select_album_fb" name="">
+    								<option value="ko">Chọn Album</option>
+                                    <?php
+                                        foreach($albums['data'] as $key=>$value)
+                                        {
+                                            echo "<option value='{$value['id']}'>{$value['name']}</option>";
+                                        }
+                                    ?> 
+    							</select>
+    							<div class="btn"><a onclick="show_photo_facebook('<?php echo $status ?>', '<?php echo $count_photo ?>')" href="#">Chọn</a></div>
+    						</form>
+    					</div>
                         <p class="warning">Chọn hình ảnh cho sản phẩm</p>
                         <img style="position: absolute; top: 73px; left:30%" class="loading_photo" alt="loading..." src="<?php echo APP_DOMAIN .'/application/templates/giaodien_admin/images/ajax-loader.gif' ?>"/>
-                        <div class="list_image_fb"></div>
-                    </form>
+                        <div class="list-album list_image_fb"></div>
+                        </form>
+                    </div>
                 </div>
         <?php
     }
@@ -277,22 +281,42 @@ class Admin_ProductController extends App_Controller_AdminController {
             ?>
             
             <?php
+            $ct_table = $_POST['ct_table'];
             $i = $_POST['stt'];
+            $i = max(1,$i);
             foreach($array_photo as $key=>$value)
             {
-            ?>   
+                if($ct_table++ == 1)
+                {
+            ?>
+                <tr>
+            		<th width="5%">Stt</th>
+            		<th width="10%">Hình Ảnh</th>
+            		<th width="40%">Tên sản phẩm<span style="color: red;">(*)</span></th>
+            		<th width="10%">Giá</th>
+            		<th width="30%">Mô tả</th>
+            		<th width="5%">Xóa</th>
+            	</tr>
+            <?php
+                }
+            ?> 
+            
             <tr>
                 <td align='center'><?php echo $i ?></td>
                 <td align='center'>
-                    <img class="img_sp" src="<?php echo $value['source'] ?>" alt="" title="<?php echo @$value['name'] ?>"/>
+                    <img class="hinhchinh_product" src="<?php echo $value['source'] ?>" alt="<?php echo @$value['name'] ?>" title="<?php echo @$value['name'] ?>"/></td>
                     <input type="hidden" name="img_sp[<?php echo $i ?>]" value="<?php echo $value['source'] ?>" />
-                </td>
-                <td align='center'><input name="name_sp[<?php echo $i ?>]" class="name_sp" type="text" name="name" value="<?php echo @$value['name'] ?>" /></td>
-                <td align='center'><input name="price_sp[<?php echo $i ?>]" class="price_sp" type="text" name="price" value="" /></td>
-                <td align='center'><textarea name="des_sp[<?php echo $i ?>]" class="des_sp"></textarea></td>
                 <td align='center'>
-                    <!--<a href=""><img src="<?php echo APP_DOMAIN . '/application/templates/giaodien_admin/images/chitiet.png' ?>" alt="ct" title="Chi Tiết Sản Phẩm"/></a>-->
-        			<a href="javascript:;" class='delete_photo_facebook' ><img src="<?php echo APP_DOMAIN . '/application/templates/giaodien_admin/images/xoa.png' ?>" alt="xoa" title="Xóa Sản Phẩm"/></a>
+                    <input name="name_sp[<?php echo $i ?>]" class="name_sp" type="text" name="name" value="<?php echo @$value['name'] ?>" />
+                </td>
+                <td align='center'>
+                    <input name="price_sp[<?php echo $i ?>]" class="price_sp" type="text" name="price" value="" />
+                </td>
+                <td align='center'>
+                    <textarea name="des_sp[<?php echo $i ?>]" class="des_sp"></textarea>
+                </td>
+                <td align='center'>
+                    <a href="javascript:;" class='delete_photo_facebook' ><img src="<?php echo APP_DOMAIN . '/application/templates/giaodien_admin/images/delete.png' ?>" alt="xoa" title="Xóa Sản Phẩm"/></a>
                 </td>
             </tr>
             <?php
@@ -381,7 +405,7 @@ class Admin_ProductController extends App_Controller_AdminController {
             else
                 $sql .= ",('$idloaisp', '$tensp', '$gia', '$hinhchinh', '$mota', '1', now(), '1', '$idpage') ";
         }
-        //echo $sql;
+        //echo $sql;exit;
         echo $store->InsertDeleteUpdateQuery($sql);
     }
     

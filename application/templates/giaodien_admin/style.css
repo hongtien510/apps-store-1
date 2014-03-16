@@ -201,11 +201,12 @@ float: right;margin-top: 11px;}
 }
 .album .choose{
     padding-top: 10px;
+	margin-top:-20px;
     float: left;
     width: 100%;
 }
 .album .choose span{
-    margin-left: 40px;
+    margin-left: 125px;
     float: left;
     margin-right: 10px;
     margin-top: 3px;
@@ -241,12 +242,13 @@ float: right;margin-top: 11px;}
     margin-left: 9px;
 }
 .list-album ul li{
-    margin-left: 17px;
-    width: 200px;
+    border: 1px solid #41BBDE;
     float: left;
-    height: 145px;
-    border: 1px solid #41bbde;
+    height: 130px;
     margin-bottom: 17px;
+    margin-right: 17px;
+    text-align: center;
+    width: 185px;
 }
 .list-album ul li input[type="checkbox"]{
     float: left;

@@ -2,34 +2,68 @@
     $category = $this->category;
     $donvitien = $this->donvitien;
 ?>
-<form id="form_add_product">
-<table class="table_select_danhmuc" width="100%">
-    <tr>
-        <td  style="border: none;">
-            Thuộc danh mục
-            <select class="select_parent_cat" name="select_parent_cat">
-                <option value="ko">Chọn danh mục</option>
-                <?php
-                    foreach($category as $k=>$v)
-                    {
-                        echo "<option value='{$v['idloaisp']}'>{$v['tenloaisp']}</option>";
-                    }
-                ?>
-            </select><span style="color: red;">(*)</span>
-        </td>
-        <td  style="border: none;">
-            <p class="p_select_child_cat">
-                Thuộc danh mục con
-                <select class="select_child_cat" name="select_child_cat">
-                    <option value="ko">Chọn danh mục</option>
-                </select><span style="color: red;">(*)</span>
-            </p>
-        </td>
-    </tr>
-</table>
-<p>
-    <input disabled='disabled' type="button" name="btn_get_image_on_fb" value="Tải hình" onclick="download_photo_fb('add')" />
-</p>
+    <div class="commonpage notborder product-page">
+        <form id="form_add_product" action="" method="">
+        	<div class="head">
+        			<div class="search-div">
+        				<div class="pull-left" style="margin-top: 5px;">
+        					<p style="float: left;">
+                                <span>Xem danh mục</span>
+            					<select class="select_parent_cat" name="select_parent_cat">
+            						<option value="ko">Chọn danh mục</option>
+                                    <?php
+                                        foreach($category as $k=>$v)
+                                        {
+                                            echo "<option value='{$v['idloaisp']}'>{$v['tenloaisp']}</option>";
+                                        }
+                                    ?>
+            					</select><span style="color: red;">(*)</span>
+                            </p>
+                            <p style="float:left" class="p_select_child_cat">
+                                <span>danh mục con</span>
+            					<select class="select_child_cat" name="select_child_cat">
+            						  <option value="ko">Chọn danh mục</option>
+            					</select><span style="color: red;">(*)</span>
+                            </p>
+        				</div>
+        				<div class="btn-search">
+        					<a name="themspmoi" href="javascript:void(0)" class="add-b btn_get_image_on_fb disabled_btn" onclick="download_photo_fb('add')">Thêm SP</a>
+                            <!--<input disabled='disabled' type="button" name="btn_get_image_on_fb" value="Tải hình" onclick="download_photo_fb('add')" />-->
+        				</div>
+        			</div>
+        	</div>
+
+            <div class="clear"></div>
+            <table cellspacing="0" cellpadding="0" border="0" class="tbl-home show_photo_fb">              		
+            </table>
+            
+            <a name="save_add_product" class="add" href="javascript:void(0)">Lưu sản phẩm</a>
+        </form>
+        
+    </div>
+
+<!--
+                <tr>
+            		<th width="5%">Stt</th>
+            		<th width="10%">Hình Ảnh</th>
+            		<th width="40%">Tên sản phẩm<span style="color: red;">(*)</span></th>
+            		<th width="10%">Giá</th>
+            		<th width="30%">Mô tả</th>
+            		<th width="5%">Xóa</th>
+            	</tr>
+                <tr>
+                    <td align='center'>1</td>
+                    <td align='center'><img class="hinhchinh_product" src="http://sphotos-c.ak.fbcdn.net/hphotos-ak-prn2/t1/1901432_364063010400949_1191853405_n.jpg" alt="" title=""/></td>
+                    <td align='center'><input class="name_sp" type="text" name="name" value="" /></td>
+                    <td align='center'><input class="price_sp" type="text" name="price" value="" /></td>
+                    <td align='center'><textarea class="des_sp" name="description"></textarea></td>
+                    <td align='center'>
+                        <a href="javascript:;" ><img src="<?php echo APP_DOMAIN . '/application/templates/giaodien_admin/images/delete.png' ?>" alt="xoa" title="Xóa Sản Phẩm"/></a>
+                    </td>
+                </tr>
+                --> 
+
+<!--
 <table width='100%' class="show_photo_fb">
 
     <tr>
@@ -40,7 +74,7 @@
         <td align='center' width='35%'>Mô tả</td>
         <td align='center' width='15%'>Xóa</td>
     </tr>
-<!--
+
     <tr>
         <td align='center'>1</td>
         <td align='center'><img class="img_sp" src="http://sphotos-c.ak.fbcdn.net/hphotos-ak-prn2/t1/1901432_364063010400949_1191853405_n.jpg" alt="" title=""/></td>
@@ -53,9 +87,7 @@
         </td>
     </tr>
 -->
-</table>
-<input type="button" name="save_add_product" value="Lưu" />
-</form>
+
 
 
 
