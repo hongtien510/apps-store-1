@@ -1,27 +1,13 @@
-<div id="fb-root"></div>
-<script src="http://connect.facebook.net/en_US/all.js"></script>
-<script>
 
-	FB.init({
-	 appId  : '617277141622046',
-	 status : true, // check login status
-	 cookie : true, // enable cookies to allow the server to access the session
-	 xfbml  : true// parse XFBML
-	 });
-	FB.Canvas.setSize({ width: 800, height: 1300 });
-
- </script>
 		
-	<table class="config_page" width="100%" border="1" cellspacing="1" style="text-align:center; vertical-align: middle;">
-	  <tr bgcolor="whitesmoke" height="35px">
-	    <th width="35px" >Stt</th>
-	    <th width="300px"  >Tên fanpages</th>
-	     <th width="50px" >Likes</th>
-	      <th width="100px"  >Xem App</th>
-	      <th width="100px"  >Lời tham gia</th>
-	      <!-- <th width="50px" >Cấu hình </th>-->
-	  </tr>
-	
+	<table class="tbl-home" border="0" cellspacing="0" cellpadding="0">
+	   <tr>
+			<th>Stt</th>
+			<th>Tên fanfage</th>
+			<th>Like</th>
+			<th>Xem app</th>
+			<th>Lời tham gia</th>
+		</tr>
 	<?php 
 	$appid = $this->appid;
 	$pagelistarr = $this->pageslist;
@@ -41,19 +27,12 @@
 			$cltr = 'cl2';
 		}
 	?>
-	<tr class="<?php echo $cltr?>" >
-		    <td><?php echo $k+1; ?></td>
-		    
-		    <td>
-		  	   <a href='javascript:void(0)'  onClick="window.open('<?php echo $pages_fb['link'] ?>')" ><?php echo $pages_fb['name']; ?></a>
-		    </td>
-	    
-	        <td>
-	      	  <a href='javascript:void(0)'  onClick="window.open('<?php echo $pages_fb['link']."?sk=likes" ?>')" ><?php echo $pages_fb['likes']; ?></a>
-	       </td>
-	       
-	         <td>
-	        <?php 
+    <tr>
+		<td><?php echo $k+1; ?></td>
+		<td><a href='javascript:void(0)'  onClick="window.open('<?php echo $pages_fb['link'] ?>')" ><?php echo $pages_fb['name']; ?></a></td>
+		<td><a href='javascript:void(0)'  onClick="window.open('<?php echo $pages_fb['link']."?sk=likes" ?>')" ><?php echo $pages_fb['likes']; ?></a></td>
+		<td>
+            <?php 
 	        if(@$pages_fb['has_added_app']==1)
 	        {
 	        ?>
@@ -66,27 +45,16 @@
 	        <?php
 	        }
 	        ?>
-	  		</td>
-			
-	  		<td>
-			<!--
-			<a href='javascript:void(0)'  onClick="moithamgia(<?php echo $page['id_fb_page'] ?>,'to chuc cuoc thi')" >
-	       		Mời tham gia
-	       		</a>
-				-->
-				<div id="fb-root"></div>
-				<a href='#' onclick="FacebookInviteFriendsadmin('<?php echo $pages_fb['link']."?sk=app_".$appid ?>');">Mời tham gia</a>
-	       	</td>
-			<!--
-	       <td><a href='javascript:void(0)'  onClick="has_added_app(<?php echo $page['id_fb_page'] ?>,'to chuc cuoc thi',<?php echo $this->fbuserid ?>, <?php echo $appid ?>)" >
-	       		<img width='35px'   src="<?php echo $this->baseUrl ('application/templates/giaodien_admin/images/config.png') ?>" />
-	       		</a>
-	       	</td>
-			-->
-	 </tr>
+        </td>
+		<td>
+            <div id="fb-root"></div>
+            <a href='#' onclick="FacebookInviteFriendsadmin('<?php echo $pages_fb['link']."?sk=app_".$appid ?>');">Mời tham gia</a>
+        </td>
+	</tr>
+
 	<?php 
 	}
-	if(count($pagelistarr)<=0)
+    if(count($pagelistarr)<=0)
 	{
 		?>
 		<tr height="35px" class="cl1">
@@ -94,7 +62,7 @@
 				Chưa có trang nào, Chọn trang ở góc phải trên
 			</td>
 		</tr>
-		<?php 
+	<?php 
 	}
 	?>
 	</table>

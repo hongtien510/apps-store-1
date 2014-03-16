@@ -9,131 +9,69 @@
 		$idPage = $this->idpage;
 		$config = $this->config;
 ?>
-<p class="title_page">Cấu hình Apps</p>
-<form action="<?php echo APP_DOMAIN ?>/admin/config/xulyconfig" method="post" enctype="multipart/form-data" onsubmit="cauhinhapp();">
-<input type="hidden" name="idpage" value="<?php echo $idPage; ?>"/>
-<table class="table_config" border="1">
-	<!--
-    <tr>
-		<td width="200">Banner</td>
-		<td>
-			<input type="file" name="banner" id="" size="30" />
-			<?php if($config[0]['banner']!=""){ ?>
-				<img src="<?php echo APP_DOMAIN ?>/public/images/banner/<?php echo $config[0]['banner'] ?>" width="500" alt=""/>
-			<?php } ?>
-		</td>
-	</tr>
-	<tr>
-		<td>Footer</td>
-		<td><input class="input_style" type="text" name="footer" value="<?php echo @$config[0]['footer']?>" /></td>
-	</tr>
-	<tr>
-		<td>Email gửi đến Khách hàng</td>
-		<td><input class="input_style" type="text" name="emailsmtp" value="<?php echo @$config[0]['emailsmtp']?>" /></td>
-	</tr>
-	<tr>
-		<td>Mật khẩu Email gửi</td>
-		<td><input class="input_style" type="password" name="passsmtp" value="<?php echo @$config[0]['passsmtp']?>" /></td>
-	</tr>
-	<tr>
-		<td>Tiêu đề email gửi đến KH</td>
-		<td><input class="input_style" type="text" name="titlemail" value="<?php echo @$config[0]['title_from']?>" /></td>
-	</tr>
-	<tr>
-		<td>Subject email gửi đến KH</td>
-		<td><input class="input_style" type="text" name="subjectemail" value="<?php echo @$config[0]['subject_from']?>" /></td>
-	</tr>
-    
-	<tr>
-		<td>Màu nền menu</td>
-		<td>
-			<input class="input_style1" id="colorpickerField1" maxlength="6" size="6" type="text" name="bg_color_menu" value="<?php echo @$config[0]['bg_color_menu']?>" />
-			&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-			Màu chữ menu &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-			<input class="input_style1" id="colorpickerField2" maxlength="6" size="6" type="text" name="color_text_menu" value="<?php echo @$config[0]['color_text_menu']?>" />
-		</td>
-	</tr>
-	
-	<tr>
-		<td>Màu nền menu Active</td>
-		<td>
-			<input class="input_style1" id="colorpickerField3" maxlength="6" size="6" type="text" name="bg_color_menu_act" value="<?php echo @$config[0]['bg_color_menu_act']?>" />
-			&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-			Màu chữ menu Active 
-			<input class="input_style1" id="colorpickerField4" maxlength="6" size="6" type="text" name="color_text_menu_act" value="<?php echo @$config[0]['color_text_menu_act']?>" />
-		</td>
-	</tr>
-	
-	
-	<tr>
-		<td>Hiển thị thêm thông tin SP</td>
-		<td>
-			<input type="checkbox" name="thongtinsp" value="1" <?php if(@$config[0]['thongtinsp'] == 1) echo 'checked'; ?> />
-			<em>Bạn chọn chức năng này thì bạn phải nhập Tên menu bên dưới.</em>
-		</td>
-	</tr>
-	<tr>
-		<td>Tên menu thông tin SP</td>
-		<td>
-			<input class="input_style" type="text" name="menuthongtinsp" value="<?php echo @$config[0]['menuthongtinsp']?>" />
-			<br/><br/>
-			<em>Mỗi tên Menu Tab cách nhau bởi dấu ';'. Kết thúc 1 tên menu và bắt đầu 1 tên menu không có khoảng trắng</em>
-			<br/><br/>
-			Ví dụ : Hình ảnh;Thông Tin;Video;Bảng giá;Khuyến mãi
-		</td>
-	</tr>
-	<tr>
-		<td>Link Fanpage Facebook</td>
-		<td><input class="input_style" type="text" name="linkpage" value="<?php echo @$config[0]['link_page']?>" /></td>
-	</tr>
-	-->
-    <tr>
-		<td><span class="nameinput">Tên shop</span></td>
-		<td><input class="input_style" type="text" name="shopname" value="<?php echo @$config[0]['shopname']?>" /></td>
-	</tr>
-    <tr>
-		<td><span class="nameinput">Số điện thoại</span></td>
-		<td><input class="input_style" type="text" name="phone" value="<?php echo @$config[0]['phone']?>" /></td>
-	</tr>
-    <tr>
-		<td><span class="nameinput">Email</span></td>
-		<td><input class="input_style" type="text" name="emailfrom" value="<?php echo @$config[0]['emailfrom']?>" /></td>
-	</tr>
-	<tr>
-		<td><span class="nameinput">Đơn vị tiền</span></td>
-		<td>
-			<input class="input_style1" type="text" name="donvitien" value="<?php echo (@$config[0]['donvitien'] != "") ? "{$config[0]['donvitien']}" : "VNĐ"; ?>" />
-			<em>(Mặc định là VNĐ)</em>
-		</td>
-	</tr>
-    <tr>
-		<td valign = "top"><span class="nameinput">Thông tin liên hệ</span></td>
-		<td><textarea  class="textareastyle" name="contact" id="contact"><?php echo @$config[0]['contact'] ?></textarea></td>
-	</tr>
-    <tr>
-		<td valign = "top"><span class="nameinput">Cách thanh toán</span></td>
-		<td><textarea  class="textareastyle" name="checkout" id="checkout"><?php echo @$config[0]['checkout'] ?></textarea></td>
-	</tr>
-    <tr>
-		<td valign = "top"><span class="nameinput">Cách giao hàng</span></td>
-		<td><textarea  class="textareastyle" name="delivery" id="delivery"><?php echo @$config[0]['delivery'] ?></textarea></td>
-	</tr>
-    <!--
-    <tr>
-		<td valign = "top"><span class="nameinput">Email đơn hàng</span></td>
-		<td><textarea  class="textareastyle" name="email_cart" id="email_cart"><?php echo @$config[0]['email_cart'] ?></textarea></td>
-	</tr>
-    -->
-	<tr>
-		<td></td>
-		<td>
-            <input type="submit" name="luucauhinh" value="Lưu cấu hình"/>
-            <input type="button" onclick="top.location.href = '<?php echo ROOT_DOMAIN ?>/admin'" value="Hủy" />
-        </td>
-	</tr>
-</table>
-</form>
+
+<div class="content">
+	<div class="commonpage">
+		<form action="<?php echo APP_DOMAIN ?>/admin/config/xulyconfig" method="post" enctype="multipart/form-data" onsubmit="cauhinhapp();">
+			<input type="hidden" name="idpage" value="<?php echo $idPage; ?>"/>
+            <div class="head">
+				<select class="select">
+					<option value="">Sẻ chia - Khát vọng “Go Forth”</option>
+				</select>
+			</div>
+			<div class="pageconfig">
+				<div class="row">
+					<div class="title">Tên shop</div>
+					<div class="ip"><input type="text" name="" value="<?php echo @$config[0]['shopname']?>" placeholder="" /></div>
+				</div>
+				<div class="row">
+					<div class="title">Số điện thoại</div>
+					<div class="ip"><input type="text" name="" value="<?php echo @$config[0]['phone']?>" placeholder="" /></div>
+				</div>
+				<div class="row">
+					<div class="title">Email</div>
+					<div class="ip"><input type="text" name="" value="<?php echo @$config[0]['emailfrom']?>" placeholder="" /></div>
+				</div>
+				<div class="row">
+					<div class="title">Đơn vị tiền</div>
+					<div class="ip"><input type="text" name="" value="<?php echo (@$config[0]['donvitien'] != "") ? "{$config[0]['donvitien']}" : "VNĐ"; ?>" placeholder="" class="money"/><span class="note">(Mặc định là VNĐ)</span></div>
+				</div>
+				<div class="row">
+					<div class="title">Thông tin liên hệ</div>
+					<div class="ip">
+                        <textarea  class="textareastyle" name="contact" id="contact"><?php echo @$config[0]['contact'] ?></textarea>
+                    </div>
+				</div>
+				<div class="row">
+					<div class="title">Cách thanh toán</div>
+					<div class="ip">
+                        <textarea  class="textareastyle" name="checkout" id="checkout"><?php echo @$config[0]['checkout'] ?></textarea>
+                    </div>
+				</div>
+                <div class="row">
+					<div class="title">Cách giao hàng</div>
+					<div class="ip">
+                        <textarea  class="textareastyle" name="delivery" id="delivery"><?php echo @$config[0]['delivery'] ?></textarea>
+                    </div>
+				</div>
+				<div class="btn">
+                    <input type="submit" name="luucauhinh" value="Lưu cấu hình"/>
+                    <input type="button" onclick="top.location.href = '<?php echo ROOT_DOMAIN ?>/admin'" value="Hủy" />
+				</div>
+			</form>
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+
+
+
+
+
+
+
 <script>
+
 	var editor1 = CKEDITOR.replace( 'checkout' );
 	//CKFinder.setupCKEditor( editor1, '../public/ckfinder/' ) ;
 
