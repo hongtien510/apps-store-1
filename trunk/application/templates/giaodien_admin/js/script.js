@@ -85,7 +85,7 @@ $(document).ready(function(){
         }); 
     });
     */
-    $('.select_album_fb select').live('change',function(){
+    $('.select_album_fb').live('change',function(){
         var album_id = $(this).val();
         if(album_id == 'ko')
         {
@@ -173,13 +173,15 @@ $(document).ready(function(){
                 {
                     $('p.p_select_child_cat select').html('<option value="koo">Chọn danh mục</option>');
                     $('p.p_select_child_cat').hide();
-                    $("input[name=btn_get_image_on_fb]").removeAttr("disabled");
+                    //$("input[name=btn_get_image_on_fb]").removeAttr("disabled");
+                    $("a.btn_get_image_on_fb").removeClass("disabled_btn");
                 }
                 else
                 {
                     $('p.p_select_child_cat select').html(data);
                     $('p.p_select_child_cat').show();
-                    $("input[name=btn_get_image_on_fb]").attr("disabled", "disabled");
+                    //$("input[name=btn_get_image_on_fb]").attr("disabled", "disabled");
+                    $("a.btn_get_image_on_fb").addClass("disabled_btn");
                 }
             }
         });
@@ -189,15 +191,17 @@ $(document).ready(function(){
         var idCat = $(this).val();
         if(idCat != 'ko')
         {
-            $("input[name=btn_get_image_on_fb]").removeAttr("disabled");
+            //$("input[name=btn_get_image_on_fb]").removeAttr("disabled");
+            $("a.btn_get_image_on_fb").removeClass("disabled_btn");
         }
         else
         {
-            $("input[name=btn_get_image_on_fb]").attr("disabled", "disabled");
+            //$("input[name=btn_get_image_on_fb]").attr("disabled", "disabled");
+            $("a.btn_get_image_on_fb").addClass("disabled_btn");
         }
     });
     
-    $('input[name=save_add_product]').click(function(){
+    $('a[name=save_add_product]').click(function(){
         var parent_cat = $('select[name=select_parent_cat]').val();
         var child_cat = $('select[name=select_child_cat]').val();
         
@@ -371,7 +375,7 @@ function download_photo_fb(status, count_photo)
 {
     $('#popup_content').fadeIn();
     var loading = taaa.appdomain + '/application/templates/giaodien_admin/images/ajax-loader.gif';
-    var html = '<div class="header_popup_content">Chọn hình đại diện sản phẩm<p onclick="close_popup()" class="close_popup">X</p></div><div class="popup_content"><img class="loading" alt="loading..." src="'+loading+'"/></div>';
+    var html = '<div class="header_popup_content">Chọn hình đại diện cho sản phẩm<p onclick="close_popup()" class="close_popup"><img src="'+taaa.appdomain+'/application/templates/giaodien_admin/images/delete.png"/></p></div><div class="popup_content"><img class="loading" alt="loading..." src="'+loading+'"/></div>';
     $('#popup_content').html(html);
     $.ajax({
             url:taaa.appdomain+'/admin/product/getalbumfb',
@@ -412,13 +416,19 @@ function number_format (number, decimals, dec_point, thousands_sep) {
 
 function show_photo_facebook(status, count_photo)
 {
+    var content_table = $('table.show_photo_fb').html().trim();
+    if(content_table == "")
+        var ct_table = '1';
+    else
+        var ct_table = '2';
+
     if(status == 'add')
     {
         var rowCount = $('.show_photo_fb tr').length;
         $.ajax({
             url:taaa.appdomain+'/admin/product/showphotofb',
             type:'post',
-            data:$("form#form_list_image_fb").serialize()+"&stt="+rowCount,
+            data:$("form#form_list_image_fb").serialize()+"&stt="+rowCount+"&ct_table="+ct_table,
             success:function(data){
                 if(data == 0)
                 {
@@ -429,6 +439,7 @@ function show_photo_facebook(status, count_photo)
                 {
                     $('table.show_photo_fb').append(data);
                     $('#popup_content').fadeOut();
+                    $('a[name=save_add_product]').show();
                 }
                 
             }
