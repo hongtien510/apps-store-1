@@ -2,73 +2,107 @@
 	$checkSessionIdpage = $this->checkSessionIdpage;
 	if($checkSessionIdpage == 0)
 	{
-		echo "<center><img  src='".APP_DOMAIN."/application/templates/giaodien_admin/images/chon page.jpg'/></center>";
+		echo "<center style='color:#41BBDE; padding:20px 0px'>Chọn Page cần thao tác</center>";
 	}
 	else
 	{
 		$list_cart = $this->list_cart;
 ?>
-<select onchange="filterStatusCart(this.value)" style="float: right; height:25px; padding:4px">
-<?php
-    $st = isset($_GET['st']) ? $_GET['st'] : "";
-?>
-    <option <?php echo ($st == "") ? "selected='selected'" : "" ?> value="">Xem tất cả</option>
-    <option <?php echo ($st == "0") ? "selected='selected'" : "" ?> value="0">Chưa đọc</option>
-    <option <?php echo ($st == "1") ? "selected='selected'" : "" ?> value="1">Chưa giao</option>
-    <option <?php echo ($st == "2") ? "selected='selected'" : "" ?> value="2">Đã giao</option>
-</select>
-<p style="float: right; margin-right:20px; margin-top:8px">Tìm kiếm theo trạng thái đơn hàng</p>
-<div class="clear"></div>
-<table class="spdg" border="1">
-	<tr>
-		<th width="5%">STT</th>
-        <th width="10%">Mã ĐH</th>
-        <th width="10%">Ngày đặt</th>
-		<th width="20%">Tên</th>
-        <th width="10%">SĐT</th>
-        <th width="20%">Địa chỉ</th>
-        <th width="10%">Tình trạng</th>
-		<th width="10%">Công Cụ</th>
-	</tr>
-    <?php
-        $i = 1;
-        foreach($list_cart as $key=>$value)
-        {
-    ?>
-    <tr>
-		<td align="center"><?php echo $i++ ?></td>
-        <td><?php echo $value['id_cart'] ?></td>
-        <td align="center"><?php echo substr($value['date_create'], 0, 10); ?></td>
-		<td><?php echo $value['name'] ?></td>
-        <td align="center"><?php echo $value['phone'] ?></td>
-        <td><?php echo $value['address'] ?></td>
-        <td align="center">
-            <div style="position: relative;">
+
+    <div class="commonpage notborder product-page">
+        <form action="" method="">
+        	<div class="head">
+    			<div class="search-div">
+    				<div class="pull-left" style="margin-top: 5px;">
+    					<span style="position: relative; top:6px">Tìm kiếm theo trạng thái đơn hàng</span>
+    					<select onchange="filterStatusCart(this.value)" style="float: right; height:25px; padding:2px; width:120px; margin-top:3px;">
+                        <?php
+                            $st = isset($_GET['st']) ? $_GET['st'] : "";
+                        ?>
+                            <option <?php echo ($st == "") ? "selected='selected'" : "" ?> value="">Xem tất cả</option>
+                            <option <?php echo ($st == "0") ? "selected='selected'" : "" ?> value="0">Chưa đọc</option>
+                            <option <?php echo ($st == "1") ? "selected='selected'" : "" ?> value="1">Chưa giao</option>
+                            <option <?php echo ($st == "2") ? "selected='selected'" : "" ?> value="2">Đã giao</option>
+                        </select>
+    				</div>
+    				<div class="btn-search">
+    					<p class="search_product">
+                        	<span>Tìm kiếm</span>
+                        	<input onkeyup="" type="text" value="" placeholder="Tìm kiếm" />
+                        </p>
+    				</div>
+    			</div>
+        	</div>
+        	<table class="tbl-home" border="0" cellspacing="0" cellpadding="0">
+        		<tr>
+        			<th width="5%">Stt</th>
+        			<th width="12%">Mã ĐH</th>
+        			<th width="10%">Ngày đặt</th>
+        			<th width="20%">Tên</th>
+        			<th width="10%">SĐT</th>
+        			<th width="20%">Địa chỉ</th>
+        			<th width="10%">Tình trạng</th>
+        			<th width="20%">Công cụ</th>
+        		</tr>
                 <?php
-                    $st = "";
-                    $status = "";
-                    if($value['status'] == 0) {$st = "orange"; $status = "Chưa đọc";}
-                    if($value['status'] == 1) {$st = "green"; $status = "Chưa giao";}
-                    if($value['status'] == 2) {$st = "grey"; $status = "Đã giao";}
+                    $i = 1;
+                    foreach($list_cart as $key=>$value)
+                    {
+                        $datecreate = strtotime(substr($value['date_create'], 0, 10));
+                    	$datecreate =  date('d-m-Y', $datecreate);
                 ?>
-                <p class="status_cart status_cart_<?php echo $value['id_cart']?> <?php echo $st ?>"><?php echo $status ?></p>
-                <select onchange="ChangeStCart('<?php echo $value['id_cart'] ?>', this.value, this.options[this.selectedIndex].text)" class="st_cart change_st_cart_<?php echo $value['id_cart'] ?>">
-                    <option value="">Chọn</option>
-                    <option value="1">Chưa giao</option>
-                    <option value="2">Đã giao</option>
-                </select>
-            </div>
-        </td>
-        <td align="center">
-			<a onclick="openChangeStCart('change_st_cart_<?php echo $value['id_cart'] ?>')" href="javascript:void(0)"><img title="Thay đổi trạng thái đơn hàng" alt="edit" src="<?php echo APP_DOMAIN . '/application/templates/giaodien_admin/images/sua.png' ?>"/></a>
-			<a onclick="viewCart('<?php echo $value['id_cart'] ?>')" href="javascript:void(0)"><img title="Chi tiết đơn hàng" alt="detail" src="<?php echo APP_DOMAIN . '/application/templates/giaodien_admin/images/chitiet.png' ?>"/></a>
-            <a onclick="deleteCart('<?php echo $value['id_cart'] ?>')" href="javascript:;"><img title="Xóa đơn hàng" alt="del" src="<?php echo APP_DOMAIN . '/application/templates/giaodien_admin/images/xoa.png' ?>"/></a>
-		</td>
-	</tr>
-    <?php
-        }
-    ?>
-
-</table>
-
+        		<tr>
+            		<td><?php echo $i++ ?></td>
+                    <td><?php echo $value['id_cart'] ?></td>
+                    <td><?php echo $datecreate; ?></td>
+            		<td style="text-align: left; padding:2px"><?php echo $value['name'] ?></td>
+                    <td><?php echo $value['phone'] ?></td>
+                    <td style="text-align: left; padding:2px"><?php echo $value['address'] ?></td>
+                    <td>
+                        <div style="position: relative;">
+                            <?php
+                                $st = "";
+                                $status = "";
+                                if($value['status'] == 0) {$st = "orange"; $status = "Chưa đọc";}
+                                if($value['status'] == 1) {$st = "green"; $status = "Chưa giao";}
+                                if($value['status'] == 2) {$st = "grey"; $status = "Đã giao";}
+                            ?>
+                            <p class="status_cart status_cart_<?php echo $value['id_cart']?> <?php echo $st ?>"><?php echo $status ?></p>
+                            <select onchange="ChangeStCart('<?php echo $value['id_cart'] ?>', this.value, this.options[this.selectedIndex].text)" class="st_cart change_st_cart_<?php echo $value['id_cart'] ?>">
+                                <option value="">Chọn</option>
+                                <option value="1">Chưa giao</option>
+                                <option value="2">Đã giao</option>
+                            </select>
+                        </div>
+                    </td>
+                    <td align="center">
+            			<a onclick="openChangeStCart('change_st_cart_<?php echo $value['id_cart'] ?>')" href="javascript:void(0)"><img title="Thay đổi trạng thái đơn hàng" alt="edit" src="<?php echo APP_DOMAIN . '/application/templates/giaodien_admin/images/setting.png' ?>"/></a>
+            			<a onclick="viewCart('<?php echo $value['id_cart'] ?>')" href="javascript:void(0)"><img title="Chi tiết đơn hàng" alt="detail" src="<?php echo APP_DOMAIN . '/application/templates/giaodien_admin/images/pencil.png' ?>"/></a>
+                        <a onclick="deleteCart('<?php echo $value['id_cart'] ?>')" href="javascript:;"><img title="Xóa đơn hàng" alt="del" src="<?php echo APP_DOMAIN . '/application/templates/giaodien_admin/images/delete.png' ?>"/></a>
+            		</td>
+            	</tr>
+                <?php
+                    }
+                ?>
+        	</table>
+        <div class="clear"></div>
+    </div>
 <?php } ?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -241,6 +241,7 @@ float: right;margin-top: 11px;}
 .list-album ul{
     margin-left: 9px;
 }
+/*
 .list-album ul li{
     border: 1px solid #41BBDE;
     float: left;
@@ -250,6 +251,7 @@ float: right;margin-top: 11px;}
     text-align: center;
     width: 185px;
 }
+*/
 .list-album ul li input[type="checkbox"]{
     float: left;
     margin-left: 10px;

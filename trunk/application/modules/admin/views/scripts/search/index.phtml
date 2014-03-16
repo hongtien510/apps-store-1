@@ -2,7 +2,7 @@
 	$checkSessionIdpage = $this->checkSessionIdpage;
 	if($checkSessionIdpage == 0)
 	{
-		echo "<center><img  src='".APP_DOMAIN."/application/templates/giaodien_admin/images/chon page.jpg'/></center>";
+		echo "<center style='color:#41BBDE; padding:20px 0px'>Chọn Page cần thao tác</center>";
 	}
 	else
 	{
@@ -12,112 +12,133 @@
         $idpage = $this->idpage;
         $store = App_Models_StoreModel::getInstance();
 ?>
-<input type="button" name="themspmoi" value="Thêm Sản Phẩm Mới" onclick="window.location.href='product/add'"/><br />
-<p class="search_parent_cat">
-<span>Chọn danh mục </span>
-<select onchange="SearchCategory(this.value)" style="height:25px; padding:4px">
-    <option value="-1">Chọn danh mục</option>
-    <option value="0">Xem Tất Cả</option>
-    <?php 
-        for($i=0; $i<count($category); $i++)
-        {
-            if(@$_GET['idcat'] == $category[$i]['idloaisp'])
-                echo "<option selected='selected' value='". $category[$i]['idloaisp'] ."'>". $category[$i]['tenloaisp'] ."</option>";
-            else
-                echo "<option value='". $category[$i]['idloaisp'] ."'>". $category[$i]['tenloaisp'] ."</option>";
-        }
-    ?>
-</select>
-</p>
-<?php
-    if(isset($_GET['idcat']))
-    {
-    $idcat = $_GET['idcat'];
-    $sql = "select idloaisp, tenloaisp from ishali_loaisp where parent_id = '$idcat' and idpage = '$idpage' ORDER BY vitri";
-    $child_cat = $store->SelectQuery($sql);
-    //print_r($child_cat);
-?>
-<p class="search_child_cat">
-<span>Chọn danh mục con</span>
-<select style="height:25px; padding:4px">
-    <option value="-1">Chọn danh mục con</option>
-    <option value="0">Xem Tất Cả</option>
-    <?php
-        $idchildcat = "";
-        if(isset($_GET['idchildcat']))
-        {
-            $idchildcat = $_GET['idchildcat'];
-        }
-        foreach($child_cat as $k=>$v)
-        {
-            $selected = "";
-            $selected = $v['idloaisp'] == $idchildcat ? "selected = 'selected'" : "";
-            echo "<option $selected value='{$v['idloaisp']}'>{$v['tenloaisp']}</option>";
-        }
-    ?>
-</select>
-</p>
-<?php
-    }
-?>
-<p class="search_product">
-	<span>Tìm kiếm</span>
-	<input onkeyup="searchProduct(event, this.value)" type="text" value="" placeholder="Tìm kiếm" />
-</p>
+    <div class="commonpage notborder product-page">
+        <form action="" method="">
+        	<div class="head">
+        		<form>
+        			<div class="search-div">
+        				<div class="pull-left" style="margin-top: 5px;">
+        					<span>Xem danh mục</span>
+        					<select class="search_parent_cat" onchange="SearchCategory(this.value)" name="category">
+        						<option value="-1">Chọn danh mục</option>
+                                <option value="0">Xem Tất Cả</option>
+                                <?php 
+                                    for($i=0; $i<count($category); $i++)
+                                    {
+                                        if(@$_GET['idcat'] == $category[$i]['idloaisp'])
+                                            echo "<option selected='selected' value='". $category[$i]['idloaisp'] ."'>". $category[$i]['tenloaisp'] ."</option>";
+                                        else
+                                            echo "<option value='". $category[$i]['idloaisp'] ."'>". $category[$i]['tenloaisp'] ."</option>";
+                                    }
+                                ?>
+        					</select>
+                            <?php
+                                if(isset($_GET['idcat']))
+                                {
+                                $idcat = $_GET['idcat'];
+                                $sql = "select idloaisp, tenloaisp from ishali_loaisp where parent_id = '$idcat' and idpage = '$idpage' ORDER BY vitri";
+                                $child_cat = $store->SelectQuery($sql);
+                                //print_r($child_cat);
+                            ?>
+                            
+                            <span>danh mục con</span>
+        					<select class="search_child_cat" name="category">
+        						<option value="-1">Chọn danh mục con</option>
+                                <option value="0">Xem Tất Cả</option>
+                                <?php
+                                    $idchildcat = "";
+                                    if(isset($_GET['idchildcat']))
+                                    {
+                                        $idchildcat = $_GET['idchildcat'];
+                                    }
+                                    foreach($child_cat as $k=>$v)
+                                    {
+                                        $selected = "";
+                                        $selected = $v['idloaisp'] == $idchildcat ? "selected = 'selected'" : "";
+                                        echo "<option $selected value='{$v['idloaisp']}'>{$v['tenloaisp']}</option>";
+                                    }
+                                ?>
+        					</select>
+                            <?php
+                                }
+                            ?>
+        				</div>
+        				<div class="btn-search">
+        					<p class="search_product">
+                            	<span>Tìm kiếm</span>
+                            	<input onkeyup="searchProduct(event, this.value)" type="text" value="" placeholder="Tìm kiếm" />
+                            </p>
+        					<a name="themspmoi" href="product/add" class="add-b">Thêm SP</a>
+        				</div>
+        			</div>
+        		</form>
+        	</div>
+        	<table class="tbl-home" border="0" cellspacing="0" cellpadding="0">
+        		<tr>
+        			<th width="5%">Stt</th>
+        			<th width="12%">Hình Ảnh</th>
+        			<th width="22%">Tên sản phẩm</th>
+        			<th width="10%">Giá (<?php echo $donvitien ?>)</th>
+        			<th width="16%">Danh Mục</th>
+        			<th width="7%">Mới</th>
+        			<th width="12%">Giá đã giảm (<?php echo $donvitien ?>)</th>
+        			<th width="8%">Sử Dụng</th>
+        			<th width="8%">Công cụ</th>
+        		</tr>
+                <?php 
+                    for($i=0; $i<count($product); $i++)
+                    {
+                        $danhmuc = ($product[$i]['tenloaisp_parent'] == "") ? $product[$i]['tenloaisp'] : $product[$i]['tenloaisp_parent'] .' >> '. $product[$i]['tenloaisp'];
+                ?>
+        		<tr>
+        			<td><?php echo $i+1 ?></td>
+        			<td><img class="hinhchinh_product" src="<?php echo $product[$i]['hinhchinh'] ?>" /></td>
+        			<td><a href="product/detail?idsp=<?php echo base64_encode($product[$i]['idsp']) ?>"><?php echo $product[$i]['tensp'] ?></a></td>
+        			<td><?php echo number_format($product[$i]['gia'],0,',','.') ?></td>
+        			<td>
+                        <?php
+                            $array_danhmuc = explode('>>', $danhmuc);
+                            foreach($array_danhmuc as $key=>$value)
+                            {
+                                if($key == 0)
+                                    echo "<div>".trim($value)."</div>";
+                                else
+                                    echo "<div class='has'>".trim($value)."</div>";
+                            }
+                        ?>
+        				<!--
+                        <div>Trang sức</div>
+        				<div class="has">Trang sức 1</div>
+        				<div class="has">Trang sức 2</div>
+                        -->
+        			</td>
+        			<td>
+                        <?php if ($product[$i]['spmoi'] == 1){?>
+                            <img src="<?php echo APP_DOMAIN . '/application/templates/giaodien_admin/images/tick.png' ?>" alt="hiện" title="Sản phẩm này đang ở trạng thái (Mới)"/>
+                        <?php }?> 
+                    </td>
+        			<td>
+                        <?php echo ($product[$i]['giagiam'] != 0) ? number_format($product[$i]['giagiam'],0,',','.') .'<br/>'. '<em>(giảm '. $product[$i]['sale_off'] .'%)</em>': "<img src='". APP_DOMAIN . "/application/templates/giaodien_admin/images/publish.png" ."' alt='Sản phẩm không giảm giá' title='Sản phẩm này không giảm giá'/>"; ?>
+                    </td>
+        			<td>
+                        <?php if ($product[$i]['anhien'] == 1){?>
+                            <img src="<?php echo APP_DOMAIN . '/application/templates/giaodien_admin/images/tick.png' ?>" alt="hiện" title="Sản phẩm này đang được hiển thị"/>
+                        <?php } else {?>
+                            <img src="<?php echo APP_DOMAIN . '/application/templates/giaodien_admin/images/publish.png' ?>" alt="ẩn" title="Sản phẩm này không được hiển thị"/>
+                        <?php } ?> 
+                    </td>
+        			<td>
+        				<a href="product/detail?idsp=<?php echo base64_encode($product[$i]['idsp']) ?>"><img src="<?php echo APP_DOMAIN ?>/application/templates/giaodien_admin/images/setting.png"/></a>
+        				<a href="javascript:void(0);" onclick = "DeleteProduct(<?php echo $product[$i]['idsp'] ?>)"><img src="<?php echo APP_DOMAIN ?>/application/templates/giaodien_admin/images/delete.png"/></a>
+        			</td>
+        		</tr>
+                <?php } ?>
 
-<table class="spdg" border="1">
-	<tr>
-		<th width="20">STT</th>
-        <th width="40" align="center">Hình ảnh</th>
-		<th width="120">Tên</th>
-        <th width="50">Giá (<?php echo $donvitien ?>)</th>
-        <th width="90">Danh mục</th>
-        <th width="20">Mới</th>
-        <th align='center' width="70">Giá sau khi giảm (<?php echo $donvitien ?>)</th>
-        <th width="20">Sử dụng</th>
-		<th width="30">Công Cụ</th>
-	</tr>
-    <?php 
-		if($product != null){
-			for($i=0; $i<count($product); $i++)
-			{
-				$danhmuc = ($product[$i]['tenloaisp_parent'] == "") ? $product[$i]['tenloaisp'] : $product[$i]['tenloaisp_parent'] .' >> '. $product[$i]['tenloaisp'];
-	?>
-	<tr>
-		<td align="center"><?php echo $i+1 ?></td>
-		<td align="center"><img class="hinhchinh_product" src="<?php echo $product[$i]['hinhchinh'] ?>" /></td>
-		<td><a href="product/detail?idsp=<?php echo base64_encode($product[$i]['idsp']) ?>"><?php echo $product[$i]['tensp'] ?></a></td>
-		<td><?php echo number_format($product[$i]['gia'],0,',','.') ?></td>
-		<td><?php echo $danhmuc ?></td>
-		<td align="center">
-			<?php if ($product[$i]['spmoi'] == 1){?>
-				<img src="<?php echo APP_DOMAIN . '/application/templates/giaodien_admin/images/tick.png' ?>" alt="hiện" title="Sản phẩm này đang ở trạng thái (Mới)"/>
-			<?php }?> 
-		</td>
-		<td align='center'>
-			<?php echo ($product[$i]['giagiam'] != 0) ? number_format($product[$i]['giagiam'],0,',','.') .'<br/>'. '<em>(giảm '. $product[$i]['sale_off'] .'%)</em>': "<img src='". APP_DOMAIN . "/application/templates/giaodien_admin/images/publish.png" ."' alt='Sản phẩm không giảm giá' title='Sản phẩm này không giảm giá'/>"; ?>
-			
-		</td>
-		<td align="center">
-			<?php if ($product[$i]['anhien'] == 1){?>
-				<img src="<?php echo APP_DOMAIN . '/application/templates/giaodien_admin/images/tick.png' ?>" alt="hiện" title="Sản phẩm này đang được hiển thị"/>
-			<?php } else {?>
-				<img src="<?php echo APP_DOMAIN . '/application/templates/giaodien_admin/images/publish.png' ?>" alt="ẩn" title="Sản phẩm này không được hiển thị"/>
-			<?php } ?>
-		</td>
-		
-		<td align="center">
-			<a href="product/detail?idsp=<?php echo base64_encode($product[$i]['idsp']) ?>"><img src="<?php echo APP_DOMAIN . '/application/templates/giaodien_admin/images/sua.png' ?>" alt="ct" title="Chi Tiết Sản Phẩm"/></a>
-			<a href="javascript:;" onclick = "DeleteProduct(<?php echo $product[$i]['idsp'] ?>)"><img src="<?php echo APP_DOMAIN . '/application/templates/giaodien_admin/images/xoa.png' ?>" alt="xoa" title="Xóa Sản Phẩm"/></a>
-		</td>
-	</tr>
-	  <?php } 
-		} 
-		else { 
-			echo '<tr><td colspan=9 align="center">Không tìm thấy sản phẩm</td></tr>';
-		}
-	  ?>
-
-</table>
-<input type="button" name="themspmoi" value="Thêm Sản Phẩm Mới" onclick="window.location.href='product/add'"/>
+        	</table>
+        	<a href="product/add" class="add">Thêm sản phẩm mới</a>
+        <div class="clear"></div>
+    </div>
 <?php } ?>
+
+
+
