@@ -1,0 +1,431 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML+RDFa 1.0//EN" "http://www.w3.org/MarkUp/DTD/xhtml-rdfa-1.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://www.facebook.com/2008/fbml" xmlns:og="http://opengraphprotocol.org/schema/"><head>
+        <title>APPS STORE</title>  
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<script>
+			var taaa = {};
+			taaa.appdomain = "<?php echo APP_DOMAIN ?>";
+			taaa.fbappdomain = "<?php echo FB_APP_DOMAIN ?>";
+		</script>
+		<?php
+			echo $this->headLink ()
+					// ->appendStylesheet ( $this->baseUrl ('public/css/style.css'))
+					->appendStylesheet ( $this->baseUrl ('application/templates/giaodien_admin/css/style_admin.css'))
+					->appendStylesheet ( $this->baseUrl ('application/templates/giaodien_admin/css/jquery-ui.css'))
+					
+					->appendStylesheet ( $this->baseUrl ('application/templates/giaodien_admin/css/colorpicker.css'))
+					;
+					
+		
+			echo $this->headScript ()
+					->appendFile ( $this->baseUrl ('/application/templates/giaodien_admin/js/jquery-1.8.0.min.js') )
+                    
+					->appendFile ( $this->baseUrl ('/application/templates/giaodien_admin/js/aj.js') )
+					->appendFile ( $this->baseUrl ('/application/templates/giaodien_admin/js/script.js') )
+					->appendFile ( $this->baseUrl ('/application/templates/giaodien_admin/js/list_tab.js') )
+					
+					
+					->appendFile ( $this->baseUrl ('/application/templates/giaodien_admin/js/colorpicker.js') )
+					->appendFile ( $this->baseUrl ('/application/templates/giaodien_admin/js/eye.js') )
+					->appendFile ( $this->baseUrl ('/application/templates/giaodien_admin/js/layout.js') )
+					
+					
+					//->appendFile ( $this->baseUrl ('/application/templates/giaodien_admin/js/jquery.min.js') )
+				//	->appendFile ( $this->baseUrl ('/application/templates/giaodien_admin/js/jquery-ui.min.js') )
+					
+
+					->appendFile ( $this->baseUrl ('/public/ckeditor/ckeditor.js') )
+					//->appendFile ( $this->baseUrl ('/public/ckfinder/ckfinder.js') )
+                    ->appendFile ( $this->baseUrl ('/public/tinymce/js/tinymce/tinymce.min.js') )
+				
+					;
+				
+		?>
+        
+		<script>
+            $(function(){
+              center()//gọi hàm mới load web
+                $(window).resize(function(){center()})//gọi hàm khi resize
+        		//alert($(window).width());
+        		//alert($('#thongbao').width());
+              function center(){
+                $('#thongbao').css({left:($(window).width()-$('#thongbao').width())/2,top:150});
+                $('#popup_content').css({left:($(window).width()-$('#popup_content').width())/2,top:100})
+              }
+            });
+            scrollToTop();                        
+          </script>
+    <style>
+        body{min-height:800px !important}
+    </style>
+	</head>
+    <body>
+	<div id="bg_thongbao"></div>
+	<div id="thongbao"></div>
+    <div id="popup_content">
+        <div id="popup_content" style="left: 306.5px; top: 100px;">        
+            <div class="header_popup_content">
+                Chi tiết đơn hàng DH14_00001            
+                <p onclick="close_popup()" class="close_popup">X</p>
+            </div>
+            <div class="popup_content">
+                <p class="select_album_fb">
+                    chọn Album: 
+                    <select>
+                        <option value="ko">Chọn Album</option>
+                    </select>
+                    <input type="submit" name="Chọn" value="Chọn" />
+                </p>
+                
+                <div class="list_image_fb">
+                    <ul class="ul_list_img_fb">
+                        <li class="selected">
+                            <label>
+                            <p class="img_fb">
+                                <img src="http://localhost/appfb/apps-store/application/layouts/tmpstore/images/upload/images/1363321950_smn5.jpg" alt="" title="" />
+                                <input type="checkbox" name="list_main_image[]" value="" />
+                            </p>
+
+                            </label>
+                        </li>
+                        <li>
+                            <label>
+                            <p class="img_fb">
+                                <img src="http://localhost/appfb/apps-store/application/layouts/tmpstore/images/upload/images/1363321950_smn5.jpg" alt="" title="" />
+                                <input type="checkbox" name="list_main_image[]" value="" />
+                            </p>
+                            
+                            </label>
+                        </li>
+                        <li class="last">
+                            <label>
+                            <p class="img_fb">
+                                <img src="http://localhost/appfb/apps-store/application/layouts/tmpstore/images/upload/images/1363321950_smn5.jpg" alt="" title="" />
+                                <input type="checkbox" name="list_main_image[]" value="" />
+                            </p>
+                            
+                            </label>
+                        </li>
+                        <li>
+                            <label>
+                            <p class="img_fb">
+                                <img src="http://localhost/appfb/apps-store/application/layouts/tmpstore/images/upload/images/1363321950_smn5.jpg" alt="" title="" />
+                                <input type="checkbox" name="list_main_image[]" value="" />
+                            </p>
+                            
+                            </label>
+                        </li>
+                        <li>
+                            <label>
+                            <p class="img_fb">
+                                <img src="http://localhost/appfb/apps-store/application/layouts/tmpstore/images/upload/images/1363321950_smn5.jpg" alt="" title="" />
+                                <input type="checkbox" name="list_main_image[]" value="" />
+                            </p>
+                            
+                            </label>
+                        </li>
+                        <li class="last">
+                            <label>
+                            <p class="img_fb">
+                                <img src="http://localhost/appfb/apps-store/application/layouts/tmpstore/images/upload/images/1363321950_smn5.jpg" alt="" title="" />
+                                <input type="checkbox" name="list_main_image[]" value="" />
+                            </p>
+                            
+                            </label>
+                        </li>
+                        <li>
+                            <label>
+                            <p class="img_fb">
+                                <img src="http://localhost/appfb/apps-store/application/layouts/tmpstore/images/upload/images/1363321950_smn5.jpg" alt="" title="" />
+                                <input type="checkbox" name="list_main_image[]" value="" />
+                            </p>
+                            
+                            </label>
+                        </li>
+                        <li>
+                            <label>
+                            <p class="img_fb">
+                                <img src="http://localhost/appfb/apps-store/application/layouts/tmpstore/images/upload/images/1363321950_smn5.jpg" alt="" title="" />
+                                <input type="checkbox" name="list_main_image[]" value="" />
+                            </p>
+                            
+                            </label>
+                        </li>
+                        <li class="last">
+                            <label>
+                            <p class="img_fb">
+                                <img src="http://localhost/appfb/apps-store/application/layouts/tmpstore/images/upload/images/1363321950_smn5.jpg" alt="" title="" />
+                                <input type="checkbox" name="list_main_image[]" value="" />
+                            </p>
+                            
+                            </label>
+                        </li>
+                        <li>
+                            <label>
+                            <p class="img_fb">
+                                <img src="http://localhost/appfb/apps-store/application/layouts/tmpstore/images/upload/images/1363321950_smn5.jpg" alt="" title="" />
+                                <input type="checkbox" name="list_main_image[]" value="" />
+                            </p>
+                            
+                            </label>
+                        </li>
+                        <li>
+                            <label>
+                            <p class="img_fb">
+                                <img src="http://localhost/appfb/apps-store/application/layouts/tmpstore/images/upload/images/1363321950_smn5.jpg" alt="" title="" />
+                                <input type="checkbox" name="list_main_image[]" value="" />
+                            </p>
+                            
+                            </label>
+                        </li>
+                        <li class="last">
+                            <label>
+                            <p class="img_fb">
+                                <img src="http://localhost/appfb/apps-store/application/layouts/tmpstore/images/upload/images/1363321950_smn5.jpg" alt="" title="" />
+                                <input type="checkbox" name="list_main_image[]" value="" />
+                            </p>
+                            
+                            </label>
+                        </li>
+                        <li>
+                            <label>
+                            <p class="img_fb">
+                                <img src="http://localhost/appfb/apps-store/application/layouts/tmpstore/images/upload/images/1363321950_smn5.jpg" alt="" title="" />
+                                <input type="checkbox" name="list_main_image[]" value="" />
+                            </p>
+                            
+                            </label>
+                        </li>
+                        <li>
+                            <label>
+                            <p class="img_fb">
+                                <img src="http://localhost/appfb/apps-store/application/layouts/tmpstore/images/upload/images/1363321950_smn5.jpg" alt="" title="" />
+                                <input type="checkbox" name="list_main_image[]" value="" />
+                            </p>
+                            
+                            </label>
+                        </li>
+                        <li class="last">
+                            <label>
+                            <p class="img_fb">
+                                <img src="http://localhost/appfb/apps-store/application/layouts/tmpstore/images/upload/images/1363321950_smn5.jpg" alt="" title="" />
+                                <input type="checkbox" name="list_main_image[]" value="" />
+                            </p>
+                            
+                            </label>
+                        </li>
+                        <li>
+                            <label>
+                            <p class="img_fb">
+                                <img src="http://localhost/appfb/apps-store/application/layouts/tmpstore/images/upload/images/1363321950_smn5.jpg" alt="" title="" />
+                                <input type="checkbox" name="list_main_image[]" value="" />
+                            </p>
+                            
+                            </label>
+                        </li>
+                        <li>
+                            <label>
+                            <p class="img_fb">
+                                <img src="http://localhost/appfb/apps-store/application/layouts/tmpstore/images/upload/images/1363321950_smn5.jpg" alt="" title="" />
+                                <input type="checkbox" name="list_main_image[]" value="" />
+                            </p>
+                            
+                            </label>
+                        </li>
+                        <li class="last">
+                            <label>
+                            <p class="img_fb">
+                                <img src="http://localhost/appfb/apps-store/application/layouts/tmpstore/images/upload/images/1363321950_smn5.jpg" alt="" title="" />
+                                <input type="checkbox" name="list_main_image[]" value="" />
+                            </p>
+                            
+                            </label>
+                        </li>
+                        <li>
+                            <label>
+                            <p class="img_fb">
+                                <img src="http://localhost/appfb/apps-store/application/layouts/tmpstore/images/upload/images/1363321950_smn5.jpg" alt="" title="" />
+                                <input type="checkbox" name="list_main_image[]" value="" />
+                            </p>
+                            
+                            </label>
+                        </li>
+                        <li>
+                            <label>
+                            <p class="img_fb">
+                                <img src="http://localhost/appfb/apps-store/application/layouts/tmpstore/images/upload/images/1363321950_smn5.jpg" alt="" title="" />
+                                <input type="checkbox" name="list_main_image[]" value="" />
+                            </p>
+                            
+                            </label>
+                        </li>
+                        <li class="last">
+                            <label>
+                            <p class="img_fb">
+                                <img src="http://localhost/appfb/apps-store/application/layouts/tmpstore/images/upload/images/1363321950_smn5.jpg" alt="" title="" />
+                                <input type="checkbox" name="list_main_image[]" value="" />
+                            </p>
+                            
+                            </label>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+            
+        
+        </div>
+    
+    </div>
+    </div>
+    <?php  echo $this->render('_header.phtml')?>
+	<div id="" class="wrapper">
+	<div class="container">
+
+	<?php
+	$controllerName = Zend_Controller_Front::getInstance()->getRequest()->getControllerName();
+	$activeindex = '';
+	$activeconfig = '';
+	$activecategory = '';
+	$activeproduct = '';
+    $activechangepass = '';
+    $activecart = '';
+    
+    switch ($controllerName) {
+        case 'index':
+            $activeindex = "class='active'";
+            break;
+        case 'config':
+            $activeconfig = "class='active'";
+            break;
+        case 'category':
+            $activecategory = "class='active'";
+            break;
+        case 'product':
+            $activeproduct = "class='active'";
+            break;
+        case 'changepass':
+            $activechangepass = "class='active'";
+            break;
+        case 'cart':
+            $activecart = "class='active'";
+            break;
+		case 'search':
+			$activeproduct = "class='active'";
+            break;
+    }
+
+?>
+				<div class="list_menu">
+					<ul>
+
+                        <li <?php echo $activeindex ?>>
+						      <a style="display: inline;" href="<?php echo ROOT_DOMAIN ?>/admin" target="_top">Home</a>
+						</li>
+						<li <?php echo $activeconfig ?>>
+						      <a style="display: inline;" class="" href="<?php echo ROOT_DOMAIN ?>/admin/config"  target="_top">Cấu hình</a>
+						</li>
+						<li <?php echo $activecategory ?>>
+						      <a style="display: inline;" href="<?php echo ROOT_DOMAIN ?>/admin/category" target="_top">Loại Sản Phẩm</a>
+						</li>
+						<li <?php echo $activeproduct ?>>
+							<a style="display: inline;" href="<?php echo ROOT_DOMAIN ?>/admin/product" target="_top">Sản Phẩm</a>
+						</li>	
+                        <li <?php echo $activecart ?>>
+							<a style="display: inline;" href="<?php echo ROOT_DOMAIN ?>/admin/cart" target="_top">Đơn hàng</a>
+						</li>
+						<!--
+                        <li <?php echo $activechangepass ?>>
+							<a style="display: inline;" class="" href="<?php echo ROOT_DOMAIN ?>/admin/changepass"  target="_top">Đổi mật khẩu</a>
+						</li>
+						<li>
+							<a style="display: inline;" class="" onclick="DangXuat();" href="javascript:;" >Đăng Xuất</a>
+						</li>
+
+						
+						<li class="menu">
+							<a style="display: inline;" class="" target="_blank" href="http://app.ishalimedia.com/huong-dan-su-dung-app/107-huong-dan-su-dung-app-store.html" >HDSD</a>
+						</li>
+                        -->
+					</ul>
+					<?php
+						$list_page = $_SESSION['list_page'];
+						if($list_page!=0)
+						{
+							$store = App_Models_StoreModel::getInstance();
+							$lpage = $store->GetPageFbByIdUserFB();
+							@$idpage = $_SESSION['idpage'];
+							if(count($lpage) > 0)
+							{
+					?>
+						<div class="list_page">
+							<select id="slist_page" class="select_list_page" onchange="ChangeListPage(document.getElementById('slist_page').value)">
+								<option value="0">Chọn Page cần thao tác</option>
+								<?php
+									for($i=0; $i<count($lpage); $i++)
+									{
+								
+									$idpagefb = $lpage[$i]['id_fb_page'];
+									$namepafefb = $lpage[$i]['page_name'];
+									if($idpagefb == $idpage)
+									{
+										echo "<option selected='selected' value='$idpagefb'>$namepafefb</option>";
+									}
+									else
+										echo "<option value='$idpagefb'>$namepafefb</option>";
+									}
+								?>
+							</select>
+						</div>
+					<?php } }?>
+				</div>
+				
+				<div class="contents">					
+					<div class="galleries_contents">	
+			<center>			
+			<!-- <h1><div id="title_pages">Chọn trang</div></h1> -->			
+				<img id="loading" style="display: none"  src="<?php echo $this->baseUrl ('application/templates/giaodien_admin/images/loading.gif') ?>" />		
+				<div id="show_pages"></div>
+		  </center>
+    					<div id='quanlidanhsachtrang' style="display: block"  >
+    							<?php echo $this->layout()->content; ?>	
+    					</div>
+					</div>
+				</div>
+			<?php  echo $this->render('_footer.phtml')?>	
+	</div>
+
+	</div>
+    <div id="fb-root"></div>
+    <script src="https://connect.facebook.net/en_US/all.js"></script>
+    <script>
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId : '', //Your facebook APP here
+          cookie : true // enable cookies to allow the server to access the session
+        });
+      }
+      window.onload = function() {
+        FB.Canvas.setAutoGrow(91);
+      }
+      
+      (function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) return;
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=";
+          fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
+    
+    
+    
+    
+    
+    
+    
+                                    
+			
+
+	</body>
+</html>
