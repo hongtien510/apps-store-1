@@ -1,24 +1,24 @@
-<?php
-	$checkSessionIdpage = $this->checkSessionIdpage;
-	if($checkSessionIdpage == 0)
-	{
-		echo "<center><img  src='".APP_DOMAIN."/application/templates/giaodien_admin/images/chon page.jpg'/></center>";
-	}
-	else
-	{
-		$idPage = $this->idpage;
-		$config = $this->config;
-?>
-
-<div class="content">
 	<div class="commonpage">
+        <?php
+        	$checkSessionIdpage = $this->checkSessionIdpage;
+        	if($checkSessionIdpage == 0)
+        	{
+        		echo "<center style='color:#41BBDE; padding:20px 0px'>Chọn Page cần thao tác</center>";
+        	}
+        	else
+        	{
+        		$idPage = $this->idpage;
+        		$config = $this->config;
+        ?>
 		<form action="<?php echo APP_DOMAIN ?>/admin/config/xulyconfig" method="post" enctype="multipart/form-data" onsubmit="cauhinhapp();">
 			<input type="hidden" name="idpage" value="<?php echo $idPage; ?>"/>
+            <!--
             <div class="head">
 				<select class="select">
 					<option value="">Sẻ chia - Khát vọng “Go Forth”</option>
 				</select>
 			</div>
+            -->
 			<div class="pageconfig">
 				<div class="row">
 					<div class="title">Tên shop</div>
@@ -62,9 +62,6 @@
 		</div>
 		<div class="clear"></div>
 	</div>
-</div>
-
-
 
 
 

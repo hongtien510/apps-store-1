@@ -40,3 +40,19 @@ p.title_tb{width:340px; height:23px; background:#67A769; padding-top:5px; font-s
 .popup_content img.loading{display:block; margin:0px auto}
 
 .btn input{  box-shadow: 2px 2px 4px #909090;  background: #41bbde; color:#fff;padding:5px 12px;  border-radius: 5px;  margin-right: 5px; border: none}
+
+.header{
+    height: 50px;
+    margin-top: 20px;
+    padding:0px !important
+}
+.hinhchinh_product{width:50px}
+.search_product input{padding:3px;}
+
+
+
+
+
+
+
+
