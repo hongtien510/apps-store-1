@@ -3,8 +3,7 @@
         <?php
 			$list_page = $_SESSION['list_page'];
             
-			if($list_page!=0)
-			{
+			
 				$store = App_Models_StoreModel::getInstance();
 				$lpage = $store->GetPageFbByIdUserFB();
 				@$idpage = $_SESSION['idpage'];
@@ -13,7 +12,7 @@
 		?>
     
 		<div class="header">
-			<a href="#" class="create-page">Tạo trang</a>
+			<!--<a href="#" class="create-page">Tạo trang</a>-->
 			<select id="slist_page" onchange="ChangeListPage(document.getElementById('slist_page').value)" class="select select_list_page">
 				<option value="0">Chọn Page cần thao tác</option>
 				<?php
@@ -33,7 +32,7 @@
 			</select>
 			<a href="#" class="upload">Upload</a>
 		</div>
-        <?php } }?>
+        <?php } ?>
         <?php
         	$controllerName = Zend_Controller_Front::getInstance()->getRequest()->getControllerName();
         	$activeindex = '';

@@ -231,9 +231,9 @@ $(document).ready(function(){
         });
     });
     
-    $('.search_child_cat select').live('change',function(){
+    $('.search_child_cat').live('change',function(){
         var child_cat = $(this).val();
-        var parent_cat = $('.search_parent_cat select').val();
+        var parent_cat = $('.search_parent_cat').val();
         if(child_cat == 0)
         {
             window.location = 'product?idcat=' + parent_cat;
