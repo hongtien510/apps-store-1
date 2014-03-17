@@ -466,7 +466,41 @@ class App_Models_StoreModel {
 		return $data;
     }
 
-	
+	public function getOrder($idpage = "", $keyword = "")
+    {
+        if($idpage == "") 
+		{	
+			return;
+		}
+		
+		/*$arr_keyword = explode('_', $keyword);
+		$where = "";
+		$i = 0;
+		foreach($arr_keyword as $value)
+		{
+			if($i == 0)
+				$where .= " id_cart like '%$value%' ";
+			else
+				$where .= " or id_cart like '%$value%' ";
+			$i++;
+		}*/
+		$arr_keyword = explode('_', $keyword);
+		
+		$where = "";
+		$i = 0;
+		foreach($arr_keyword as $value)
+		{
+			if($i == 0)
+				$where .= " id_cart like '%$value%' or name like '%$value%' or email like '%$value%' or phone like '%$value%' ";
+			else
+				$where .= " or id_cart like '%$value%' or name like '%$value%' or email like '%$value%' or phone like '%$value%' ";
+			$i++;
+		}
+		
+        $sql = "select * from cart where idpage = '$idpage' and ($where) order by id_cart desc";
+        $data = $this->SelectQuery($sql);
+		return $data;
+    }
 }
 
 

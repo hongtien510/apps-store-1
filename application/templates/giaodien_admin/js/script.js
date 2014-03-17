@@ -1083,6 +1083,22 @@ function filterStatusCart(status)
     
 }
 
+
+function searchOrder(event, keyword)
+{
+	keyword = keyword.trim();
+	keyword = keyword.replace(/ /g, "_");
+	var key = event.keyCode || event.charCode;//13
+    if(key == 13)//Nhan Enter
+    {
+		if(keyword == "")
+			link = taaa.appdomain+"/admin/cart";
+		else 
+			link = taaa.appdomain+"/admin/cart/search?keyword="+keyword;
+	}
+	window.location = link
+}
+
 function viewCart(idCart)
 {
     //alert(idCart);return false;
