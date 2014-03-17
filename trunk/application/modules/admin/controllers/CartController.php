@@ -58,6 +58,49 @@ class Admin_CartController extends App_Controller_AdminController {
 			
 		}
     }
+	
+	public function searchAction()
+	{
+		$_SESSION['list_page'] = "1";
+		
+		$store = $this->view->info = App_Models_StoreModel::getInstance();
+
+		
+		if($this->_request->getParam("idpage") != "")
+        {
+			$idpagee = $this->_request->getParam("idpage");
+			$_SESSION['idpage'] = $idpagee;
+		}
+		@$idpage = $_SESSION['idpage'];
+		
+		$checkSessionIdpage = $store->KiemTraSessionIdPage($idpage);
+		if($checkSessionIdpage == 0)
+		{
+			$this->view->checkSessionIdpage = $checkSessionIdpage;
+		}
+		else
+		{
+            $config = $this->view->config = $store->getConfig($idpage);
+			
+			if($this->_request->getParam("keyword") != "")
+			{
+				$keyword = $this->_request->getParam("keyword");
+				$list_cart = $store->getOrder($idpage, $keyword);
+				$this->view->list_cart = $list_cart;
+				
+			}
+			else
+			{
+				$keyword = $this->_request->getParam("st");
+				$list_cart = $store->getOrder($idpage);
+				$this->view->list_cart = $list_cart;
+			}
+
+			$this->view->checkSessionIdpage = $checkSessionIdpage;
+			
+		}
+	}
+	
     public function changestatusAction()
     {
         $store = $this->view->info = App_Models_StoreModel::getInstance();
