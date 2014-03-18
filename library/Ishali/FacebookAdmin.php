@@ -28,7 +28,7 @@ class Ishali_FacebookAdmin extends Ishali_Facebook{
     	$html = "<input type='button' onclick=\"window.open('http://www.facebook.com/pages/create.php?ref_type=sitefooter', 'mywindow');\" value='Tạo trang' name='createpages' />";
     	
 //    	$html = "<SELECT onchange='has_added_app(this.value,this.options[this.selectedIndex].text,$userid, $appid)' NAME='".$name."'>";
-		$html .= "<SELECT  onchange='has_added_app(this.value,this.options[this.selectedIndex].text,$userid, $appid, 1)' NAME='".$name."' ID='".$name."'>";
+		$html .= "<SELECT class='select' onchange='has_added_app(this.value,this.options[this.selectedIndex].text,$userid, $appid, 1)' NAME='".$name."' ID='".$name."'>";
     	
     	$userpages = Ishali_Facebook::getuserpages();
     	$html .= "<OPTION VALUE='-1'>Chọn Trang</OPTION>";
@@ -40,7 +40,7 @@ class Ishali_FacebookAdmin extends Ishali_Facebook{
 				}
 			}
 		$html .= "</SELECT>";
-		$html .= "<input type='button' onclick=\"inputpageonload('$name', $userid, $appid)\" value='load' name='loadpage' />";
+		//$html .= "<input type='button' onclick=\"inputpageonload('$name', $userid, $appid)\" value='load' name='loadpage' />";
 		return $html;
     }
 
