@@ -28,7 +28,12 @@
     <tr>
 		<td><?php echo $k+1; ?></td>
 		<td><a href='javascript:void(0)'  onClick="window.open('<?php echo $pages_fb['link'] ?>')" ><?php echo $pages_fb['name']; ?></a></td>
+		
+<?php if(array_key_exists('likes', $pages_fb)) { ?>
 		<td><a href='javascript:void(0)'  onClick="window.open('<?php echo $pages_fb['link']."?sk=likes" ?>')" ><?php echo $pages_fb['likes']; ?></a></td>
+<?php } else { ?>
+		<td><a href='javascript:void(0)'  onClick="window.open('<?php echo $pages_fb['link']."?sk=likes" ?>')" ><?php echo '0' ?></a></td>
+<?php } ?>
 		<td>
             <?php 
 	        if(@$pages_fb['has_added_app']==1)
