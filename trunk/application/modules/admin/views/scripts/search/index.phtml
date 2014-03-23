@@ -18,9 +18,9 @@
         		<form>
         			<div class="search-div">
         				<div class="pull-left" style="margin-top: 5px;">
-        					<span>Xem danh mục</span>
+        					<span>Xem loại sản phẩm</span>
         					<select class="search_parent_cat" onchange="SearchCategory(this.value)" name="category">
-        						<option value="-1">Chọn danh mục</option>
+        						<option value="-1">Chọn loại sản phẩm</option>
                                 <option value="0">Xem Tất Cả</option>
                                 <?php 
                                     for($i=0; $i<count($category); $i++)
@@ -40,25 +40,26 @@
                                 $child_cat = $store->SelectQuery($sql);
                                 //print_r($child_cat);
                             ?>
-                            
-                            <span>danh mục con</span>
-        					<select class="search_child_cat" name="category">
-        						<option value="-1">Chọn danh mục con</option>
-                                <option value="0">Xem Tất Cả</option>
-                                <?php
-                                    $idchildcat = "";
-                                    if(isset($_GET['idchildcat']))
-                                    {
-                                        $idchildcat = $_GET['idchildcat'];
-                                    }
-                                    foreach($child_cat as $k=>$v)
-                                    {
-                                        $selected = "";
-                                        $selected = $v['idloaisp'] == $idchildcat ? "selected = 'selected'" : "";
-                                        echo "<option $selected value='{$v['idloaisp']}'>{$v['tenloaisp']}</option>";
-                                    }
-                                ?>
-        					</select>
+                            <div>
+								<span>Loại sản phẩm con</span>
+								<select class="search_child_cat" name="category">
+									<option value="-1">Chọn loại sản phẩm con</option>
+									<option value="0">Xem Tất Cả</option>
+									<?php
+										$idchildcat = "";
+										if(isset($_GET['idchildcat']))
+										{
+											$idchildcat = $_GET['idchildcat'];
+										}
+										foreach($child_cat as $k=>$v)
+										{
+											$selected = "";
+											$selected = $v['idloaisp'] == $idchildcat ? "selected = 'selected'" : "";
+											echo "<option $selected value='{$v['idloaisp']}'>{$v['tenloaisp']}</option>";
+										}
+									?>
+								</select>
+							</div>
                             <?php
                                 }
                             ?>
@@ -66,9 +67,9 @@
         				<div class="btn-search">
         					<p class="search_product">
                             	<span>Tìm kiếm</span>
-                            	<input onkeyup="searchProduct(event, this.value)" type="text" value="" placeholder="Tìm kiếm" />
+                            	<input onkeyup="searchProduct(event, this.value)" type="text" placeholder="Tìm kiếm" />
                             </p>
-        					<a name="themspmoi" href="product/add" class="add-b">Thêm SP</a>
+        					<a name="themspmoi" href="product/add" class="add-b" style="margin-left: 5px; margin-top: 0px">Thêm SP</a>
         				</div>
         			</div>
         		</form>
@@ -139,6 +140,3 @@
         <div class="clear"></div>
     </div>
 <?php } ?>
-
-
-
