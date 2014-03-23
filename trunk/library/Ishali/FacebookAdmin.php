@@ -25,8 +25,10 @@ class Ishali_FacebookAdmin extends Ishali_Facebook{
 //    	$appid = $options['facebook']['appid'];
 //    	$html = "<SELECT onchange='test2()' NAME='".$name."'>";
 
-    	$html = "<input type='button' onclick=\"window.open('http://www.facebook.com/pages/create.php?ref_type=sitefooter', 'mywindow');\" value='Tạo trang' name='createpages' />";
+//    	$html = "<input type='button' onclick=\"window.open('http://www.facebook.com/pages/create.php?ref_type=sitefooter', 'mywindow');\" value='Tạo trang' name='createpages' />";
     	
+		$html = ""; //Please remove this line of code if you want to re-display "Tạo Trang" button
+		
 //    	$html = "<SELECT onchange='has_added_app(this.value,this.options[this.selectedIndex].text,$userid, $appid)' NAME='".$name."'>";
 		$html .= "<SELECT class='select' onchange='has_added_app(this.value,this.options[this.selectedIndex].text,$userid, $appid, 1)' NAME='".$name."' ID='".$name."'>";
     	
