@@ -188,7 +188,10 @@ float: right;margin-top: 11px;}
     box-shadow: 1px 1px 0px #909090;
     line-height: 24px;
     padding-right: 10px;
-	margin-top:10px;
+	margin-top:10px
+}
+a.add-b{
+	margin-left: 5px;
 }
 .product-page table.tbl-home tr td div.has{
     background: url(images/arrow.png) no-repeat scroll top center transparent;

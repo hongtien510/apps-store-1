@@ -67,6 +67,7 @@ input[type=button],
     padding:0px !important
 }
 .hinhchinh_product{width:50px}
+.search_product{float:left;}
 .search_product input{padding:3px;}
 .disabled_btn{
     cursor: default;
