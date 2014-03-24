@@ -7,24 +7,24 @@
         	<div class="head">
         			<div class="search-div">
         				<div class="pull-left" style="margin-top: 5px;">
-        					<p style="float: left;">
-                                <span>Xem danh mục</span>
+        					<div>
+                                <span>Xem loại sản phẩm</span>
             					<select class="select_parent_cat" name="select_parent_cat">
-            						<option value="ko">Chọn danh mục</option>
+            						<option value="ko">Chọn loại sản phẩm</option>
                                     <?php
                                         foreach($category as $k=>$v)
                                         {
                                             echo "<option value='{$v['idloaisp']}'>{$v['tenloaisp']}</option>";
                                         }
                                     ?>
-            					</select><span style="color: red;">(*)</span>
-                            </p>
-                            <p style="float:left" class="p_select_child_cat">
-                                <span>danh mục con</span>
+            					</select><span style="color: red;"> (*)</span>
+                            </div>
+                            <div class="p_select_child_cat">
+                                <span>Loại sản phẩm con</span>
             					<select class="select_child_cat" name="select_child_cat">
-            						  <option value="ko">Chọn danh mục</option>
-            					</select><span style="color: red;">(*)</span>
-                            </p>
+            						  <option value="ko">Chọn loại sản phẩm con</option>
+            					</select><span style="color: red;"> (*)</span>
+                            </div>
         				</div>
         				<div class="btn-search">
         					<a name="themspmoi" href="javascript:void(0)" class="add-b btn_get_image_on_fb disabled_btn" onclick="download_photo_fb('add')">Thêm SP</a>

@@ -162,7 +162,7 @@ float: right;margin-top: 11px;}
 }
 .product-page .search-div .btn-search{
     float: right;
-    margin-top: 9px;
+    margin-top: 10px;
 }
 .product-page .search-div .btn-search a.links{
     background: url(images/search.png) no-repeat scroll 8px center #fff;
@@ -188,7 +188,7 @@ float: right;margin-top: 11px;}
     box-shadow: 1px 1px 0px #909090;
     line-height: 24px;
     padding-right: 10px;
-	margin-top:10px
+	/*margin-top:10px*/
 }
 a.add-b{
 	margin-left: 5px;
