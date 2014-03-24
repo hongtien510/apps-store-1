@@ -26,7 +26,12 @@ $(window).load(function(){
 
 
 $(document).ready(function(){  
-	
+	$('.jqzoom').jqzoom({
+        zoomType: 'reverse',
+        lens:true,
+        preloadImages: false,
+        alwaysOn:false
+    });
 	//set height sidebar
 	$('.sidebar').css('height',$('.sidebar').height()+60+'px');
 	
