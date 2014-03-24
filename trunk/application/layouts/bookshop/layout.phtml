@@ -90,16 +90,21 @@
 					<a href="<?php echo APP_DOMAIN .'?idpage='. $idpage; ?>" class="logoshop"><?php echo ($config['shopname'] != "") ? $config['shopname'] : "NAME SHOP"; ?></a>
 					<ul>
                         <?php
-                            @$iduser_fb = $facebook->getuserfbid();
-                            if(isset($iduser_fb) && $iduser_fb != 0)
-                            {
-                                if($store->checkManagerPage($idpage, $iduser_fb))
-                                {
-                                    $link_admin = FB_APP_DOMAIN .'/admin';
-                                    echo "<li><a target='_blank' href='$link_admin' >Quản lý</a></li>";
-                                }     
-                            }
+                            /*
+								@$iduser_fb = $facebook->getuserfbid();
+								if(isset($iduser_fb) && $iduser_fb != 0)
+								{
+									if($store->checkManagerPage($idpage, $iduser_fb))
+									{
+										$link_admin = FB_APP_DOMAIN .'/admin';
+										echo "<li><a target='_blank' href='$link_admin' >Quản lý</a></li>";
+									}     
+								}
+							*/ 
+							
 							$menu = isset($_GET['menu']) ? $_GET['menu'] : "1";
+							$link_admin = FB_APP_DOMAIN .'/admin';
+							echo "<li><a target='_blank' href='$link_admin' >Quản lý</a></li>";
                         ?>
 						<li><a href="<?php echo APP_DOMAIN .'?idpage='. $idpage.'&menu=1'?>" class="<?php echo ($menu == 1) ? 'active' : '' ?>">Trang chủ</a></li>
 						<li style="display:none;"><a href="<?php echo APP_DOMAIN .'/dathang?idpage='. $idpage .'&menu=2'?>" class="<?php echo ($menu == 2) ? 'active' : '' ?>">GIAO HÀNG</a></li>
