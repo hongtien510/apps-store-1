@@ -180,3 +180,8 @@ ul.sliders-wrap-inner li .zoomWindow img{width: 500px;
 height: 500px;
 max-width: 500px!important;
 max-height: 500px!important;}
+
+
+.footer .menu-footer a{color:#fff;}
+footer .footer{height:39px;}
+.footer .menu-footer a{text-transform: uppercase;}
