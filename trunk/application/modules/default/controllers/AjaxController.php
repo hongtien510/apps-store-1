@@ -69,7 +69,7 @@ class AjaxController extends App_Controller_FrontController {
         $config = Zend_Registry::get(APPLICATION_CONFIG);
         $path_image = $config->config->path_image;
         $prefix = $config->config->prefix;
-        $appid = $config->config->appid;
+        $appid = $config->facebook->appid;
         
         $idpage = $_POST['idpage'];
         $pageConfig = $store->getConfig($idpage);

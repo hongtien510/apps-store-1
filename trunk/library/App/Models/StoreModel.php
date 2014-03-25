@@ -330,7 +330,7 @@ class App_Models_StoreModel {
     public function getInfoPage($idpage = 0)
     {
         if($idpage == 0 || $idpage == null) return;
-        $sql = "select * from ishali_page where id_fb_page = '$idpage'";
+        $sql = "select * from ishali_pages where id_fb_page = '$idpage' GROUP BY id_fb_page";
         $data = $this->SelectQuery($sql);
 		return @$data[0];
     }
