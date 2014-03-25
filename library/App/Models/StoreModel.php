@@ -327,6 +327,14 @@ class App_Models_StoreModel {
 		return @$data[0];
     }
     
+    public function getInfoPage($idpage = 0)
+    {
+        if($idpage == 0 || $idpage == null) return;
+        $sql = "select * from ishali_page where id_fb_page = '$idpage'";
+        $data = $this->SelectQuery($sql);
+		return @$data[0];
+    }
+    
     function pagination($pageDisplay, $numPage, $link, $currentPage)
 	{
         if($numPage == 1) return;

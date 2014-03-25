@@ -69,9 +69,11 @@ class AjaxController extends App_Controller_FrontController {
         $config = Zend_Registry::get(APPLICATION_CONFIG);
         $path_image = $config->config->path_image;
         $prefix = $config->config->prefix;
-
+        $appid = $config->config->appid;
+        
         $idpage = $_POST['idpage'];
         $pageConfig = $store->getConfig($idpage);
+        $pageInfo = $store->getInfoPage($idpage);
 
         $name = $_POST['name'];
         $phone = $_POST['phone'];
@@ -165,10 +167,13 @@ class AjaxController extends App_Controller_FrontController {
         $contact = $pageConfig['contact'];
         $datenow = date("d-m-Y H:i:s");
         
-        $contentCart_Email = str_replace('[gio_hang]', $contentCart, $contentCart_Email);
+        $link_app = $pageInfo['link_page'] . '/app_'. $appid;
         
+        $contentCart_Email = str_replace('[gio_hang]', $contentCart, $contentCart_Email);
         $contentCart_Email = str_replace('[id_cart]', $id_cart, $contentCart_Email);
         $contentCart_Email = str_replace('[name_shop]', $pageConfig['shopname'], $contentCart_Email);
+        $contentCart_Email = str_replace('[link_page]', $pageInfo['link_page'], $contentCart_Email);
+        $contentCart_Email = str_replace('[link_app]', $link_app, $contentCart_Email);
         $contentCart_Email = str_replace('[date_now]', $datenow, $contentCart_Email);
         $contentCart_Email = str_replace('[name]', $name, $contentCart_Email);
         $contentCart_Email = str_replace('[phone]', $phone, $contentCart_Email);
