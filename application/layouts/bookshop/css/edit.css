@@ -160,3 +160,23 @@ img.h-right-1.h-right-7{
 .sidebar ul li ul li a{
 	text-align:left;
 }
+
+ul.sliders-wrap-inner li img{
+	
+	margin-left:0!important;
+}
+ul.sliders-wrap-inner li .zoomPup img{
+	width: 257px!important;
+height: 257px!important;
+max-width: initial!important;
+max-height: initial!important;
+}
+ul.sliders-wrap-inner li .zoomWindow{
+	position: fixed!important;
+top: 161px!important;
+left: 413px!important;
+}
+ul.sliders-wrap-inner li .zoomWindow img{width: 500px;
+height: 500px;
+max-width: 500px!important;
+max-height: 500px!important;}
