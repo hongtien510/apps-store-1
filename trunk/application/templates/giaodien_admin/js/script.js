@@ -171,15 +171,15 @@ $(document).ready(function(){
             success:function(data){
                 if(data == "")
                 {
-                    $('p.p_select_child_cat select').html('<option value="koo">Chọn danh mục</option>');
-                    $('p.p_select_child_cat').hide();
+                    $('select.select_child_cat').html('<option value="koo">Chọn danh mục</option>');
+                    $('.div_select_child_cat').hide();
                     //$("input[name=btn_get_image_on_fb]").removeAttr("disabled");
                     $("a.btn_get_image_on_fb").removeClass("disabled_btn");
                 }
                 else
                 {
-                    $('p.p_select_child_cat select').html(data);
-                    $('p.p_select_child_cat').show();
+                    $('select.select_child_cat').html(data);
+                    $('.div_select_child_cat').show();
                     //$("input[name=btn_get_image_on_fb]").attr("disabled", "disabled");
                     $("a.btn_get_image_on_fb").addClass("disabled_btn");
                 }
