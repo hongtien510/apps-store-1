@@ -14,7 +14,7 @@
         	<div class="head">
     			<div class="search-div">
     				<div class="pull-left" style="margin-top: 5px;">
-    					<span>Tìm kiếm theo trạng thái đơn hàng</span>
+    					<span>Sắp xếp theo trạng thái đơn hàng</span>
     					<select onchange="filterStatusCart(this.value)" style="height:25px;">
                         <?php
                             $st = isset($_GET['st']) ? $_GET['st'] : "";
@@ -40,7 +40,7 @@
         			<th width="10%">Ngày đặt</th>
         			<th width="20%">Tên</th>
         			<th width="10%">SĐT</th>
-        			<th width="20%">Địa chỉ</th>
+        			<th width="20%">Email</th>
         			<th width="10%">Tình trạng</th>
         			<th width="20%">Công cụ</th>
         		</tr>
@@ -57,7 +57,7 @@
                     <td><?php echo $datecreate; ?></td>
             		<td style="text-align: left; padding:2px"><?php echo $value['name'] ?></td>
                     <td><?php echo $value['phone'] ?></td>
-                    <td style="text-align: left; padding:2px"><?php echo $value['address'] ?></td>
+                    <td style="text-align: left; padding:2px"><?php echo $value['email'] ?></td>
                     <td>
                         <div style="position: relative;">
                             <?php

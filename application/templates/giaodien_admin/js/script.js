@@ -1087,7 +1087,7 @@ function filterStatusCart(status)
 function searchOrder(event, keyword)
 {
 	keyword = keyword.trim();
-	keyword = keyword.replace(/ /g, "_");
+	keyword = keyword.replace(/ /g, "-");
 	var key = event.keyCode || event.charCode;//13
     if(key == 13)//Nhan Enter
     {

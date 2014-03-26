@@ -91,7 +91,6 @@ class Admin_CartController extends App_Controller_AdminController {
 			}
 			else
 			{
-				$keyword = $this->_request->getParam("st");
 				$list_cart = $store->getOrder($idpage);
 				$this->view->list_cart = $list_cart;
 			}
