@@ -492,7 +492,7 @@ class App_Models_StoreModel {
 				$where .= " or id_cart like '%$value%' ";
 			$i++;
 		}*/
-		$arr_keyword = explode('_', $keyword);
+		$arr_keyword = explode('-', $keyword);
 		
 		$where = "";
 		$i = 0;
