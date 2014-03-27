@@ -185,3 +185,25 @@ max-height: 500px!important;}
 .footer .menu-footer a{color:#fff;}
 footer .footer{height:39px;}
 .footer .menu-footer a{text-transform: uppercase;}
+.product .p-item{
+    height: 283px;
+}
+.product .p-item .box-images{
+    min-height: 200px;
+    max-width: 200px;
+}
+
+.product .p-item .box-images img{
+    position: relative;
+}
+.product .p-item .bg-name{
+    /* position: relative; */
+}
+.shopping-page .box-cart .row-cart .col1 .bg-name {
+/* float: left; */
+min-height: 44px;
+display: table-cell;
+margin-top: 7px;
+padding: 8px;
+width: 250px;
+}
