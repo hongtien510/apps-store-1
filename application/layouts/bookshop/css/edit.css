@@ -200,7 +200,7 @@ footer .footer{height:39px;}
     /* position: relative; */
 }
 .shopping-page .box-cart .row-cart .col1 .bg-name {
-/* float: left; */
+float: none
 min-height: 44px;
 display: table-cell;
 margin-top: 7px;
