@@ -295,6 +295,7 @@ class Admin_ProductController extends App_Controller_AdminController {
             		<th width="40%">Tên sản phẩm<span style="color: red;">(*)</span></th>
             		<th width="10%">Giá</th>
             		<th width="30%">Mô tả</th>
+                    <th width="5%">SP Mới</th>
             		<th width="5%">Xóa</th>
             	</tr>
             <?php
@@ -314,6 +315,9 @@ class Admin_ProductController extends App_Controller_AdminController {
                 </td>
                 <td align='center'>
                     <textarea name="des_sp[<?php echo $i ?>]" class="des_sp"></textarea>
+                </td>
+                <td align='center'>
+                    <input type="checkbox" value="1" name="new_sp[<?php echo $i ?>]" />
                 </td>
                 <td align='center'>
                     <a href="javascript:;" class='delete_photo_facebook' ><img src="<?php echo APP_DOMAIN . '/application/templates/giaodien_admin/images/delete.png' ?>" alt="xoa" title="Xóa Sản Phẩm"/></a>
@@ -399,6 +403,7 @@ class Admin_ProductController extends App_Controller_AdminController {
         $name_sp = $_POST['name_sp'];
         $price_sp = $_POST['price_sp'];
         $des_sp = $_POST['des_sp'];
+        $new_sp = isset($_POST['new_sp']) ? $_POST['new_sp'] : array();
         
         $sql = "Insert into ishali_sanpham (`idloaisp`, `tensp`, `gia`, `hinhchinh`, `mota`, `anhien`, `ngaycapnhat`, `spmoi`, `idpage`) value ";
         $i = 0;
@@ -408,11 +413,12 @@ class Admin_ProductController extends App_Controller_AdminController {
             $tensp = $name_sp[$key];
             $gia = $price_sp[$key];
             $mota = $des_sp[$key];
+            $new = isset($new_sp[$key]) ? $new_sp[$key] : "0";
             
             if($i++ == 0) 
-                $sql .= "('$idloaisp', '$tensp', '$gia', '$hinhchinh', '$mota', '1', now(), '1', '$idpage') ";
+                $sql .= "('$idloaisp', '$tensp', '$gia', '$hinhchinh', '$mota', '1', now(), '$new', '$idpage') ";
             else
-                $sql .= ",('$idloaisp', '$tensp', '$gia', '$hinhchinh', '$mota', '1', now(), '1', '$idpage') ";
+                $sql .= ",('$idloaisp', '$tensp', '$gia', '$hinhchinh', '$mota', '1', now(), '$new', '$idpage') ";
         }
         //echo $sql;exit;
         echo $store->InsertDeleteUpdateQuery($sql);
