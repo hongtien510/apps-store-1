@@ -30,6 +30,10 @@
                     $date_create = $arr_date_create['2'] .'-'. $arr_date_create['1'] .'-'. $arr_date_create['0'];
                     
                     switch ($value['status']) {
+                        case "-1":
+                            $status = "Hủy ĐH";
+                            $class_st = "class='cancel-delivery'";
+                            break;
                         case "0":
                             $status = "Chưa xem";
                             $class_st = "class='not-read'";
@@ -42,6 +46,7 @@
                             $status = "Đã giao";
                             $class_st = "class='ready-delivery'";
                             break;
+                        
                     }
                     //https://localhost/appfb/apps-store/giohang/detail?idpage=356730004423499
                     $link_detail = APP_DOMAIN . '/giohang/detail?idpage='. $idpage .'&dh='. $value['id_cart'] .'&menu=4';

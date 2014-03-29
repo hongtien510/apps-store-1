@@ -1129,6 +1129,8 @@ function ChangeStCart(idCart, status, text)
                 $('.status_cart_'+idCart).removeClass('orange');
                 $('.status_cart_'+idCart).removeClass('green');
                 $('.status_cart_'+idCart).removeClass('grey');
+                $('.status_cart_'+idCart).removeClass('cancel');
+                if(status == -1) $('.status_cart_'+idCart).addClass('cancel');
                 if(status == 1) $('.status_cart_'+idCart).addClass('green');
                 if(status == 2) $('.status_cart_'+idCart).addClass('grey');
                 $('.status_cart_'+idCart).html(text);
