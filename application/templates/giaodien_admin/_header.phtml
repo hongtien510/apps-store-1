@@ -86,5 +86,11 @@
 				<li><a target="_top" href="<?php echo ROOT_DOMAIN ?>/admin/product" <?php echo $activeproduct ?>>Sản phẩm</a></li>
 				<li><a target="_top" href="<?php echo ROOT_DOMAIN ?>/admin/cart" <?php echo $activecart ?>>Đơn hàng</a></li>
 			</ul>
+            <?php
+                $config_app = Zend_Registry::get(APPLICATION_CONFIG);
+                $appid = $config_app->facebook->appid;
+                $link_app = "https://www.facebook.com/$idpage?sk=app_$appid";
+            ?>
+            <a style="color: #41BBDE; float: right; font-weight: bold; position: absolute; right: 5px; top: 10px;" href="<?php echo $link_app ?>" target="_blank">Xem ứng dụng</a>
 		</div>
 	</header>
