@@ -103,7 +103,7 @@ ul.sliders-wrap-inner li img{
 	cursor:pointer;
 	position: absolute;
 	height: 10px;
-	z-index:40;
+	z-index:0;
 	top:5px;
 	text-indent:-999px;
 
