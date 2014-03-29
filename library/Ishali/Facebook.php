@@ -370,6 +370,12 @@ class Ishali_Facebook extends Ishali_Api{
         return $graph;
     }
     
+    public static function getUserInfo()
+    {
+        $fb = Ishali_Facebook::getFB();
+        $albums = $fb->api('/me');
+        return $albums;
+    }
     
 }
 
