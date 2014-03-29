@@ -20,6 +20,7 @@
                             $st = isset($_GET['st']) ? $_GET['st'] : "";
                         ?>
                             <option <?php echo ($st == "") ? "selected='selected'" : "" ?> value="">Xem tất cả</option>
+                            <option <?php echo ($st == "-1") ? "selected='selected'" : "" ?> value="-1">Hủy ĐH</option>
                             <option <?php echo ($st == "0") ? "selected='selected'" : "" ?> value="0">Chưa đọc</option>
                             <option <?php echo ($st == "1") ? "selected='selected'" : "" ?> value="1">Chưa giao</option>
                             <option <?php echo ($st == "2") ? "selected='selected'" : "" ?> value="2">Đã giao</option>
@@ -63,6 +64,7 @@
                             <?php
                                 $st = "";
                                 $status = "";
+                                if($value['status'] == -1) {$st = "cancel"; $status = "Hủy ĐH";}
                                 if($value['status'] == 0) {$st = "orange"; $status = "Chưa đọc";}
                                 if($value['status'] == 1) {$st = "green"; $status = "Chưa giao";}
                                 if($value['status'] == 2) {$st = "grey"; $status = "Đã giao";}
@@ -70,6 +72,7 @@
                             <p class="status_cart status_cart_<?php echo $value['id_cart']?> <?php echo $st ?>"><?php echo $status ?></p>
                             <select onchange="ChangeStCart('<?php echo $value['id_cart'] ?>', this.value, this.options[this.selectedIndex].text)" class="st_cart change_st_cart_<?php echo $value['id_cart'] ?>">
                                 <option value="">Chọn</option>
+                                <option value="-1">Hủy ĐH</option>
                                 <option value="1">Chưa giao</option>
                                 <option value="2">Đã giao</option>
                             </select>

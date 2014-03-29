@@ -371,6 +371,9 @@ cursor: pointer;
 .ready-delivery{
 	background:#f6f6f6;
 }
+.cancel-delivery{
+	background:#a87a4c;
+}
 p.status_cart{
 	color:#fff;
 }
