@@ -13,7 +13,6 @@ class DathangController extends App_Controller_FrontController {
 			$idpage = $_SESSION['idpage'];
 			$this->view->idpage = $idpage;
 		}
-        
     }
     
 
