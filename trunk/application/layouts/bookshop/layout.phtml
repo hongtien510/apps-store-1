@@ -117,12 +117,13 @@
 							
 							$menu = isset($_GET['menu']) ? $_GET['menu'] : "1";
 							$link_admin = FB_APP_DOMAIN .'/admin';
-							echo "<li><a target='_blank' href='$link_admin' >Quản lý</a></li>";
+							
                         ?>
 						<li><a href="<?php echo APP_DOMAIN .'?idpage='. $idpage.'&menu=1'?>" class="<?php echo ($menu == 1) ? 'active' : '' ?>">Trang chủ</a></li>
 						<li style="display:none;"><a href="<?php echo APP_DOMAIN .'/dathang?idpage='. $idpage .'&menu=2'?>" class="<?php echo ($menu == 2) ? 'active' : '' ?>">GIAO HÀNG</a></li>
 						<li><a href="<?php echo APP_DOMAIN .'/contact?idpage='. $idpage .'&menu=3'?>" class="<?php echo ($menu == 3) ? 'active' : '' ?>">LIÊN HỆ</a></li>
                         <li><a href="<?php echo APP_DOMAIN .'/giohang/find?idpage='. $idpage .'&menu=4'?>" class="<?php echo ($menu == 4) ? 'active' : '' ?>">TÌM ĐƠN HÀNG</a></li>
+						<?php echo "<li><a target='_blank' href='$link_admin' >Quản lý</a></li>";?>
 					</ul>
 					<div class="create-shop">
 						<div class="bg-create">
@@ -135,7 +136,7 @@
 				</div><!--End l-top-->
 				<!--l-top-->
 				<div class="l-bottom">
-					<a href="<?php echo APP_DOMAIN .'?idpage='. $idpage?>" class="banner">
+					<a href="http://www.socialnetshop.com" class="banner">
 						<img src="<?php echo APP_DOMAIN . '/application/layouts/bookshop/'?>images/banner.gif" alt="" title=""/>
 					</a>
 				</div>
@@ -143,7 +144,7 @@
 			<!--End h-left-->
 			<!--h-right-->			
 			<div class="h-right">				
-				<a href="#"></a>				
+				<a href="http://www.socialnetshop.com"></a>				
 					<img link_image="<?php echo APP_DOMAIN . '/application/layouts/bookshop/'?>" src="<?php echo APP_DOMAIN . '/application/layouts/bookshop/'?>images/bg-right-1.jpg" class="h-right-1"/>				
 							
 			</div>			<!--End h-right-->
@@ -217,7 +218,10 @@
 		<footer>
 			<div class="footer">
 				<div class="developer">
-					Design and developer by SHOPBOOK
+					Design and developer by <a href="http://socialnetshop.com/" target="_blank" style="color:#fff;" class="link_netshop">Social NetShop</a>
+					<style>
+						a.link_netshop:hover{text-decoration:underline;}
+					</style>
 				</div>
 				<div class="menu-footer">
 					<a href="http://socialnetshop.com/wp-content/uploads/2014/03/%C4%90i%E1%BB%81uKho%E1%BA%A3nS%E1%BB%ADD%E1%BB%A5ng.Ver1_.formatted.pdf"  target="_blank"> Điều khoản sử dụng</a> -
