@@ -36,6 +36,14 @@ table{border-collapse: collapse;}
     height: 27px;
     padding: 3px;
 }
+
+.select.install_page{
+    border: 1px solid #41BBDE;
+    box-shadow: 2px 2px 4px #909090;
+    color: #41BBDE;
+    height: 27px;
+    padding: 3px;
+}
 .navigation{
     background: #fff;
     border-radius: 5px 5px 0 0;

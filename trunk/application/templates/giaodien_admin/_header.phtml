@@ -33,6 +33,15 @@
 ?>
 <div class="container">
 	<header>
+    <div class="header">
+        <?php
+            if($controllerName == 'index')
+            {
+                    echo "<div style='float:right'>";
+                    echo $this->list_pages;
+                    echo "</div>";
+            }
+        ?>
         <?php
                 $list_page = $_SESSION['list_page'];
 				$store = App_Models_StoreModel::getInstance();
@@ -41,8 +50,6 @@
 				if(count($lpage) > 0)
 				{
 		?>
-    
-		<div class="header">
 			<!--<a href="#" class="create-page">Tạo trang</a>-->
 			<?php
                 if($controllerName != 'index')
@@ -67,16 +74,10 @@
 			</select>
             <?php 
                 }
-                else
-                {
-                    echo "<div style='float:right'>";
-                    echo $this->list_pages;
-                    echo "</div>";
-                }
              ?>
 			<!--<a href="#" class="upload">Upload</a>-->
-		</div>
         <?php } ?>
+        </div>
         
 		<div class="navigation">
 			<ul>
