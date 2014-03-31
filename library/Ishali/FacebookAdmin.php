@@ -30,7 +30,7 @@ class Ishali_FacebookAdmin extends Ishali_Facebook{
 		$html = ""; //Please remove this line of code if you want to re-display "Tạo Trang" button
 		
 //    	$html = "<SELECT onchange='has_added_app(this.value,this.options[this.selectedIndex].text,$userid, $appid)' NAME='".$name."'>";
-		$html .= "<SELECT class='select' onchange='has_added_app(this.value,this.options[this.selectedIndex].text,$userid, $appid, 1)' NAME='".$name."' ID='".$name."'>";
+		$html .= "<SELECT class='select install_page' onchange='has_added_app(this.value,this.options[this.selectedIndex].text,$userid, $appid, 1)' NAME='".$name."' ID='".$name."'>";
     	
     	$userpages = Ishali_Facebook::getuserpages();
     	$html .= "<OPTION VALUE='-1'>Chọn Trang</OPTION>";
