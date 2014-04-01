@@ -191,6 +191,12 @@
 				padding-bottom: 15px;
 				min-height: 25px;
 			}
+			.product .other-products .slider-details .p-item .box-images{
+			
+			}
+			.product .other-products .slider-details .p-item .box-images img{
+			
+			}
 		</style>
 		<div class="right-product">
 			<div class="row_desc row_desc_product_name">
@@ -280,7 +286,7 @@
                             ?>
                                 <div class="p-item">
     								<a href="<?php echo APP_DOMAIN .'/detail?idpage='. $idpage .'&id='. $value['idsp'] ?>">
-    									<img src="<?php echo $value['hinhchinh']?>" alt="" title=""/>
+    									<div class="box-images"><img src="<?php echo $value['hinhchinh']?>" alt="" title=""/></div>
     									<?php
                                             if($value['spmoi'] == 1) echo "<div class='new'></div>";
                                         ?>
