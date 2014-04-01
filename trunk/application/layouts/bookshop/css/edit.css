@@ -42,8 +42,8 @@ max-height: 241px;
 	
 }
 .product .other-products .slider-details .p-item img {
-width: 170px;
-height: 205px;
+	width: 100%;
+max-width: 135px;
 }
 .sort-products{
     float: left;
