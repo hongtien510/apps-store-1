@@ -125,7 +125,7 @@ $(document).ready(function(){
     });
     
     $('.next').click(function(){
-        alert('next');
+        //alert('next');
     });
     
     $('.back').click(function(){
