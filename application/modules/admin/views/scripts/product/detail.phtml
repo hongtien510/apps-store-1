@@ -1,6 +1,19 @@
 <?php
     $product = $this->product;
     //print_r($product);exit;
+    foreach($product as $key=>$value)
+    {
+        if(isset($product2))
+        {
+            $product2[0]['list_idloaisp'][] = $value['idloaisp'];
+        }
+        else
+        {
+            $product2[0] = $value;
+            $product2[0]['list_idloaisp'][] = $value['idloaisp'];
+        }
+    }
+    $product = $product2;
     $product_hinhanh = $this->product_hinhanh;
     $category = $this->category;
     //print_r($category);
@@ -30,6 +43,7 @@
 			<div class="row">
 				<div class="title">Thuộc loại sản phẩm</div>
 				<div class="ip">
+                <!--
                     <select name='idcat'>
                         <option value="0">Chọn loại sản phẩm</option>
                     <?php 
@@ -39,7 +53,32 @@
                         <option value="<?php echo $category[$i]['idloaisp']?>" <?php if($category[$i]['idloaisp']==$product[0]['idloaisp']) echo "selected='selected'" ?>>
                         <?php echo $category[$i]['tenloaisp'] ?></option>
                     <?php } ?>
-                    </select><span style="color: red;">(*)</span>
+                    </select>
+                -->
+                <div class="list_idcat">
+                    <?php 
+                        for($i=0; $i<count($category); $i++)
+                        {
+                            if(isset($product[0]['list_idloaisp']))
+                            {
+                                $checked = in_array($category[$i]['idloaisp'], $product[0]['list_idloaisp']) ? " checked='checked' " : "";
+                            }
+                            else
+                            {
+                                $checked = $category[$i]['idloaisp']==$product[0]['idloaisp'] ? " checked='checked' " : "";
+                            }
+                    ?>
+                        <label>
+                            <input <?php echo $checked ?> type="checkbox" class="idcat"  name="idcat[]" value="<?php echo $category[$i]['idloaisp']?>" />
+                            <span><?php echo $category[$i]['tenloaisp'] ?></span>
+                        </label>
+                    <?php
+                        }
+                    ?>
+                </div>
+                
+                
+                    <span style="color: red;">(*)</span>
                 </div>
 			</div>
             <?php
@@ -146,6 +185,7 @@
             
 			<div class="btn">
                 <input type="hidden" name="idsp" value="<?php echo $product[0]['idsp'] ?>" />
+                <input type="hidden" name="idpage" value="<?php echo $this->idpage ?>" />
                 <input type="button" name="btnsubmit" value="Cập Nhật Sản Phẩm"/>
                 <input type="button" onclick="top.location.href = '<?php echo ROOT_DOMAIN ?>/admin/product'" value="Quay lại" />
 			</div>

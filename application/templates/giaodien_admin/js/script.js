@@ -302,9 +302,25 @@ $(document).ready(function(){
     
     $('input[name=btnsubmit]').click(function(){
         var tensp = $('input[name=tensp]').val();
-        var idcat = $('select[name=idcat]').val();
+        //var idcat = $('input[name=idcat]').val();
         var giaban = $('input[name=giaban]').val();
-        //var mota = $('.cke_wysiwyg_frame').contents().find('.cke_editable').html()
+        
+        
+        
+        var dataSelectCate = [];
+         $('input.idcat:checked').each(function() {
+             var val = $(this).val();
+             if(val != ''){
+                 dataSelectCate.push($(this).val());
+             }
+         });
+         var length_cate = (dataSelectCate.length);
+        
+        
+        
+        
+        
+        
         var checked_hinh_chinh = $('input[type=radio]').is(':checked');
         if(tensp == "")
         {
@@ -321,7 +337,7 @@ $(document).ready(function(){
             ThongBaoLoi('Chọn hình chính');
             return false;
         }
-        if(idcat == 0)
+        if(length_cate == 0)
         {
             ThongBaoLoi('Chọn danh mục sản phẩm');
             return false;

@@ -219,3 +219,20 @@ select[name=idcat]{
 }
 
 .table_detail_cart{width:100%; margin-bottom:10px;}
+
+
+.list_idcat {
+    border: 1px solid #909090;
+    float: left;
+    max-height: 100px;
+    overflow: auto;
+    padding: 10px;
+    width: 100%;
+}
+.list_idcat label {
+    display: block;
+}
+.list_idcat input {
+}
+.list_idcat span {
+}
