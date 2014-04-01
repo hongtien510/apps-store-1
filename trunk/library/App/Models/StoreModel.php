@@ -218,7 +218,7 @@ class App_Models_StoreModel {
                         (select isa.*, ilo.parent_id, ilo.tenloaisp, if(ilo.parent_id = 0, isa.idloaisp, ilo.parent_id) as idp
                         from ishali_sanpham isa, ishali_loaisp ilo 
                         where isa.idloaisp = ilo.idloaisp) A
-                        where A.idp = '$parent_id' and A.idpage = '$id_page' and anhien = 1 $sIndex $where $order $limit";
+                        where A.idp = '$parent_id' and A.idpage = '$id_page' and anhien = 1 $sIndex $where GROUP BY idsp $order $limit";
             $data = $this->SelectQuery($sql);
             return $data;
         }
@@ -227,16 +227,16 @@ class App_Models_StoreModel {
             $sIndex = ($show_index == 0) ? "" : "and showindex = 1";
             $sql = "select * 
                 from ishali_sanpham
-                where `idloaisp` = '$id_cate' and idpage = '$id_page' and anhien = 1 $sIndex $where $order $limit";
+                where `idloaisp` = '$id_cate' and idpage = '$id_page' and anhien = 1 $sIndex $where GROUP BY idsp $order $limit";
         }
         else
         {
             $sIndex = ($show_index == 0) ? "" : "and showindex = 1";
             $sql = "select * 
                 from ishali_sanpham
-                where idpage = '$id_page' and anhien = 1 $sIndex $where $order $limit";
+                where idpage = '$id_page' and anhien = 1 $sIndex $where GROUP BY idsp $order $limit";
         }
-        //echo $sql;
+
         $data = $this->SelectQuery($sql);
 		return $data;
     }
@@ -301,16 +301,16 @@ class App_Models_StoreModel {
             $sIndex = ($show_index == 0) ? "" : "and showindex = 1";
             $sql = "select count(*) as num_row 
                 from ishali_sanpham
-                where `idloaisp` = '$id_cate' and idpage = '$id_page' and anhien = 1 $sIndex $where";
+                where `idloaisp` = '$id_cate' and idpage = '$id_page' and anhien = 1 $sIndex $where GROUP BY idsp";
         }
         else
         {
             $sIndex = ($show_index == 0) ? "" : "and showindex = 1";
             $sql = "select count(*) as num_row 
                 from ishali_sanpham
-                where idpage = '$id_page' and anhien = 1 $sIndex $where";
+                where idpage = '$id_page' and anhien = 1 $sIndex $where GROUP BY idsp";
         }
-
+        //echo $sql;
         $data = $this->SelectQuery($sql);
 		$num_row = $data[0]['num_row'];
         $config = Zend_Registry::get(APPLICATION_CONFIG);

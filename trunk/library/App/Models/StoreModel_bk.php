@@ -262,13 +262,14 @@ class App_Models_StoreModel {
     
     public function getNumPage($id_page = 0, $id_cate = 0, $show_index = 0, $where = "")
     {   
+        return;
         if($id_page == 0) return;
         if($id_cate != 0)
         {
             $sIndex = ($show_index == 0) ? "" : "and showindex = 1";
             $sql = "select count(*) as num_row 
                 from ishali_sanpham
-                where `idloaisp` = '$id_cate' and idpage = '$id_page' and anhien = 1 $sIndex $where";
+                where `idloaisp` = '$id_cate' and idpage = '$id_page' and anhien = 1 $sIndex $where ";
         }
         else
         {

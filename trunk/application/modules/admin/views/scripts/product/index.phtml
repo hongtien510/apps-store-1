@@ -87,25 +87,29 @@
         			<th width="8%">Công cụ</th>
         		</tr>
                 <?php 
-                    for($i=0; $i<count($product); $i++)
+                    //for($i=0; $i<count($product); $i++)
+                    $i = 0;
+                    foreach($product as $key=>$value)
                     {
-                        $danhmuc = ($product[$i]['tenloaisp_parent'] == "") ? $product[$i]['tenloaisp'] : $product[$i]['tenloaisp_parent'] .' >> '. $product[$i]['tenloaisp'];
                 ?>
         		<tr>
-        			<td><?php echo $i+1 ?></td>
-        			<td><img class="hinhchinh_product" src="<?php echo $product[$i]['hinhchinh'] ?>" /></td>
-        			<td><a href="product/detail?idsp=<?php echo base64_encode($product[$i]['idsp']) ?>"><?php echo $product[$i]['tensp'] ?></a></td>
-        			<td><?php echo number_format($product[$i]['gia'],0,',','.') ?></td>
+        			<td><?php echo $i++ ?></td>
+        			<td><img class="hinhchinh_product" src="<?php echo $value['hinhchinh'] ?>" /></td>
+        			<td><a href="product/detail?idsp=<?php echo base64_encode($value['idsp']) ?>"><?php echo $value['tensp'] ?></a></td>
+        			<td><?php echo number_format($value['gia'],0,',','.') ?></td>
         			<td>
                         <?php
-                            $array_danhmuc = explode('>>', $danhmuc);
-                            foreach($array_danhmuc as $key=>$value)
+                        if(isset($value['list_cate']))
+                        {
+                            foreach($value['list_cate'] as $k=>$v)
                             {
-                                if($key == 0)
-                                    echo "<div>".trim($value)."</div>";
-                                else
-                                    echo "<div class='has'>".trim($value)."</div>";
+                                echo "- {$v['tenloaisp']}<br/>";
                             }
+                        }
+                        else
+                        {
+                             echo ($value['tenloaisp_parent'] == "") ? "<div>{$value['tenloaisp']}</div>" : "<div>{$value['tenloaisp_parent']}</div><div class='has'>{$value['tenloaisp']}</div>";
+                        }
                         ?>
         				<!--
                         <div>Trang sức</div>
@@ -114,23 +118,23 @@
                         -->
         			</td>
         			<td>
-                        <?php if ($product[$i]['spmoi'] == 1){?>
+                        <?php if ($value['spmoi'] == 1){?>
                             <img src="<?php echo APP_DOMAIN . '/application/templates/giaodien_admin/images/tick.png' ?>" alt="hiện" title="Sản phẩm này đang ở trạng thái (Mới)"/>
                         <?php }?> 
                     </td>
         			<td>
-                        <?php echo ($product[$i]['giagiam'] != 0) ? number_format($product[$i]['giagiam'],0,',','.') .'<br/>'. '<em>(giảm '. $product[$i]['sale_off'] .'%)</em>': "<img src='". APP_DOMAIN . "/application/templates/giaodien_admin/images/publish.png" ."' alt='Sản phẩm không giảm giá' title='Sản phẩm này không giảm giá'/>"; ?>
+                        <?php echo ($value['giagiam'] != 0) ? number_format($value['giagiam'],0,',','.') .'<br/>'. '<em>(giảm '. $value['sale_off'] .'%)</em>': "<img src='". APP_DOMAIN . "/application/templates/giaodien_admin/images/publish.png" ."' alt='Sản phẩm không giảm giá' title='Sản phẩm này không giảm giá'/>"; ?>
                     </td>
         			<td>
-                        <?php if ($product[$i]['anhien'] == 1){?>
+                        <?php if ($value['anhien'] == 1){?>
                             <img src="<?php echo APP_DOMAIN . '/application/templates/giaodien_admin/images/tick.png' ?>" alt="hiện" title="Sản phẩm này đang được hiển thị"/>
                         <?php } else {?>
                             <img src="<?php echo APP_DOMAIN . '/application/templates/giaodien_admin/images/publish.png' ?>" alt="ẩn" title="Sản phẩm này không được hiển thị"/>
                         <?php } ?> 
                     </td>
         			<td>
-        				<a href="product/detail?idsp=<?php echo base64_encode($product[$i]['idsp']) ?>"><img src="<?php echo APP_DOMAIN ?>/application/templates/giaodien_admin/images/setting.png"/></a>
-        				<a href="javascript:void(0);" onclick = "DeleteProduct(<?php echo $product[$i]['idsp'] ?>)"><img src="<?php echo APP_DOMAIN ?>/application/templates/giaodien_admin/images/delete.png"/></a>
+        				<a href="product/detail?idsp=<?php echo base64_encode($value['idsp']) ?>"><img src="<?php echo APP_DOMAIN ?>/application/templates/giaodien_admin/images/setting.png"/></a>
+        				<a href="javascript:void(0);" onclick = "DeleteProduct(<?php echo $value['idsp'] ?>)"><img src="<?php echo APP_DOMAIN ?>/application/templates/giaodien_admin/images/delete.png"/></a>
         			</td>
         		</tr>
                 <?php } ?>

@@ -74,12 +74,35 @@ class Admin_ProductController extends App_Controller_AdminController {
                 From ishali_sanpham a, ishali_loaisp b LEFT JOIN (select idloaisp, tenloaisp from ishali_loaisp where parent_id = 0 and idpage = '$idpage') c on b.parent_id = c.idloaisp
                 Where a.idloaisp = b.idloaisp and a.idpage = '$idpage' Order by a.idsp desc, ngaycapnhat desc";
 			}
-            				
+            			
 			$data = $store->SelectQuery($sql);
-			$this->view->product = $data;
+            foreach($data as $key=>$value)
+            {
+                if(isset($data2[$value['idsp']]))
+                {
+                    $i = 0;
+
+                    $array_cate['parent_id'] = $value['parent_id'];
+                    $array_cate['tenloaisp_parent'] = $value['tenloaisp_parent'];
+                    $array_cate['idloaisp'] = $value['idloaisp'];
+                    $array_cate['tenloaisp'] = $value['tenloaisp'];
+                    
+                    
+                    $data2[$value['idsp']]['list_cate'][] = $array_cate;
+                }
+                else
+                {
+                    $data2[$value['idsp']] = $value;
+                    
+                    $array_cate['parent_id'] = $value['parent_id'];
+                    $array_cate['tenloaisp_parent'] = $value['tenloaisp_parent'];
+                    $array_cate['idloaisp'] = $value['idloaisp'];
+                    $array_cate['tenloaisp'] = $value['tenloaisp'];                   
+                    $data2[$value['idsp']]['list_cate'][] = $array_cate;
+                }
+            }
+			$this->view->product = $data2;
 			
-            
-            
             //$list_loaisp = $store->getAllCategoryByIdPage($idpage, 0);
             //$category = $store->addCategoryIntoMenuAdmin($list_loaisp);
             
@@ -536,10 +559,11 @@ class Admin_ProductController extends App_Controller_AdminController {
         $idpage = $_SESSION['idpage'];
 		$_SESSION['list_page'] = "0";
         $store = App_Models_StoreModel::getInstance();
-        
+        $this->view->idpage = $idpage;
         if(isset($_POST['tensp']))
         {
             $idsp = $_POST['idsp'];
+            $idpage = $_POST['idpage'];
             $anhien = isset($_POST['hienthi']) ? $_POST['hienthi'] : 0;
             $spmoi = isset($_POST['spmoi']) ? $_POST['spmoi'] : 0;
             $tensp = $_POST['tensp'];
@@ -548,7 +572,9 @@ class Admin_ProductController extends App_Controller_AdminController {
             $giagiam = $_POST['giagiam'];
             $sale_off = $_POST['sale_off'];
             $mota = $_POST['mota'];
-            
+
+            //print_r($idcat);
+
             $photo_main_sanpham = $_POST['photo_sanpham'];
             $photo_sanpham = array();
             $j = 0;
@@ -565,18 +591,31 @@ class Admin_ProductController extends App_Controller_AdminController {
                 }
                 
             }
+                /*
+                $sql = "update ishali_sanpham set `anhien` = '$anhien', 
+                                            `spmoi` = '$spmoi',
+                                            `tensp` = '$tensp',
+                                            `idloaisp` = '$idcat',
+                                            `gia` = '$giaban',
+                                            `giagiam` = '$giagiam',
+                                            `sale_off` = '$sale_off',
+                                            `mota` = '$mota',
+                                            `hinhchinh` = '$photo_main_sanpham'
+                where `idsp` = '$idsp'";
+                $data = $store->InsertDeleteUpdateQuery($sql);
+                */
+                $sql = "delete from ishali_sanpham where `idsp` = '$idsp'";
+                $store->InsertDeleteUpdateQuery($sql);
+                
+            foreach($idcat as $key=>$value)
+            {
+                $sql = "insert into ishali_sanpham 
+                        (`idsp`, `anhien`, `spmoi`, `tensp`, `idloaisp`, `gia`, `giagiam`, `sale_off`, `mota`, `hinhchinh`, `idpage`) 
+                        values 
+                        ('$idsp', '$anhien', '$spmoi', '$tensp', '$value', '$giaban', '$giagiam', '$sale_off', '$mota', '$photo_main_sanpham', '$idpage')";
+                $data = $store->InsertDeleteUpdateQuery($sql);
+            }
             
-            $sql = "update ishali_sanpham set `anhien` = '$anhien', 
-                                                `spmoi` = '$spmoi',
-                                                `tensp` = '$tensp',
-                                                `idloaisp` = '$idcat',
-                                                `gia` = '$giaban',
-                                                `giagiam` = '$giagiam',
-                                                `sale_off` = '$sale_off',
-                                                `mota` = '$mota',
-                                                `hinhchinh` = '$photo_main_sanpham'
-                    where `idsp` = '$idsp'";
-            $data = $store->InsertDeleteUpdateQuery($sql);
             if($data == 1)
             {
                 echo "<script>setTimeout(function(){FB.Canvas.scrollTo(0,0); ThongBao('Cập nhật sản phẩm thành công',2000);},2000);</script>";
@@ -598,6 +637,7 @@ class Admin_ProductController extends App_Controller_AdminController {
                 }
                 $store->InsertDeleteUpdateQuery($sql);
             }
+            
         }
         
         
