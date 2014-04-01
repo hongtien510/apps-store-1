@@ -10,7 +10,7 @@
 /* slider layout */
 .lof-slidecontent { position:relative;	overflow:hidden;z-index: 1}
 .lof-slidecontent .preload{	height:100%;	width:100%;	position:absolute;	top:0;	left:0;	z-index:100000;	text-align:center;	background:#FFF}
-.lof-slidecontent .preload div{	height:100%;	width:100%;	background:transparent url(../images/load-indicator.gif) no-repeat scroll 50% 50%;}
+.lof-slidecontent .preload div{	height:100%;	width:100%;	background:transparent }
 
 .lof-slidecontent  .sliders-wrapper{	position: absolute;	height:100%;	width:255px;	z-index: 3;	 overflow:hidden;  }
 .lof-slidecontent  ul.sliders-wrap-inner{overflow:hidden;	background:transparent url(../images/load-indicator.gif) no-repeat scroll 50% 50%;	padding:0px;	margin:0;	position:absolute;	overflow:hidden;}
@@ -25,7 +25,7 @@
 	height: 270px;
 	padding:6px;
 	width: 67px;
-	background:url(../../images/bg-right-index_03.jpg) no-repeat;
+
 	overflow:hidden;
 }
 .lof-slidecontent  .navigator-wrapper{	position:relative;	z-index:10;
