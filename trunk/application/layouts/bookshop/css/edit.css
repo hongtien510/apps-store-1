@@ -109,7 +109,7 @@ padding: 0px;
 max-width: 100%!important;
 /* max-height: 299px !important; */
 /* width: 100% !important; */
-max-height: 99% !important;
+
 }
 
 /*Edit logo*/
@@ -166,20 +166,16 @@ ul.sliders-wrap-inner li img{
 	margin-left:0!important;
 }
 ul.sliders-wrap-inner li .zoomPup img{
-	width: 257px!important;
-height: 257px!important;
-max-width: initial!important;
-max-height: initial!important;
+	max-width: 257px!important;
 }
 ul.sliders-wrap-inner li .zoomWindow{
 	position: fixed!important;
 top: 161px!important;
 left: 413px!important;
 }
-ul.sliders-wrap-inner li .zoomWindow img{width: 500px;
-height: 500px;
-max-width: 500px!important;
-max-height: 500px!important;}
+ul.sliders-wrap-inner li .zoomWindow img{ 
+max-width: initial!important;
+max-height: initial!important;}
 
 
 .footer .menu-footer a{color:#fff;}
@@ -207,3 +203,4 @@ margin-top: 7px;
 padding: 8px;
 width: 250px;
 }
+.lof-slidecontent ul.navigator-wrap-inner li img{width:100%;}
