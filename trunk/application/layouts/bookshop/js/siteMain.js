@@ -1,3 +1,10 @@
+ 
+ $(window).load(function(){
+	 $('ul.sliders-wrap-inner li img.example-image').load(function(){
+	 	var widthRealy = $('ul.sliders-wrap-inner li .zoomPup img').width();
+	 	console.log(widthRealy);	
+	 });
+});
 $(window).load(function(){
 	
 	$('.sidebar ul li ul li').each(function(){
@@ -11,7 +18,8 @@ $(window).load(function(){
 	 	//$(this).css('left', (202-$(this).width())/2 +'px');
 	 });
 	 $('ul.sliders-wrap-inner li img.example-image').each(function(){
-	 	$(this).css('margin-left', (257-$(this).width())/2 +'px!important');
+	 	var left = ((257-$(this).width())/2);
+	 	$('ul.sliders-wrap-inner li .zoomPad').css('left', left + "px");
 	 });
 	$('.main-content .sort select.select option').each(function(){
 		if($(this).attr('select') == 'select'){
@@ -22,6 +30,8 @@ $(window).load(function(){
 	 
 	 	//$(this).css('left', (170-$(this).width())/2 +'px');
 	 });
+	
+	 
 });
 
 
@@ -41,7 +51,7 @@ $(document).ready(function(){
         alwaysOn:false
     });
 	//set height sidebar
-	$('.sidebar').css('height',$('.sidebar').height()+60+'px');
+	$('.sidebar').css('height',$('.main-content').height()+60+'px');
 	
        LogoAnimate.init();
  
