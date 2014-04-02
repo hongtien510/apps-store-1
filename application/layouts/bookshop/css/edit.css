@@ -38,12 +38,13 @@ top: 2px;
 }
 .product .p-item img{
 	max-width: 200px;
-max-height: 241px;
+max-height: 215px;
 	
 }
 .product .other-products .slider-details .p-item img {
 	width: 100%;
-max-width: 135px;
+
+	max-width: 95px;
 }
 .sort-products{
     float: left;
@@ -107,6 +108,7 @@ display: table;
 ul.sliders-wrap-inner li img {
 padding: 0px;
 max-width: 100%!important;
+max-height: 98%!important;
 /* max-height: 299px !important; */
 /* width: 100% !important; */
 
@@ -167,7 +169,9 @@ ul.sliders-wrap-inner li img{
 }
 ul.sliders-wrap-inner li .zoomPup img{
 	max-width: 257px!important;
+	display: none!important;
 }
+.zoomPup{background:transparent!important;}
 ul.sliders-wrap-inner li .zoomWindow{
 	position: fixed!important;
 top: 161px!important;
