@@ -195,6 +195,8 @@ footer .footer{height:39px;}
 
 .product .p-item .box-images img{
     position: relative;
+    display: table;
+margin: 0 auto;
 }
 .product .p-item .bg-name{
     /* position: relative; */
