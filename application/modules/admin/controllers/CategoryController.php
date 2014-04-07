@@ -101,39 +101,47 @@ class Admin_CategoryController extends App_Controller_AdminController {
 	public function xulyaddAction() {    
         $this->_helper->viewRenderer->setNoRender(true);
         $this->_helper->layout->disableLayout();
-        
+        $store = $this->view->info = App_Models_StoreModel::getInstance();
+        $facebook = new Ishali_Facebook(); 
+        $iduser_fb = $facebook->getuserfbid();
         $idpage = $_SESSION['idpage'];
         
-        $Tenlsp = $_POST["tenlsp"];
-        $Vitri = $_POST["vitri"];
-        $Anhien = $_POST["anhien"];
-        $parent_id = $_POST["parent_id"];
         
-        $store = $this->view->info = App_Models_StoreModel::getInstance();
-        
-        $sql = "Insert into ishali_loaisp(tenloaisp, vitri, anhien, idpage, parent_id) ";
-        $sql.= "Values ('" . $Tenlsp . "', '" . $Vitri . "', '" . $Anhien . "', '". $idpage ."', '". $parent_id ."')";
-        $rs = mysql_query($sql);
-        if ($rs) {
-            echo 1;
+        if($store->checkUserManagerPage($iduser_fb, $idpage))
+        {
+            $Tenlsp = $_POST["tenlsp"];
+            $Vitri = $_POST["vitri"];
+            $Anhien = $_POST["anhien"];
+            $parent_id = $_POST["parent_id"];
             
-            $id = mysql_insert_id();
-            //Kiem tra xem neu dem bang 1 thi tiep tuc kiem tra co san pham nao thuoc danh muc nay ko, neu co thi chuyen san pham ve danh muc moi them
-            $sql = "select count(*) as count_child_cat from ishali_loaisp where parent_id = $parent_id";
-            $data = $store->SelectQuery($sql);
-            $count = $data[0]['count_child_cat'];
-            if($count == 1)
-            {
-                $sql = "update ishali_sanpham set idloaisp = '$id' where idloaisp = '$parent_id' and idpage = '$idpage'";
-                $store->InsertDeleteUpdateQuery($sql);
+            $sql = "Insert into ishali_loaisp(tenloaisp, vitri, anhien, idpage, parent_id) ";
+            $sql.= "Values ('" . $Tenlsp . "', '" . $Vitri . "', '" . $Anhien . "', '". $idpage ."', '". $parent_id ."')";
+            $rs = mysql_query($sql);
+            if ($rs) {
+                echo 1;
+                
+                $id = mysql_insert_id();
+                //Kiem tra xem neu dem bang 1 thi tiep tuc kiem tra co san pham nao thuoc danh muc nay ko, neu co thi chuyen san pham ve danh muc moi them
+                $sql = "select count(*) as count_child_cat from ishali_loaisp where parent_id = $parent_id";
+                $data = $store->SelectQuery($sql);
+                $count = $data[0]['count_child_cat'];
+                if($count == 1)
+                {
+                    $sql = "update ishali_sanpham set idloaisp = '$id' where idloaisp = '$parent_id' and idpage = '$idpage'";
+                    $store->InsertDeleteUpdateQuery($sql);
+                }
             }
+            else
+            {
+                echo 0;
+            }	
         }
         else
         {
-            echo 0;
+            echo -1;
         }
-		//echo $data = $store->InsertDeleteUpdateQuery($sql);
-		
+        
+        	
     }
     
     public function xulyupdateAction() {    

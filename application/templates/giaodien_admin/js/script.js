@@ -740,7 +740,20 @@ function ThemLoaiSanPham(parent_id, tenlsp, vitri, anhien)
                 window.location = '../category';
             }
             else
-                ThongBaoLoi('Thêm mới không thành công');
+			{
+				if(data == 0)
+				{
+					ThongBaoLoi('Thêm mới không thành công');
+				}
+				else
+				{
+					if(data == -1)
+					{
+						var link = taaa.fbappdomain + '/admin';
+						ThongBaoDongY('Bạn không phải là quản lý page này', link);
+					}
+				}
+			}             
         }
         
     });
