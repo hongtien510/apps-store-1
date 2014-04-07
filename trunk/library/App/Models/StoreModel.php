@@ -509,6 +509,28 @@ class App_Models_StoreModel {
         $data = $this->SelectQuery($sql);
 		return $data;
     }
+    
+    public function checkUserManagerPage($iduser_fb = "", $idpage = "")
+    {
+        if($iduser_fb == "" || $iduser_fb == "0")
+        {
+            return 0;
+        }
+        else
+        {
+            $sql = "select 1 from ishali_pages where id_fb_page = '$idpage' and id_fb = '$iduser_fb' limit 0,1";
+            $data = $this->SelectQuery($sql);
+    		if(!empty($data))
+            {
+                return 1;
+            }
+            else
+            {
+                return 0;
+            }
+        }
+    }
+    
 }
 
 

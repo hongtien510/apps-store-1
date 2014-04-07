@@ -87,7 +87,8 @@
         			<th width="8%">Công cụ</th>
         		</tr>
                 <?php 
-                    //for($i=0; $i<count($product); $i++)
+                    if(!empty($product))
+                    {
                     $i = 0;
                     foreach($product as $key=>$value)
                     {
@@ -137,7 +138,14 @@
         				<a href="javascript:void(0);" onclick = "DeleteProduct(<?php echo $value['idsp'] ?>)"><img src="<?php echo APP_DOMAIN ?>/application/templates/giaodien_admin/images/delete.png"/></a>
         			</td>
         		</tr>
-                <?php } ?>
+                <?php 
+                    } 
+                }
+                else
+                {
+                    echo "<tr><td colspan='9'>Chưa có sản phẩm nào</td></tr>";
+                } 
+                ?>
 
         	</table>
         	<a href="product/add" class="add">Thêm sản phẩm mới</a>

@@ -60,7 +60,7 @@ class Ishali_Facebook extends Ishali_Api{
     {
         $fb = Ishali_Facebook::getFB();
         $access_token = Ishali_Facebook::getAccessToken();
-        $photos = $fb->api("/$album_id/photos", array("access_token" => "$access_token"));
+        $photos = $fb->api("/$album_id/photos?limit=1000", array("access_token" => "$access_token"));
         return $photos;
     }
 	

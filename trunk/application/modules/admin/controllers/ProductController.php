@@ -76,31 +76,36 @@ class Admin_ProductController extends App_Controller_AdminController {
 			}
             			
 			$data = $store->SelectQuery($sql);
-            foreach($data as $key=>$value)
+            $data2 = array();
+            if(!empty($data))
             {
-                if(isset($data2[$value['idsp']]))
+                foreach($data as $key=>$value)
                 {
-                    $i = 0;
-
-                    $array_cate['parent_id'] = $value['parent_id'];
-                    $array_cate['tenloaisp_parent'] = $value['tenloaisp_parent'];
-                    $array_cate['idloaisp'] = $value['idloaisp'];
-                    $array_cate['tenloaisp'] = $value['tenloaisp'];
-                    
-                    
-                    $data2[$value['idsp']]['list_cate'][] = $array_cate;
-                }
-                else
-                {
-                    $data2[$value['idsp']] = $value;
-                    
-                    $array_cate['parent_id'] = $value['parent_id'];
-                    $array_cate['tenloaisp_parent'] = $value['tenloaisp_parent'];
-                    $array_cate['idloaisp'] = $value['idloaisp'];
-                    $array_cate['tenloaisp'] = $value['tenloaisp'];                   
-                    $data2[$value['idsp']]['list_cate'][] = $array_cate;
+                    if(isset($data2[$value['idsp']]))
+                    {
+                        $i = 0;
+    
+                        $array_cate['parent_id'] = $value['parent_id'];
+                        $array_cate['tenloaisp_parent'] = $value['tenloaisp_parent'];
+                        $array_cate['idloaisp'] = $value['idloaisp'];
+                        $array_cate['tenloaisp'] = $value['tenloaisp'];
+                        
+                        
+                        $data2[$value['idsp']]['list_cate'][] = $array_cate;
+                    }
+                    else
+                    {
+                        $data2[$value['idsp']] = $value;
+                        
+                        $array_cate['parent_id'] = $value['parent_id'];
+                        $array_cate['tenloaisp_parent'] = $value['tenloaisp_parent'];
+                        $array_cate['idloaisp'] = $value['idloaisp'];
+                        $array_cate['tenloaisp'] = $value['tenloaisp'];                   
+                        $data2[$value['idsp']]['list_cate'][] = $array_cate;
+                    }
                 }
             }
+            
 			$this->view->product = $data2;
 			
             //$list_loaisp = $store->getAllCategoryByIdPage($idpage, 0);
