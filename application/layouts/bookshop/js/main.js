@@ -23,6 +23,9 @@ $(document).ready(function(){
         var address = $("#address").val();
         var idpage = $('#idpage').val();
         var comment = $('#comment').val();
+		var isfbuser = $('#isfbuser').val();
+		var linkfb = $('#linkfb').val();
+		var idfb = $('#idfb').val();
 
         var status = 0;
         if(name == "" || phone == "" || email == "" || city == "" || district == "" || address == "")
@@ -51,7 +54,7 @@ $(document).ready(function(){
             $.ajax({
 				url:APP_DOMAIN + '/ajax/dathang',
 				type:'post',
-				data:{idpage:idpage, name:name, phone:phone, email:email, city:city, district:district, address:address, comment:comment},
+				data:{idpage:idpage, name:name, phone:phone, email:email, city:city, district:district, address:address, comment:comment, isfbuser:isfbuser, linkfb:linkfb, idfb:idfb},
 				success:function(data){
                     if(data == 1)
                     {
@@ -63,6 +66,9 @@ $(document).ready(function(){
                         $("#address").val("");
                         $('#idpage').val("");
                         $('#comment').val("");
+						$('#isfbuser').val("");
+						$('#linkfb').val("");
+						$('#idfb').val("");
                         $('.message').html("<span class='success'>Gửi Email thành công</span>");
                         var nd = "Đặt hàng thành công.<br/>Gửi Email thành công";
                         var link = APP_DOMAIN +'?idpage='+ idpage;

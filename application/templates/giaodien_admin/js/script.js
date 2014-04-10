@@ -1145,6 +1145,20 @@ function viewCart(idCart)
         }); 
 }
 
+function viewCustomerDetails(name, phone, city, district, address, latest_order, rating, email, fb_address, idpage)
+{
+   $.ajax({
+		url:taaa.appdomain+'/admin/customer/viewcustomerdetails',
+		type:'post',
+		data:{name:name, phone:phone, city:city, district:district, address:address, latest_order:latest_order, rating:rating, email:email, fb_address:fb_address, idpage:idpage},
+		success:function(data){
+			$('#popup_content').fadeIn();
+			$('#popup_content').html(data);
+			//window.scroll(0,0);
+			FB.Canvas.scrollTo(0,0);
+		}
+	}); 
+}
 
 function ChangeStCart(idCart, status, text)
 {

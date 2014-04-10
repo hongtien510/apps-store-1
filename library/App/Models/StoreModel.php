@@ -530,7 +530,45 @@ class App_Models_StoreModel {
             }
         }
     }
-    
+	
+	public function getCustomer($idpage = "")
+	{
+		if($idpage == "") 
+		{	
+			return;
+		}
+		
+		$sql = "select * from customer where idpage = '".$idpage."'";
+		$data = $this->SelectQuery($sql);
+		
+		return $data;
+	}
+	
+	public function getCustomerOrders($idpage = "", $email = "")
+	{
+		if($idpage == "" || $email == "") 
+		{	
+			return;
+		}
+		
+		$sql = "select * from cart where email = '".$email."' and idpage = '".$idpage."'";
+		$data = $this->SelectQuery($sql);
+		
+		return $data;
+	}
+	
+	public function checkFbUserInDb ($idpage = "", $idfb = "") 
+	{
+		if($idpage == "" || $idfb == "") 
+		{	
+			return;
+		}
+		
+		$sql = "select * from customer where idpage = '$idpage' and fb_id = '$idfb'";
+		$data = $this->SelectQuery($sql);
+			
+		return $data;
+	}
 }
 
 

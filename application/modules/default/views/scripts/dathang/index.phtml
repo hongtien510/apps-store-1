@@ -21,15 +21,15 @@
 					<div class="type-info">
 						<div class="row-info">
 							<div class="title">Họ và Tên<span class="red">*</span></div>
-							<input type="text" id="name" name="name" value="" />
+							<input type="text" id="name" name="name" value="<?php echo $this->name; ?>" />
 						</div>
 						<div class="row-info">
 							<div class="title">Số điện thoại<span class="red">*</span></div>
-							<input type="text" id="phone" name="phone" value="" />
+							<input type="text" id="phone" name="phone" value="<?php echo $this->phone; ?>" />
 						</div>
 						<div class="row-info">
 							<div class="title">Email<span class="red">*</span></div>
-							<input type="text" id="email" name="email" value="" />
+							<input type="text" id="email" name="email" value="<?php echo $this->email; ?>" />
 						</div>
 						<div class="row-info info-place">
 							<div class="title">NƠI NHẬN HÀNG</div>
@@ -106,7 +106,7 @@
 						</div>
 						<div class="row-info">
 							<div class="title">Quận<span class="red">*</span></div>
-							<input type="text" id="district" name="district" value="" />
+							<input type="text" id="district" name="district" value="<?php echo $this->district; ?>" />
 							<!--<select name="district" id="district">
 								<option value="">Quận/Huyện</option>
 								<option value="Quan1">Quận 1</option>
@@ -115,7 +115,7 @@
 						</div>
 						<div class="row-info">
 							<div class="title">Địa chỉ<span class="red">*</span></div>
-							<input type="text" id="address" name="address" value="" />
+							<input type="text" id="address" name="address" value="<?php echo $this->address; ?>" />
 						</div>
                         <div class="row-info">
 							<div class="title">Ghi chú<span class="red"></span></div>
@@ -124,6 +124,9 @@
 						
 						<div class="btn-muahang">
                             <input type="hidden" id="idpage" value="<?php echo $this->idpage ?>" />
+							<input type="hidden" id="isfbuser" value="<?php echo $this->isfbuser ?>" />
+							<input type="hidden" id="linkfb" value="<?php echo $this->linkfb ?>" />
+							<input type="hidden" id="idfb" value="<?php echo $this->idfb ?>" />
 							<input name="button-dathang" type="button" value="Mua hàng"/>
                             <p class="message"></p>
 						</div>

@@ -83,7 +83,42 @@ class AjaxController extends App_Controller_FrontController {
         $address = $_POST['address'];
         $comment = $_POST['comment'];
         $idpage = $this->view->idpage;
+		$isfbuser = $_POST['isfbuser'];
+		$linkfb = $_POST['linkfb'];
+		$idfb = $_POST['idfb'];
         
+		/* if ($isfbuser == 1) {
+			$_sql = "select * from customer where fb_id = '".$idfb."'";
+			$_rs = mysql_query($_sql);
+			if (mysql_num_rows($_rs) == 0)
+			{
+				$_sql = "Insert into customer (`name`, `phone`, `email`, `city`, `district`, `address`, `fb_address`, `fb_id`, `idpage`)
+									values ('$name', '$phone', '$email', '$city', '$district', '$address', '$linkfb', '$idfb', '$idpage')";
+				mysql_query($_sql);
+			}
+		} else if ($isfbuser == 0) {
+			$_sql = "select * from customer where email = '".$email."'";
+			$_rs = mysql_query($_sql);
+			if (mysql_num_rows($_rs) == 0)
+			{
+				$_sql = "Insert into customer (`name`, `phone`, `email`, `city`, `district`, `address`, `idpage`)
+									values ('$name', '$phone', '$email', '$city', '$district', '$address', '$idpage')";
+				mysql_query($_sql);
+			}
+		} */
+		
+		$_sql = "select * from customer where email = '".$email."'";
+		$_rs = mysql_query($_sql);
+		if (mysql_num_rows($_rs) == 0)
+		{
+			$_sql = "Insert into customer (`name`, `phone`, `email`, `city`, `district`, `address`, `latest_order`, `fb_address`, `fb_id`, `idpage`)
+									values ('$name', '$phone', '$email', '$city', '$district', '$address', now(), '$linkfb', '$idfb', '$idpage')";
+			mysql_query($_sql);
+		} else {
+			$_sql = "Update customer Set `phone` = '$phone', `city` = '$city', `district` = '$district', `address` = '$address', `latest_order` = now(), `fb_address` = '$linkfb', `fb_id` = '$idfb', Where `idpage` = '$idpage' and `email` = '$email'";
+			mysql_query($_sql);
+		}
+		
         
         $sql = "select id_cart from cart order by id_cart DESC";
         $rs = mysql_query($sql);
@@ -110,8 +145,8 @@ class AjaxController extends App_Controller_FrontController {
         if(!isset($id_cart)) $id_cart = $prefix . '_' . $index_cart;
         
         $sql = "Insert into cart 
-                (`id_cart`, `date_create`, `date_modify`, `status`, `name`, `phone`, `email`, `city`, `district`, `address`, `comment`, `idpage`)
-                values ('$id_cart', now(), now(), '0', '$name','$phone', '$email', '$city', '$district', '$address', '$comment', '$idpage')";
+                (`id_cart`, `date_create`, `date_modify`, `status`, `name`, `phone`, `email`, `city`, `district`, `address`, `comment`, `fb_id`, `idpage`)
+                values ('$id_cart', now(), now(), '0', '$name','$phone', '$email', '$city', '$district', '$address', '$comment', '$idfb', '$idpage')";
         mysql_query($sql);
         
         $cart = $_SESSION["cart_$idpage"];
