@@ -6,6 +6,7 @@
 	$activeproduct = '';
     $activechangepass = '';
     $activecart = '';
+	$activecustomer = '';
     
     switch ($controllerName) {
         case 'index':
@@ -25,6 +26,9 @@
             break;
         case 'cart':
             $activecart = "class='active'";
+            break;
+		case 'customer':
+			$activecustomer = "class='active'";
             break;
 		case 'search':
 			$activeproduct = "class='active'";
@@ -86,6 +90,7 @@
 				<li><a target="_top" href="<?php echo ROOT_DOMAIN ?>/admin/category" <?php echo $activecategory ?>>Loại sản phẩm</a></li>
 				<li><a target="_top" href="<?php echo ROOT_DOMAIN ?>/admin/product" <?php echo $activeproduct ?>>Sản phẩm</a></li>
 				<li><a target="_top" href="<?php echo ROOT_DOMAIN ?>/admin/cart" <?php echo $activecart ?>>Đơn hàng</a></li>
+				<li><a target="_top" href="<?php echo ROOT_DOMAIN ?>/admin/customer" <?php echo $activecustomer ?>>Quản lý khách hàng</a></li>
 			</ul>
             <?php
                 
