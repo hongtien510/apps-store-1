@@ -32,7 +32,7 @@ class DathangController extends App_Controller_FrontController {
         }
         else
         {
-			echo $facebook->getuserfbid();
+			$facebook->getuserfbid();
 			$user_profile = $facebook->getUserInfo();
 			$this->view->isfbuser = 1;
 			$this->view->linkfb = $user_profile['link'];
